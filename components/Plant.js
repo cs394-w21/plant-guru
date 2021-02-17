@@ -15,9 +15,9 @@ const Plant = (props) => {
             <View style={styles.container}>
                 <Image style={styles.image} source={{uri: plant.image}} />
                 <Text style={styles.name}>{plant.name}</Text>
-                <Text style={styles.text}>{expanded? `Light: ${plant.light}` : ''}</Text>
-                <Text style={styles.text}>{expanded? `Temperature: ${plant.temperature}C` : ''}</Text>
-                <Text style={styles.text}>{expanded? `Humidity: ${plant.humidity}` : ''}</Text>
+                <Text style={styles.text}>{expanded? `Care: Requires ${plant.care} care` : ''}</Text>
+                <Text style={styles.text}>{expanded? `Sunlight: Requires ${plant.sunlight} amount` : ''}</Text>
+                <Text style={styles.text}>{expanded? `Watering: ${plant.water}` : ''}</Text>
                 <Text style={styles.text}>{expanded? `Toxicity: ${plant.toxicity}` : ''}</Text>
             </View>
 
