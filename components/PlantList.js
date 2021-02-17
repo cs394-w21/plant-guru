@@ -2,13 +2,14 @@ import React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 //import { Card, ListItem, Button, Icon } from 'react-native-elements'
 
+import Plant from './Plant';
 const PlantList = (props) => {
     const {plants} = props;
-
+    
     return(
         <View style={styles.plantList}>
             {plants.map(plant => (
-                <TouchableOpacity>{plant.name}</TouchableOpacity>
+                <Plant plant={plant} key={plant.id}/>
             ))}
         </View>
     )
@@ -16,12 +17,13 @@ const PlantList = (props) => {
 
 const styles = StyleSheet.create({
     plantList: {
-        flex: 1,
+        marginTop: 20,
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignItems: 'center',
-        justifyContent: 'space-between',
-      }    
+        justifyContent: 'space-evenly',
+      },
+      
 });
 
 export default PlantList
