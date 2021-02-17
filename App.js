@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import getPlantData from './utils/plantData';
+import PlantList from './components/PlantList';
 
 export default function App() {
   const plants = getPlantData();
   return (
     <View style={styles.container}>
-      <Text>{plants.length>0 ? plants[2]['Plant name'] : 'Loading...'}</Text>
+      <PlantList plants={plants}></PlantList>
     </View>
   );
 }
