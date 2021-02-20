@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, Image, View, StyleSheet } from 'react-native';
-
+import {windowWidth} from '../constants/WindowSize';
 
 const PlantInfoScreen = (props) => {
     const {route} = props;
@@ -56,10 +56,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#fff",
-        justifyContent: "space-evenly",
+
         borderRadius: 5,
         margin: 25,
-        width: 500,
+        width: Math.min(500,0.9*windowWidth),
         //height: 300,
         marginTop: 50,
         shadowColor: "#000",
@@ -73,15 +73,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     image: {
-        width: 220,
-        height: 200
+        width: Math.min(480,0.85*windowWidth),
+        height: Math.min(480,0.85*windowWidth)
     },
     text: {
-        fontSize: 12,
-        padding: 2
+        fontSize: 18,
+        padding: 5
     },
     name: {
-        fontSize: 15,
+        fontSize: 22,
         fontWeight: 'bold',
         fontFamily: 'Avenir',
         padding: 5

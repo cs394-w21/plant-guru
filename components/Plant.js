@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-
+import {windowWidth} from '../constants/WindowSize';
 
 const Plant = (props) => {
     const {plant, navigation} = props;
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         maxWidth: '28%',
         // minHeight: 100,
         // maxHeight: 100,
-        height: '28%%',
+        height: 0.28*windowWidth,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.5,
         shadowRadius: 10,
-        padding: 15,
+        padding: 5,
     },
     image: {
         width: '100%',

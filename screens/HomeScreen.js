@@ -10,7 +10,7 @@ const HomeScreen = ({ navigation }) => {
 
     return (
       <SafeAreaView style={styles.container}>
-          <Image resizeMode="contain" style={styles.title} source={{uri: titleSource}} />
+          <Image resizeMode="stretch" style={styles.title} source={{uri: titleSource}} />
           <PlantList plants={plants} navigation={navigation} />
       </SafeAreaView>
     );
@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
     title: {
       width: 300,
       height: 100,
+      borderRadius: 20,
+      marginBottom: 10
     }
 });
 
