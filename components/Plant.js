@@ -12,11 +12,14 @@ const Plant = (props) => {
     console.log(plant.image)
 
     return(
-        <TouchableOpacity onPress={handlePress}>
-            <View style={styles.container}>
+        <TouchableOpacity
+            onPress={handlePress}
+            style={styles.container}
+        >
+            {/* <View style={styles.container}> */}
                 <Image style={styles.image} source={{uri: plant.image}} />
-                <Text style={styles.name}>{plant.name}</Text>
-            </View>
+                {/* <Text style={styles.name}>{plant.name}</Text> */}
+            {/* </View> */}
         </TouchableOpacity>
     );
 };
@@ -25,11 +28,15 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#fff",
-        justifyContent: "space-evenly",
+        alignItems: 'center',
+        justifyContent: 'center',
         borderRadius: 5,
-        margin: 25,
-        width: 250,
-        marginTop: 1,
+        margin: 10,
+        minWidth: '28%',
+        maxWidth: '28%',
+        // minHeight: 100,
+        // maxHeight: 100,
+        height: '28%%',
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -38,11 +45,10 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5,
         shadowRadius: 10,
         padding: 15,
-        alignItems: 'center',
     },
     image: {
-        width: 220,
-        height: 200
+        width: '100%',
+        height: '100%'
     },
     text: {
         fontSize: 12,
