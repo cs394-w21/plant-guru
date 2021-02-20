@@ -3,13 +3,16 @@ import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, Ima
 import {windowWidth,windowHeight} from '../constants/WindowSize.js';
 
 const Plant = (props) => {
-    const {plant} = props;
+    const {plant, navigation} = props;
     const [expanded, setExpanded] = useState(false);
+
     const handlePress = () => {
         setExpanded(!expanded);
         console.log("success");
+        navigation.navigate('PlantInfoScreen');
     }
     console.log(plant.image)
+
     return(
         <TouchableOpacity onPress={handlePress}>
             <View style={styles.container}>
@@ -20,10 +23,10 @@ const Plant = (props) => {
                 <Text style={styles.text}>{expanded? `Watering: ${plant.water}` : ''}</Text>
                 <Text style={styles.text}>{expanded? `Toxicity: ${plant.toxicity}` : ''}</Text>
             </View>
-
         </TouchableOpacity>
-    )
-}
+    );
+};
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -58,5 +61,6 @@ const styles = StyleSheet.create({
         padding: 5
     }
 });
+
 export default Plant;
 
