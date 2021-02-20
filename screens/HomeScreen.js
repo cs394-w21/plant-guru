@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#006400',
       alignItems: 'center',
       justifyContent: 'flex-start',
-      paddingTop: 20
+      paddingTop: 20,
     },
     title: {
       width: 300,

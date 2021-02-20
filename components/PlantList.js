@@ -9,7 +9,7 @@ const PlantList = (props) => {
     const {plants, navigation} = props;
 
     return(
-        <ScrollView style={styles.plantList} contentContainerStyle={{alignItems: 'center', justifyContent: 'space-evenly'}}>
+        <ScrollView contentContainerStyle={styles.plantList}>
                 {plants.map(plant => (
                     <Plant plant={plant} key={plant.id} navigation={navigation}/>
                 ))}
@@ -19,11 +19,12 @@ const PlantList = (props) => {
 
 const styles = StyleSheet.create({
     plantList: {
+        flex: 1,
         marginTop: 20,
         flexDirection: 'row',
         flexWrap: 'wrap',
-        // alignItems: 'center',
-        // justifyContent: 'space-evenly',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
       },
 });
 

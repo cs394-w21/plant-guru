@@ -8,6 +8,7 @@ const PlantInfoScreen = (props) => {
     const {name, image, sun, temperature, humidity, care, type, watering, size, allergies} = plant;
 
     return (
+        <View style={styles.outerContainer}>
         <View style={styles.container}>
             <Text style={styles.name}>
                 {name}
@@ -41,18 +42,26 @@ const PlantInfoScreen = (props) => {
                 {`Plant toxicity: ${allergies}`}
             </Text>
         </View>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
+    outerContainer: {
+        backgroundColor: '#006400',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     container: {
         flex: 1,
         backgroundColor: "#fff",
         justifyContent: "space-evenly",
         borderRadius: 5,
         margin: 25,
-        width: 250,
-        marginTop: 1,
+        width: 500,
+        //height: 300,
+        marginTop: 50,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
