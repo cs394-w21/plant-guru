@@ -1,15 +1,13 @@
-import React, {useState} from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
-import {windowWidth,windowHeight} from '../constants/WindowSize.js';
+import React from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
 
 const Plant = (props) => {
     const {plant, navigation} = props;
-    const [expanded, setExpanded] = useState(false);
 
     const handlePress = () => {
-        setExpanded(!expanded);
         console.log("success");
-        navigation.navigate('PlantInfoScreen');
+        navigation.navigate('PlantInfoScreen', {plant});
     }
     console.log(plant.image)
 
@@ -18,10 +16,6 @@ const Plant = (props) => {
             <View style={styles.container}>
                 <Image style={styles.image} source={{uri: plant.image}} />
                 <Text style={styles.name}>{plant.name}</Text>
-                <Text style={styles.text}>{expanded? `Care: Requires ${plant.care} care` : ''}</Text>
-                <Text style={styles.text}>{expanded? `Sunlight: Requires ${plant.sunlight} amount` : ''}</Text>
-                <Text style={styles.text}>{expanded? `Watering: ${plant.water}` : ''}</Text>
-                <Text style={styles.text}>{expanded? `Toxicity: ${plant.toxicity}` : ''}</Text>
             </View>
         </TouchableOpacity>
     );
