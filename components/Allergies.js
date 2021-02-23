@@ -57,5 +57,3 @@ const Allergies = (props) => {
   })
   
   export default Allergies;
-  
-  
