@@ -56,19 +56,13 @@ const styles = StyleSheet.create({
       },
 selected: {
     ...buttonStyle,
-    backgroundColor: 'green',
-    borderColor: 'grey',
+    backgroundColor: 'white',
+    borderColor: 'green',
     borderWidth: 2
 },
 regular: {
     ...buttonStyle,
     backgroundColor: 'white'
-},
-image: {
-    width: '95%',
-    height: '95%',
-    borderRadius: 20,
-    marginBottom: 10
 }
 })
 

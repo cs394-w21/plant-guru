@@ -12,14 +12,14 @@ import Humidity from './Humidity';
 
 const InputForm = (props) => {
   const {navigation} = props;
-  const [sunlight, updateSunlight] = useState(""); 
-  const [allergies, updateAllergies] = useState("");
-  const [size, updateSize] = useState("");  
-  const [pets, setPets] = useState("");
-  const [children, setChildren] = useState("");
-  const [effort, setEffort] = useState("");
-  const [temperature, setTemperature] = useState(55);
-  const [humidity, setHumidity] = useState(0);
+  const [sunlight, updateSunlight] = useState("High"); 
+  const [allergies, updateAllergies] = useState("No");
+  const [size, updateSize] = useState("Medium");  
+  const [pets, setPets] = useState("No");
+  const [children, setChildren] = useState("No");
+  const [effort, setEffort] = useState("Medium");
+  const [temperature, setTemperature] = useState(68);
+  const [humidity, setHumidity] = useState(42);
 
   const handleSubmit = () => {
     navigation.navigate('HomeScreen', { sunlight, allergies, size, pets, children, effort, temperature, humidity });
@@ -47,13 +47,14 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     flexWrap: 'wrap',
+    marginBottom: 40,
     marginTop: 10,
     justifyContent: 'center',
     alignItems: 'center'
   },
   submitButton: {
     backgroundColor: '#006400',
-    padding: 3
+    padding: 10
   },
   submit: {
     color: 'white'

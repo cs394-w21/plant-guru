@@ -55,8 +55,8 @@ const Allergies = (props) => {
     },
     selected: {
       ...buttonStyle,
-      backgroundColor: 'green',
-      borderColor: 'grey',
+      backgroundColor: 'white',
+      borderColor: 'green',
       borderWidth: 2
     },
     regular: {
