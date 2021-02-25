@@ -22,7 +22,7 @@ const options = {
 };
 
 const PlantSize = (props) => {
-  const [size, updateSize] = useState("");  
+  const {size, updateSize} = props;
   
   return (
     <View style={styles.container}>

@@ -10,7 +10,7 @@ const options = {
 }
 
 const CareEffort = (props) => {
-    const [effort, setEffort] = useState("");
+    const {effort, setEffort} = props;
 
     return (
       <View style={styles.container}>

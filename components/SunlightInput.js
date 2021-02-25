@@ -22,7 +22,7 @@ const options = {
 };
 
 const SunlightInput = (props) => {
-  const [sunlight, updateSunlight] = useState("");  
+  const {sunlight, updateSunlight}= props;
   
   return (
     <View style={styles.container}>

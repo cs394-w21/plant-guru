@@ -8,8 +8,8 @@ const options = {
 }
 
 const Children = (props) => {
-    const [children, setChildren] = useState("");
 
+    const {children, setChildren} = props;
     return (
       <View style={styles.container}>
           <Text>Are there children in the household?</Text>

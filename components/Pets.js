@@ -8,7 +8,8 @@ const options = {
 }
 
 const Pets = (props) => {
-    const [pets, setPets] = useState("");
+
+    const {pets, setPets} = props;
 
     return (
       <View style={styles.container}>

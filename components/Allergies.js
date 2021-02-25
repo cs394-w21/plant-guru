@@ -8,7 +8,7 @@ const options = {
 }
 
 const Allergies = (props) => {
-    const [allergies, updateAllergies] = useState("");  
+    const {allergies, updateAllergies} = props;
 
     
     return (
