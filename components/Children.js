@@ -11,8 +11,9 @@ const Children = (props) => {
 
     const {children, setChildren} = props;
     return (
-      <View style={styles.container}>
+      <View style={styles.mainContainer}>
           <Text>Are there children in the household?</Text>
+          <View style={styles.container}>
           {
           Object.keys(options).map(key => {
           return (<TouchableOpacity key={key} 
@@ -22,21 +23,35 @@ const Children = (props) => {
           </TouchableOpacity>)
          })
         }
+        </View>
       </View>
     );
 };
 
 const buttonStyle = {
-width: 0.1*windowWidth,
-height: 0.1*windowWidth,
+width: 0.03*windowWidth,
+height: 0.02*windowWidth,
+justifyContent: 'center',
+alignItems: 'center'
 };
 
 const styles = StyleSheet.create({
-container: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    flex: 1,
-},
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        flex: 1,
+        textAlign: 'center',
+        width: '50%',
+        margin: 10,
+      },
+      mainContainer: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 0.5,
+        width: '100%',
+        margin: 10,
+      },
 selected: {
     ...buttonStyle,
     backgroundColor: 'green',

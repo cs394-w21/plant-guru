@@ -1,23 +1,27 @@
 import React, {useState} from 'react';
-import { TouchableOpacity, StyleSheet, View, Image } from "react-native";
+import { TouchableOpacity, StyleSheet, View, Image, Text } from "react-native";
 import { windowWidth, windowHeight } from '../constants/WindowSize';
 
 const options = {
   0: {
-    uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614034706/Screen_Shot_2021-02-22_at_4.57.16_PM_krn59b.png',
+    uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614034706/Screen_Shot_2021-02-22_at_4.56.58_PM_b89vxj.png',
     value: 'Low',
+    text: '< 4 hours'
   },
   1: {
     uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614034706/Screen_Shot_2021-02-22_at_4.57.10_PM_nzyw3b.png',
     value: 'Medium',
+    text: '4-6 hours'
   },
   2: {
-    uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614034706/Screen_Shot_2021-02-22_at_4.56.58_PM_b89vxj.png',
+    uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614034706/Screen_Shot_2021-02-22_at_4.57.16_PM_krn59b.png',
     value: 'High',
+    text: '> 6 hours'
   },
   3: {
     uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614034706/Screen_Shot_2021-02-22_at_4.57.29_PM_cgbwzq.png',
     value: 'Any',
+    text: 'Any'
   }
 };
 
@@ -25,19 +29,25 @@ const SunlightInput = (props) => {
   const {sunlight, updateSunlight}= props;
   
   return (
-    <View style={styles.container}>
+    <View style={styles.mainContainer}>
+      
+      <Text>What's the kind of sun exposure you receive in your space?</Text>
+      
+      <View style={styles.container}>
       {
         Object.keys(options).map(key => {
-          return (<TouchableOpacity key={key} onPress={() => {updateSunlight(options[key].value)}} style={options[key].value==sunlight? styles.selected : styles.regular}><Image source={{uri: options[key].uri}} resizeMode="contain" style={styles.image}/></TouchableOpacity>)
+          return (<TouchableOpacity key={key} onPress={() => {updateSunlight(options[key].value)}} style={options[key].value==sunlight? styles.selected : styles.regular}><Image source={{uri: options[key].uri}} resizeMode="contain" style={styles.image}/><Text>{options[key].text}</Text></TouchableOpacity>)
         })
       }
+      </View>
     </View>
   )
 };
 
 const buttonStyle = {
-  width: 0.1*windowWidth,
-  height: 0.1*windowWidth,
+  width: 0.05*windowWidth,
+  height: 0.05*windowWidth,
+  alignItems: 'center',
 };
 
 const styles = StyleSheet.create({
@@ -45,6 +55,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     flex: 1,
+    textAlign: 'center',
+    width: '50%',
+    margin: 10
+  },
+  mainContainer: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    width: '100%',
+    margin: 10
   },
   selected: {
     ...buttonStyle,
@@ -57,9 +78,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white'
   },
   image: {
-    width: '95%',
-    height: '95%',
-    borderRadius: 20,
+    width: '90%',
+    height: '90%',
     marginBottom: 10
   }
 })

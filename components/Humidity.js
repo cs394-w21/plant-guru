@@ -6,9 +6,9 @@ import Slider from '@react-native-community/slider';
 const Humidity = (props) => {
     const {value, setValue} = props;
     return(
-        <View>
+        <View style={styles.container}>
             <Text>
-                Humidity : {value} 
+            What is the average humidity in your space (0-50%)? : {value} 
             </Text>
             <Slider
                 maximumValue={50}
@@ -18,10 +18,26 @@ const Humidity = (props) => {
                 onValueChange={
                     (value) => setValue(value)
                 }
+                style={styles.slider}
             />
         </View>
         
     )
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 0.5,
+        width: '100%',
+        marginTop: 20
+      },
+      slider: {
+          width: '50%',
+          marginTop: -5
+      }
+})
 
 export default Humidity;

@@ -12,8 +12,9 @@ const Allergies = (props) => {
 
     
     return (
-      <View style={styles.container}>
+      <View style={styles.mainContainer}>
           <Text> Do you or anyone in your household have any plant allergies?</Text>
+          <View style={styles.container}>
           {
           Object.keys(options).map(key => {
           return (<TouchableOpacity key={key} 
@@ -23,13 +24,16 @@ const Allergies = (props) => {
           </TouchableOpacity>)
          })
         }
+        </View>
       </View>
     )
   };
 
   const buttonStyle = {
-    width: 0.1*windowWidth,
-    height: 0.1*windowWidth,
+    width: 0.03*windowWidth,
+    height: 0.02*windowWidth,
+    alignItems: 'center',
+    justifyContent: 'center'
   };
 
   const styles = StyleSheet.create({
@@ -37,6 +41,17 @@ const Allergies = (props) => {
       flexDirection: 'row',
       justifyContent: 'space-evenly',
       flex: 1,
+      textAlign: 'center',
+      width: '50%',
+      margin: 10,
+    },
+    mainContainer: {
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flex: 0.5,
+      width: '100%',
+      margin: 10,
     },
     selected: {
       ...buttonStyle,
@@ -47,12 +62,6 @@ const Allergies = (props) => {
     regular: {
       ...buttonStyle,
       backgroundColor: 'white'
-    },
-    image: {
-      width: '95%',
-      height: '95%',
-      borderRadius: 20,
-      marginBottom: 10
     }
   })
   

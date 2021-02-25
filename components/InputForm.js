@@ -35,8 +35,8 @@ const InputForm = (props) => {
       <CareEffort setEffort={setEffort} effort={effort}/>
       <Temperature setValue={setTemperature} value={temperature}/>
       <Humidity setValue={setHumidity} value={humidity}/>
-      <TouchableOpacity onPress={() => handleSubmit()}>
-        <Text>Submit</Text>
+      <TouchableOpacity style={styles.submitButton} onPress={() => handleSubmit()}>
+        <Text style={styles.submit}>Submit</Text>
       </TouchableOpacity>
     </View>
   );
@@ -47,7 +47,17 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     flexWrap: 'wrap',
+    marginTop: 10,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
+  submitButton: {
+    backgroundColor: '#006400',
+    padding: 3
+  },
+  submit: {
+    color: 'white'
+  }
 });
 
 export default InputForm;
