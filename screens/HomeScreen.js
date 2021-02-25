@@ -4,14 +4,27 @@ import PlantList from '../components/PlantList';
 import getPlantData from '../utils/plantData';
 
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = (props) => {
+    const { navigation, route } = props;
+    const { sunlight, allergies, size, pets, children, effort, temperature, humidity } = route.params;
     const plants = getPlantData();
     const titleSource = 'https://res.cloudinary.com/dmxv5vtjt/image/upload/v1613604540/Plants/Screen_Shot_2021-02-17_at_5.28.37_PM_bfkeza.png';
 
     return (
       <SafeAreaView style={styles.container}>
           <Image resizeMode="stretch" style={styles.title} source={{uri: titleSource}} />
-          <PlantList plants={plants} navigation={navigation} />
+          <PlantList
+            plants={plants}
+            navigation={navigation}
+            sunlight={sunlight}
+            allergies={allergies}
+            size={size}
+            pets={pets}
+            children={children}
+            effort={effort}
+            temperature={temperature}
+            humidity={humidity}
+          />
       </SafeAreaView>
     );
 };

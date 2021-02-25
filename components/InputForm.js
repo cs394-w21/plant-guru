@@ -20,6 +20,11 @@ const InputForm = (props) => {
   const [effort, setEffort] = useState("");
   const [temperature, setTemperature] = useState(55);
   const [humidity, setHumidity] = useState(0);
+
+  const handleSubmit = () => {
+    navigation.navigate('HomeScreen', { sunlight, allergies, size, pets, children, effort, temperature, humidity });
+  };
+
   return (
     <View style={styles.container}>
       <SunlightInput updateSunlight={updateSunlight} sunlight={sunlight}/>
@@ -30,7 +35,7 @@ const InputForm = (props) => {
       <CareEffort setEffort={setEffort} effort={effort}/>
       <Temperature setValue={setTemperature} value={temperature}/>
       <Humidity setValue={setHumidity} value={humidity}/>
-      <TouchableOpacity onPress={()=>console.log(`${sunlight}, ${allergies}, ${size}, ${pets}, ${children}, ${effort}, ${temperature}, ${humidity}`)}>
+      <TouchableOpacity onPress={() => handleSubmit()}>
         <Text>Submit</Text>
       </TouchableOpacity>
     </View>
