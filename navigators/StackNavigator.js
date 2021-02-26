@@ -24,7 +24,7 @@ const StackNavigator = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen name="RegisterScreen" component={RegisterScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: ''}} />
-            <Stack.Screen name='UserInputScreen' component={UserInputScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: ''}} />
+            <Stack.Screen name='UserInputScreen' component={UserInputScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerLeft: null}} />
             <Stack.Screen name='HomeScreen' component={HomeScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: ''}} />
             <Stack.Screen name='PlantInfoScreen' component={PlantInfoScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: ''}} />
         </Stack.Navigator>

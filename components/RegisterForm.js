@@ -1,8 +1,8 @@
 import React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
-import Form from './expo-form-starter/Form.js';
+import Form from './Form.js';
 import * as Yup from 'yup';
-import { firebase } from '../utils/firebase.js';
+import { firebase, db } from '../utils/firebase.js';
 import { useContext, useState, useEffect } from 'react';
 
 const validationSchema = Yup.object().shape({
@@ -17,6 +17,12 @@ const validationSchema = Yup.object().shape({
     confirm: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Confirmation password must match password'),
   });
+
+  const newUserProps = {
+    favorites: {},
+    owned: {},
+    role: "user",
+  };
 
   const RegisterForm = ({ navigation }) => {
     const [signInError, setSignInError] = useState('');
@@ -37,6 +43,7 @@ const validationSchema = Yup.object().shape({
     setSignInError(null);
     try {
         const authCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+        db.ref("users").child(authCredential.user.uid).set(newUserProps);
         const user = authCredential.user;
         await user.updateProfile({displayName: name});
         navigation.navigate('UserInputScreen');
