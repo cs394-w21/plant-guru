@@ -4,7 +4,7 @@ import RegisterForm from '../components/RegisterForm';
 
 const RegisterScreen = ({navigation}) => {
     return(
-        <SafeAreaView><RegisterForm navigation={navigation}/></SafeAreaView>
+        <RegisterForm navigation={navigation}/>
     );
 };
 

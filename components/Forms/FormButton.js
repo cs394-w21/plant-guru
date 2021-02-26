@@ -20,7 +20,7 @@ export default function FormButton({ title, color = 'primary' }) {
 
 const styles = StyleSheet.create({
   button: {
-    marginVertical: 10,
+    marginVertical: 50,
     borderRadius: 25,
     justifyContent: 'center',
     alignItems: 'center',
