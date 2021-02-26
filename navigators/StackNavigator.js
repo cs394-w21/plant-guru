@@ -4,6 +4,7 @@ import {Image, View, StyleSheet} from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import PlantInfoScreen from '../screens/PlantInfoScreen';
 import UserInputScreen from '../screens/UserInputScreen';
+import RegisterScreen from '../screens/RegisterScreen';
 
 const logo = 'https://res.cloudinary.com/dmxv5vtjt/image/upload/v1614279936/Plants/plantguru_Leaf-01_chbb3p.png';
 
@@ -22,6 +23,7 @@ const Stack = createStackNavigator();
 const StackNavigator = () => {
     return (
         <Stack.Navigator>
+            <Stack.Screen name="RegisterScreen" component={RegisterScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: ''}} />
             <Stack.Screen name='UserInputScreen' component={UserInputScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: ''}} />
             <Stack.Screen name='HomeScreen' component={HomeScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: ''}} />
             <Stack.Screen name='PlantInfoScreen' component={PlantInfoScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: ''}} />
