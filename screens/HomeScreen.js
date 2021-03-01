@@ -1,6 +1,7 @@
-import React from 'react';
-import { Image, View, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import PlantList from '../components/PlantList';
+import SearchBar from '../components/SearchBar';
 import getPlantData from '../utils/plantData';
 
 
@@ -8,10 +9,13 @@ const HomeScreen = (props) => {
     const { navigation, route } = props;
     const { sunlight, allergies, size, pets, children, effort, temperature, humidity } = route.params;
     const plants = getPlantData();
+    const [query, setQuery] = useState('');
 
     return (
       <SafeAreaView style={styles.container}>
+          <SearchBar query={query} setQuery={setQuery} />
           <PlantList
+            query={query}
             plants={plants}
             navigation={navigation}
             sunlight={sunlight}

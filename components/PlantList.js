@@ -6,7 +6,7 @@ import { windowWidth, windowHeight } from '../constants/WindowSize';
 
 
 const PlantList = (props) => {
-    const { plants, navigation, sunlight, allergies, size, pets, children, effort, temperature, humidity } = props;
+    const { query, plants, navigation, sunlight, allergies, size, pets, children, effort, temperature, humidity } = props;
 
     const checkSunlight = plant => {
         const currSunlightLowerCase = plant.sun.toLowerCase();
@@ -113,9 +113,15 @@ const PlantList = (props) => {
 
     const filteredPlants = plants.filter(filterPlants);
 
+    const filterQuerySearch = () => {
+        return filteredPlants.filter(plant => plant.name.toLowerCase().includes(query.toLowerCase()));
+    };
+
+    const filteredQuerySearchPlants = filterQuerySearch();
+
     return(
         <ScrollView contentContainerStyle={styles.plantList}>
-            {filteredPlants.map(plant => (
+            {filteredQuerySearchPlants.map(plant => (
                 <Plant plant={plant} key={plant.id} navigation={navigation}/>
             ))}
         </ScrollView>
