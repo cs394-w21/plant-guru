@@ -41,7 +41,7 @@ const PlantInfoScreen = (props) => {
                 </Text>
                 <TouchableOpacity onPress={() => addFavorite(userID, user, plant.id)}
                                   style={checkFavorite(plant.id,user) ? styles.favoriteSelected : styles.favorite}>
-                    <Text>Favorite</Text>
+                    <Text style={checkFavorite(plant.id,user) ? styles.favoriteSelectedText : styles.favoriteText}>{checkFavorite(plant.id,user) ? 'Unfavorite' : 'Favorite'}</Text>
                 </TouchableOpacity>
                 <Image
                     style={styles.image}
@@ -126,7 +126,13 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 10,
         borderColor: 'red'
-    }
+    },
+    favoriteText: {
+        color: 'black'
+    },
+    favoriteSelectedText: {
+        color: 'red'
+    },
 });
 
 export default PlantInfoScreen;
