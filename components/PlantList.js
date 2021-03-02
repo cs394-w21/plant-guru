@@ -108,7 +108,12 @@ const PlantList = (props) => {
     }
 
     const filterPlants = plant => {
-        return checkSunlight(plant) && checkTemperature(plant) && checkHumidity(plant) && checkEffort(plant) && checkSize(plant) && checkToxic(plant);
+        if (typeof query == 'undefined'){
+            return checkSunlight(plant) && checkTemperature(plant) && checkHumidity(plant) && checkEffort(plant) && checkSize(plant) && checkToxic(plant);
+        }
+        else{
+            return true;
+        }
     };
 
     const filteredPlants = plants.filter(filterPlants);
