@@ -1,35 +1,31 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
-import PlantList from '../components/PlantList';
-import SearchBar from '../components/SearchBar';
-import getPlantData from '../utils/plantData';
-
+import { Text, SafeAreaView, StyleSheet, TouchableOpacity} from 'react-native';
 
 const HomeScreen = (props) => {
     const { navigation, route } = props;
-    const { sunlight, allergies, size, pets, children, effort, temperature, humidity } = route.params;
-    const plants = getPlantData();
-    const [query, setQuery] = useState('');
+    const onChange = (screenName) => {
+        navigation.navigate(screenName);
+    }
+    return(
+        <SafeAreaView style={styles.container}>
+            <TouchableOpacity
+            onPress={value => onChange("RegisterScreen")}>
+                <Text>Click here to login</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+            onPress={value => onChange("SearchScreen")}>
+                <Text>Click here to search</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+            onPress={value => onChange("UserInputScreen")}>
+                <Text>Click here to input room info and get plant recommendations</Text>
+            </TouchableOpacity>
 
-    return (
-      <SafeAreaView style={styles.container}>
-          <SearchBar query={query} setQuery={setQuery} />
-          <PlantList
-            query={query}
-            plants={plants}
-            navigation={navigation}
-            sunlight={sunlight}
-            allergies={allergies}
-            size={size}
-            pets={pets}
-            children={children}
-            effort={effort}
-            temperature={temperature}
-            humidity={humidity}
-          />
-      </SafeAreaView>
+
+        </SafeAreaView>
+
     );
-};
+}
 
 const styles = StyleSheet.create({
     container: {

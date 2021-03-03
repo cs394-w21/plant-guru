@@ -22,7 +22,7 @@ const InputForm = (props) => {
   const [humidity, setHumidity] = useState(42);
 
   const handleSubmit = () => {
-    navigation.navigate('HomeScreen', { sunlight, allergies, size, pets, children, effort, temperature, humidity });
+    navigation.navigate('PlantResultsScreen', { sunlight, allergies, size, pets, children, effort, temperature, humidity });
   };
 
   return (
