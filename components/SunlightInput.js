@@ -26,7 +26,15 @@ const options = {
 };
 
 const SunlightInput = (props) => {
-  const {sunlight, updateSunlight}= props;
+
+  const [sunlight, updateSunlight] = useState("High"); 
+
+  const {navigation} = props;
+
+  const onPressHandler = (choice) => {
+    updateSunlight(options[choice].value); 
+    navigation.navigate('TemperatureScreen', {sunlight});
+  } 
   
   return (
     <View style={styles.mainContainer}>
@@ -36,7 +44,7 @@ const SunlightInput = (props) => {
       <View style={styles.container}>
       {
         Object.keys(options).map(key => {
-          return (<TouchableOpacity key={key} onPress={() => {updateSunlight(options[key].value)}} style={options[key].value==sunlight? styles.selected : styles.regular}><Image source={{uri: options[key].uri}} resizeMode="contain" style={styles.image}/><Text>{options[key].text}</Text></TouchableOpacity>)
+          return (<TouchableOpacity key={key} onPress={() => {onPressHandler(key)}} style={options[key].value==sunlight? styles.selected : styles.regular}><Image source={{uri: options[key].uri}} resizeMode="contain" style={styles.image}/><Text>{options[key].text}</Text></TouchableOpacity>)
         })
       }
       </View>

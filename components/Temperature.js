@@ -1,25 +1,34 @@
 import React, {useState} from 'react';
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { windowWidth, windowHeight } from '../constants/WindowSize';
 import Slider from '@react-native-community/slider';
 
 const Temperature = (props) => {
-    const {value, setValue} = props;
+    const [temperature, setTemperature] = useState(68);
+
+    const {sunlight, navigation} = props;
+
     return(
         <View style={styles.container}>
             <Text>
-            What is the average temperature expected in your space? : {value} 
+            What is the average temperature expected in your space? : {temperature} 
             </Text>
             <Slider
                 maximumValue={90}
                 minimumValue={55}
                 step={1}
-                value={value}
+                value={temperature}
                 onValueChange={
-                    (value) => setValue(value)
+                    (temp) => {setTemperature(temp)}
                 }
                 style={styles.slider}
             />
+            <TouchableOpacity onPress={() => {navigation.navigate("SizeScreen", {
+                sunlight, 
+                temperature,
+            })}}>
+              <Text>Next</Text>
+            </TouchableOpacity>
         </View>
         
     )

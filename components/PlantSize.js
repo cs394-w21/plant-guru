@@ -25,7 +25,9 @@ const options = {
 };
 
 const PlantSize = (props) => {
-  const {size, updateSize} = props;
+  const [size, updateSize] = useState("Medium");
+  
+  const {navigation, sunlight, temperature} = props;
   
   return (
     <View style={styles.mainContainer}>
@@ -37,6 +39,7 @@ const PlantSize = (props) => {
         })
       }
       </View>
+      
     </View>
   )
 };

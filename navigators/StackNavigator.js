@@ -7,6 +7,10 @@ import UserInputScreen from '../screens/UserInputScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import SearchScreen from '../screens/SearchScreen';
 import HomeScreen from '../screens/HomeScreen';
+import SunlightScreen from '../screens/InputFormScreens/SunlightScreen';
+import TemperatureScreen from '../screens/InputFormScreens/TemperatureScreen';
+import SizeScreen from '../screens/InputFormScreens/SizeScreen';
+
 
 const logo = 'https://res.cloudinary.com/dmxv5vtjt/image/upload/v1614279936/Plants/plantguru_Leaf-01_chbb3p.png';
 
@@ -35,6 +39,9 @@ const StackNavigator = () => {
             <Stack.Screen name="RegisterScreen" component={RegisterScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: ''}} />
             <Stack.Screen name='UserInputScreen' component={UserInputScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerLeft: null}} />
             <Stack.Screen name='PlantInfoScreen' component={PlantInfoScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: ''}} />
+            <Stack.Screen name='SunlightScreen' component={SunlightScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: ''}} />
+            <Stack.Screen name='TemperatureScreen' component={TemperatureScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: ''}} />
+            <Stack.Screen name='SizeScreen' component={SizeScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: ''}} />
         </Stack.Navigator>
     );
 };
