@@ -33,8 +33,23 @@ const SunlightInput = (props) => {
 
   const onPressHandler = (choice) => {
     updateSunlight(options[choice].value); 
-    navigation.navigate('TemperatureScreen', {sunlight});
+    navigation.navigate('TemperatureScreen', {sunlight: options[choice].value});
   } 
+
+  const skip = ({navigation}) => {
+    navigation.navigate('TemperatureScreen', {
+      sunlight: 'Any'
+    })
+  }
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity onPress={() => skip({navigation})}>
+          <Text>Skip</Text></TouchableOpacity>
+      ),
+    });
+  }, [navigation]);
   
   return (
     <View style={styles.mainContainer}>

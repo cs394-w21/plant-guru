@@ -28,6 +28,32 @@ const PlantSize = (props) => {
   const [size, updateSize] = useState("Medium");
   
   const {navigation, sunlight, temperature} = props;
+
+  const onPressHandler = (choice) => {
+    updateSize(options[choice].value); 
+    navigation.navigate('HumidityScreen', {
+      sunlight,
+      temperature,
+      size
+    });
+  }
+
+  const skip = ({navigation, sunlight, temperature}) => {
+    navigation.navigate('HumidityScreen', {
+      sunlight,
+      temperature,
+      size: 'Any'
+    })
+  }
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity onPress={() => skip({navigation, sunlight, temperature})}>
+          <Text>Skip</Text></TouchableOpacity>
+      ),
+    });
+  }, [navigation, sunlight, temperature]);
   
   return (
     <View style={styles.mainContainer}>
@@ -35,7 +61,7 @@ const PlantSize = (props) => {
       <View style={styles.container}>
       {
         Object.keys(options).map(key => {
-          return (<TouchableOpacity key={key} onPress={() => {updateSize(options[key].value)}} style={options[key].value==size? styles.selected : styles.regular}><Image source={{uri: options[key].uri}} resizeMode="contain" style={styles.image}/><Text>{options[key].text}</Text></TouchableOpacity>)
+          return (<TouchableOpacity key={key} onPress={() => {onPressHandler(key)}} style={options[key].value==size? styles.selected : styles.regular}><Image source={{uri: options[key].uri}} resizeMode="contain" style={styles.image}/><Text>{options[key].text}</Text></TouchableOpacity>)
         })
       }
       </View>

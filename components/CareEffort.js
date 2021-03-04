@@ -5,8 +5,7 @@ import { windowWidth } from '../constants/WindowSize';
 const options = {
     0: "Easy",
     1: "Medium",
-    2: "Hard",
-    3: "Guru",
+    2: "Hard"
 }
 
 const CareEffort = (props) => {

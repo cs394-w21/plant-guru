@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Image, View, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
-import SunlightInput from '../../components/SunlightInput';
+import SunlightInput from '../../components/Sunlight';
 
 
 const SunglightScreen = (props) => {
