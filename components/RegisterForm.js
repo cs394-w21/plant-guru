@@ -26,6 +26,7 @@ const validationSchema = Yup.object().shape({
 
   const RegisterForm = ({ navigation }) => {
     const [signInError, setSignInError] = useState('');
+    const [showConfirm, setShowConfirm] = useState(false);
 
     async function handleOnLogin(values) {
         const { email, password } = values;
@@ -39,22 +40,36 @@ const validationSchema = Yup.object().shape({
       }
     
     async function handleOnSignUp(values) {
-    const { name, email, password } = values;
-    setSignInError(null);
-    try {
+      //setShowConfirm(true);
+      console.log(showConfirm);
+      const { name, email, password } = values;
+      setSignInError(null);
+      try {
         const authCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
         db.ref("users").child(authCredential.user.uid).set(newUserProps);
         const user = authCredential.user;
         await user.updateProfile({displayName: name});
         navigation.navigate('UserInputScreen');
-    } catch (error) {
+      } catch (error) {
         setSignInError(error.message);
-    }
+      }
     }
     
     async function handleOnSubmit(values) {
-    return values.confirm ? handleOnSignUp(values) : handleOnLogin(values);
+      
+      setShowConfirm(true)
+      console.log(showConfirm);
+      return values.confirm ? handleOnSignUp(values) : handleOnLogin(values);
     }
+    let v = {showConfirm} ? <Form.Field
+      name="confirm"
+      leftIcon="lock"
+      placeholder="Confirm password"
+      autoCapitalize="none"
+      autoCorrect={false}
+      secureTextEntry={true}
+      textContentType="password"
+    />: null;
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>
@@ -84,16 +99,9 @@ const validationSchema = Yup.object().shape({
               secureTextEntry={true}
               textContentType="password"
             />
-            <Form.Field
-              name="confirm"
-              leftIcon="lock"
-              placeholder="Confirm password"
-              autoCapitalize="none"
-              autoCorrect={false}
-              secureTextEntry={true}
-              textContentType="password"
-            />
-            <Form.Button title={values => values.confirm ? 'Register' : 'Login'} />
+            {v}
+            <Form.Button title='Login'/>
+            <Form.Button title='Register'/>
             {<Form.ErrorMessage error={signInError} visible={true} />}
           </Form>
         </ScrollView>
