@@ -4,6 +4,7 @@ import Form from './Form.js';
 import * as Yup from 'yup';
 import { firebase, db } from '../utils/firebase.js';
 import { useContext, useState, useEffect } from 'react';
+import { TouchableOpacity } from 'react-native';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -26,6 +27,7 @@ const validationSchema = Yup.object().shape({
 
   const RegisterForm = ({ navigation }) => {
     const [signInError, setSignInError] = useState('');
+    const [showConfirm, setShowConfirm] = useState(false);
 
     async function handleOnLogin(values) {
         const { email, password } = values;
@@ -39,25 +41,27 @@ const validationSchema = Yup.object().shape({
       }
     
     async function handleOnSignUp(values) {
-    const { name, email, password } = values;
-    setSignInError(null);
-    try {
+      //setShowConfirm(true);
+      //console.log(showConfirm);
+      const { name, email, password } = values;
+      setSignInError(null);
+      try {
         const authCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
         db.ref("users").child(authCredential.user.uid).set(newUserProps);
         const user = authCredential.user;
         await user.updateProfile({displayName: name});
         navigation.navigate('UserInputScreen');
-    } catch (error) {
+      } catch (error) {
         setSignInError(error.message);
-    }
+      }
     }
     
     async function handleOnSubmit(values) {
-    return values.confirm ? handleOnSignUp(values) : handleOnLogin(values);
+      return showConfirm ? handleOnSignUp(values) : handleOnLogin(values);
     }
     return (
       <SafeAreaView style={styles.container}>
-        <ScrollView>
+        <ScrollView contentContainerStyle={styles.container}>
           <Form
             initialValues={{
               email: '',
@@ -84,7 +88,7 @@ const validationSchema = Yup.object().shape({
               secureTextEntry={true}
               textContentType="password"
             />
-            <Form.Field
+            {showConfirm ? <Form.Field
               name="confirm"
               leftIcon="lock"
               placeholder="Confirm password"
@@ -92,10 +96,14 @@ const validationSchema = Yup.object().shape({
               autoCorrect={false}
               secureTextEntry={true}
               textContentType="password"
-            />
-            <Form.Button title={values => values.confirm ? 'Register' : 'Login'} />
+            />: <Text></Text>}
+            <Form.Button title={showConfirm ? 'Register' : 'Login'}/>
             {<Form.ErrorMessage error={signInError} visible={true} />}
           </Form>
+          <TouchableOpacity
+            onPress={() => setShowConfirm(!(showConfirm))}>
+            <Text style={{textDecorationLine:"underline"}}>{showConfirm ? "Login" : "Register"}</Text>
+          </TouchableOpacity>
         </ScrollView>
       </SafeAreaView>
     );
@@ -105,9 +113,9 @@ const validationSchema = Yup.object().shape({
     container: {
       flex: 1,
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'flex-start',
       backgroundColor: '#ccccb3'
-    }
+    },
 });
   
 export default RegisterForm;
