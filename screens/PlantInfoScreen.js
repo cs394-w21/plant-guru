@@ -35,14 +35,14 @@ const PlantInfoScreen = (props) => {
     else{
         return (
             <View style={styles.outerContainer}>
-            <View style={styles.container}>
+            <View style={styles.iconBorder}>
                 <Text style={styles.name}>
                     {name}
                 </Text>
-                <TouchableOpacity onPress={() => addFavorite(userID, user, plant.id)}
+                {/* <TouchableOpacity onPress={() => addFavorite(userID, user, plant.id)}
                                   style={checkFavorite(plant.id,user) ? styles.favoriteSelected : styles.favorite}>
                     <Text style={checkFavorite(plant.id,user) ? styles.favoriteSelectedText : styles.favoriteText}>{checkFavorite(plant.id,user) ? 'Unfavorite' : 'Favorite'}</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <Image
                     style={styles.image}
                     source={{uri: image}}
@@ -80,10 +80,19 @@ const PlantInfoScreen = (props) => {
 
 const styles = StyleSheet.create({
     outerContainer: {
-        backgroundColor: '#006400',
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        backgroundColor: '#ECF0F3',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        width: '100%',
+    },
+    iconBorder: {
+        borderColor: '#7EA480',
+        borderWidth: 3,
+        borderRadius: Math.min(200*0.23, windowWidth*0.3*0.23),
+        width: Math.min(windowWidth*0.5, 600),
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     container: {
         flex: 1,

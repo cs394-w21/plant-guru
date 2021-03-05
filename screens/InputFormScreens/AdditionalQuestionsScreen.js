@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import AdditionalQuestions from '../../components/AdditionalQuestions';
 
 const AdditionalQuestionsScreen = (props) => {
@@ -8,7 +8,7 @@ const AdditionalQuestionsScreen = (props) => {
   const {sunlight, temperature, size, humidity} = route.params;
 
   return (
-  <SafeAreaView>
+  <SafeAreaView style={styles.container}>
     <AdditionalQuestions
         navigation={navigation}
         sunlight={sunlight}
@@ -18,5 +18,16 @@ const AdditionalQuestionsScreen = (props) => {
     />
   </SafeAreaView>);
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ECF0F3',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    width: '100%',
+  }
+})
+
 
 export default AdditionalQuestionsScreen;

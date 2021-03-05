@@ -7,26 +7,19 @@ const SunglightScreen = (props) => {
   const {navigation} = props;
 
   return (
-  <SafeAreaView>
+  <SafeAreaView style={styles.container}>
     <SunlightInput navigation={navigation} />
   </SafeAreaView>);
 };
 
-export default SunglightScreen;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ECF0F3',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    width: '100%',
+  }
+})
 
-// sunlight={sunlight}
-//     updateSunlight={updateSunlight}
-//     allergies={allergies}
-//     updateAllergies={updateAllergies}
-//     size={size}
-//     updateSize={updateSize}
-//     pets={pets}
-//     setPets={setPets}
-//     children={children}
-//     setChildren={setChildren}
-//     effort={effort}
-//     setEffort={setEffort}
-//     temperature={temperature}
-//     setTemperature={setTemperature}
-//     humidity={humidity}
-//     setHumidity={setHumidity}
+export default SunglightScreen;

@@ -7,11 +7,11 @@ import { windowWidth, windowHeight } from '../constants/WindowSize';
 
 const PlantList = (props) => {
     const { query, plants, navigation, sunlight, size, pets, children, effort, temperature, humidity } = props;
-
+    
     const checkSunlight = plant => {
         const currSunlightLowerCase = plant.sun.toLowerCase();
         const sunlightLowerCase = sunlight.toLowerCase();
-        if (sunlightLowerCase === 'any') {
+        if (sunlightLowerCase == 'any') {
             return true;
         } else if (sunlightLowerCase === 'high' && currSunlightLowerCase.includes('bright')) {
             return true;
@@ -23,7 +23,7 @@ const PlantList = (props) => {
     };
 
     const checkTemperature = plant => {
-        if(temperature==="any"){
+        if(temperature=="Any"){
             return true;
         }
         const currTempRange = plant.temperature.split('-');
@@ -38,7 +38,7 @@ const PlantList = (props) => {
     const checkHumidity = plant => {
         const currHumidityLowerCase = plant.humidity.toLowerCase();
         const humidityLowerCase = humidity.toLowerCase();
-        if(humidityLowerCase === "any"){
+        if(humidityLowerCase == "any"){
             return true;
         }
         else if (currHumidityLowerCase.includes(humidityLowerCase) ) {
@@ -51,7 +51,7 @@ const PlantList = (props) => {
     const checkEffort = plant => {
         const currEffortLowerCase = plant.care.toLowerCase();
         const effortLowerCase = effort.toLowerCase();
-        if(effortLowerCase === "any"){
+        if(effortLowerCase == "any"){
             return true;
         }
         else if (effortLowerCase === 'easy' && currEffortLowerCase.includes('low')) {
@@ -66,7 +66,7 @@ const PlantList = (props) => {
     const checkSize = plant => {
         const currSizeLowerCase = plant.size.toLowerCase();
         const sizeLowerCase = size.toLowerCase();
-        if(sizeLowerCase==="any"){
+        if(sizeLowerCase=="any"){
             return true;
         }
         else if(currSizeLowerCase.includes("feet")){
@@ -99,7 +99,7 @@ const PlantList = (props) => {
         if (toxic == "none"){
             return true;
         }
-        else if(children1==='any'&&pets1==='any'){
+        else if(children1=='any'&&pets1=='any'){
             return true;
         }
         else if (children1 == "yes" || pets1=="yes"){

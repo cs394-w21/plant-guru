@@ -1,73 +1,100 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { windowWidth } from '../constants/WindowSize';
+import { windowWidth } from "../constants/WindowSize";
 
 const options = {
-    0: "No",
-    1: "Yes"
-}
-
-const Children = (props) => {
-
-    const {children, setChildren} = props;
-    return (
-      <View style={styles.mainContainer}>
-          <Text>Are there children in the household?</Text>
-          <View style={styles.container}>
-          {
-          Object.keys(options).map(key => {
-          return (<TouchableOpacity key={key} 
-          onPress={() => {setChildren(options[key])}} 
-          style={options[key]==children? styles.selected : styles.regular}>
-              <Text>{options[key]}</Text>
-          </TouchableOpacity>)
-         })
-        }
-        </View>
-      </View>
-    );
+  0: "No",
+  1: "Yes",
 };
 
-const buttonStyle = {
-width: 0.03*windowWidth,
-height: 0.02*windowWidth,
-justifyContent: 'center',
-alignItems: 'center'
+const Children = (props) => {
+  const { children, setChildren } = props;
+  return (
+    <>
+      <Text style={styles.question}>Are there children in the household?</Text>
+      <View style={styles.buttonContainer}>
+        {Object.keys(options).map((key) => {
+          return (
+            <TouchableOpacity
+              key={key}
+              onPress={() => {
+                setChildren(options[key]);
+              }}>
+              <View style={styles.button}>
+              <View style={options[key]==children?styles.selectedIconBorder : styles.iconBorder}>
+                  <Text style={options[key]==children? styles.selectedText : styles.text}>{options[key]}</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+    </>
+  );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        flex: 1,
-        textAlign: 'center',
-        width: '50%',
-        margin: 10,
-      },
-      mainContainer: {
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 0.5,
-        width: '100%',
-        margin: 10,
-      },
-selected: {
-    ...buttonStyle,
-    backgroundColor: 'white',
-    borderColor: 'green',
-    borderWidth: 2
-},
-regular: {
-    ...buttonStyle,
-    backgroundColor: 'white'
-},
-image: {
-    width: '95%',
-    height: '95%',
-    borderRadius: 20,
-    marginBottom: 10
-}
-})
+  buttonContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    width: Math.min(windowWidth, 200)
+  },
+  button: {
+    flex: 1,
+    flexDirection: "row",
+    margin: 30,
+  },
+  text: {
+    color: "#7EA480",
+    fontFamily: "Rubik",
+    fontSize: 25,
+    lineHeight: 21,
+    letterSpacing: -0.28,
+    display: "flex",
+    alignItems: "center",
+    textAlign: "center",
+  },
+  selectedText: {
+    color: "#ECF0F3",
+    fontFamily: "Rubik",
+    fontSize: 25,
+    lineHeight: 21,
+    letterSpacing: -0.28,
+    display: "flex",
+    alignItems: "center",
+    textAlign: "center",
+  },
+  question: {
+    color: "#7EA480",
+    fontFamily: "Rubik",
+    fontSize: 25,
+    lineHeight: 21,
+    letterSpacing: -0.28,
+    display: "flex",
+    alignItems: "center",
+    textAlign: "center",
+    fontWeight: "bold",
+  },
+  iconBorder: {
+    borderColor: "#7EA480",
+    borderWidth: 3,
+    borderRadius: Math.min(200 * 0.23, windowWidth * 0.3 * 0.23),
+    width: Math.min(windowWidth * 0.3, 150),
+    height: Math.min(windowWidth * 0.2, 100),
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  selectedIconBorder: {
+    borderColor: "#ECF0F3",
+    backgroundColor: "#7EA480",
+    borderWidth: 3,
+    borderRadius: Math.min(200 * 0.23, windowWidth * 0.3 * 0.23),
+    width: Math.min(windowWidth * 0.3, 150),
+    height: Math.min(windowWidth * 0.2, 100),
+    alignItems: "center",
+    justifyContent: "center",
+  }
+});
 
 export default Children;

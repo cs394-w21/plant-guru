@@ -1,33 +1,14 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import Humidity from '../../components/Humidity';
 
 const HumidityScreen = (props) => {
   const {navigation, route} = props;
 
-  // const {
-  //   sunlight,
-  //   updateSunlight,
-  //   allergies,
-  //   updateAllergies,
-  //   size,
-  //   updateSize,
-  //   pets,
-  //   setPets,
-  //   children,
-  //   setChildren,
-  //   effort,
-  //   setEffort,
-  //   temperature,
-  //   setTemperature,
-  //   humidity,
-  //   setHumidity
-  // } = route.params;
-
   const {sunlight, temperature, size} = route.params;
 
   return (
-  <SafeAreaView>
+  <SafeAreaView style={styles.container}>
     <Humidity
         navigation={navigation}
         sunlight={sunlight}
@@ -36,5 +17,15 @@ const HumidityScreen = (props) => {
     />
   </SafeAreaView>);
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ECF0F3',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    width: '100%',
+  }
+})
 
 export default HumidityScreen;

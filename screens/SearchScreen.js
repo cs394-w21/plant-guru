@@ -3,6 +3,7 @@ import { SafeAreaView, TextInput, View, StyleSheet} from 'react-native';
 import SearchBar from '../components/SearchBar';
 import PlantList from '../components/PlantList';
 import getPlantData from '../utils/plantData';
+import { windowWidth, windowHeight } from '../constants/WindowSize';
 
 const SearchScreen = (props) => {
     const { navigation } = props;
@@ -22,11 +23,10 @@ const SearchScreen = (props) => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#006400',
+      backgroundColor: '#ECF0F3',
       alignItems: 'center',
       justifyContent: 'flex-start',
-      paddingTop: 20,
-      width: '100%',
+      width: '100%', 
     }
 });
 

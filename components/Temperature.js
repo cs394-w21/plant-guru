@@ -33,18 +33,27 @@ const Temperature = (props) => {
         headerRight: () => (
           <>
           <TouchableOpacity onPress={() => next({navigation, sunlight, temperature})}>
-            <Text>Next</Text></TouchableOpacity>
+            <View style={styles.headerBox}>
+              <Text style={styles.text}>Next</Text>
+            </View>
+          </TouchableOpacity>
           <TouchableOpacity onPress={() => skip({navigation, sunlight})}>
-            <Text>Skip</Text></TouchableOpacity>
+            <View style={styles.headerBox}>
+              <Text style={styles.text}>Skip</Text>
+            </View>
+          </TouchableOpacity>
           </>
         ),
       });
     }, [navigation, sunlight, temperature]);
 
     return(
-        <View style={styles.container}>
-            <Text>
-            What is the average temperature expected in your space? : {temperature} 
+        <>
+            <Text style={styles.question}>
+            What is the average temperature expected in your space?
+            </Text>
+            <Text style={styles.text}>
+            {temperature} 
             </Text>
             <MultiSlider
                 min={50}
@@ -54,26 +63,56 @@ const Temperature = (props) => {
                 onValuesChange={
                     (values) => {setTemperature(`${values[0]}-${values[1]}`)}
                 }
-                style={styles.slider}
+                selectedStyle={styles.slider}
             />
-        </View>
+        </>
         
     )
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 0.5,
-        width: '100%',
-        marginTop: 20
-      },
-      slider: {
-          width: '50%',
-          marginTop: -5
-      }
+  text: {
+    color: '#7EA480',
+    fontFamily: 'Rubik',
+    fontSize: 25,
+    lineHeight: 21,
+    letterSpacing: -0.28,
+    display: 'flex',
+    alignItems: 'center',
+    textAlign: 'center'
+  },
+  question: {
+    color: '#7EA480',
+    fontFamily: 'Rubik',
+    fontSize: 25,
+    lineHeight: 21,
+    letterSpacing: -0.28,
+    display: 'flex',
+    alignItems: 'center',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    marginBottom: Math.min(20, windowWidth*0.01)
+  },
+  textBox: {
+    width: Math.min(windowWidth*0.3, 150),
+    height: Math.min(windowWidth*0.3, 150),
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  headerBox: {
+    borderColor: '#7EA480',
+    borderWidth: 3,
+    borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
+    width: Math.min(200, windowWidth*0.2),
+    height: Math.min(50, windowWidth*0.1),
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: Math.min(20, windowWidth*0.01),
+    marginBottom: Math.min(20, windowWidth*0.01),
+  },
+  slider: {
+    backgroundColor: '#EF6F55',
+  }
 })
 
 export default Temperature;

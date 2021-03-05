@@ -1,14 +1,9 @@
 import React, {useState} from "react";
 import { View, StyleSheet, TouchableOpacity, Text} from "react-native";
-// import Allergies from './Allergies';
 import CareEffort from "./CareEffort";
 import Children from "./Children";
 import Pets from "./Pets";
-// import PlantSize from './PlantSize';
-// import SunlightInput from './Sunlight';
-// import Temperature from './Temperature';
-// import Humidity from './Humidity';
-
+import { windowWidth, windowHeight } from '../constants/WindowSize';
 
 const AdditionalQuestions = (props) => {
   const [pets, setPets] = useState("No");
@@ -52,39 +47,50 @@ const AdditionalQuestions = (props) => {
       headerRight: () => (
         <>
         <TouchableOpacity onPress={() => next({navigation, sunlight, temperature, size, humidity, children, pets, effort})}>
-          <Text>Next</Text></TouchableOpacity>
+            <View style={styles.headerBox}>
+              <Text style={styles.text}>Next</Text>
+            </View>
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => skip({navigation, sunlight, temperature, size, humidity})}>
-          <Text>Skip</Text></TouchableOpacity>
+            <View style={styles.headerBox}>
+              <Text style={styles.text}>Skip</Text>
+            </View>
+        </TouchableOpacity>
         </>
       ),
     });
   }, [navigation, sunlight, temperature, size, humidity, children, pets, effort]);
 
   return (
-    <View style={styles.container}>
+    <>
       <CareEffort setEffort={setEffort} effort={effort}/>
       <Pets setPets={setPets} pets={pets}/>
       <Children setChildren={setChildren} children={children}/>
-    </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    flexWrap: 'wrap',
-    marginBottom: 40,
-    marginTop: 10,
+  headerBox: {
+    borderColor: '#7EA480',
+    borderWidth: 3,
+    borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
+    width: Math.min(200, windowWidth*0.2),
+    height: Math.min(50, windowWidth*0.1),
+    alignItems: 'center',
     justifyContent: 'center',
-    alignItems: 'center'
+    marginRight: Math.min(20, windowWidth*0.01),
+    marginBottom: Math.min(20, windowWidth*0.01),
   },
-  submitButton: {
-    backgroundColor: '#006400',
-    padding: 10
-  },
-  submit: {
-    color: 'white'
+  text: {
+    color: '#7EA480',
+    fontFamily: 'Rubik',
+    fontSize: 25,
+    lineHeight: 21,
+    letterSpacing: -0.28,
+    display: 'flex',
+    alignItems: 'center',
+    textAlign: 'center'
   }
 });
 

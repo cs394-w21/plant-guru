@@ -3,13 +3,21 @@ import { TouchableOpacity, StyleSheet, View, Image, Text } from "react-native";
 import { windowWidth, windowHeight } from '../constants/WindowSize';
 
 const options = {
-  0: 'Low',
-  1: 'Medium',
-  2: 'High',
-//   3: {
-//     value: 'Any',
-//     text: 'Any'
-//   }
+  0: {
+    uri: 'https://res.cloudinary.com/dmxv5vtjt/image/upload/v1614917409/Plants/Screen_Shot_2021-03-04_at_10.09.23_PM_blueso.png',
+    value: 'Low',
+    text: 'Low'
+  },
+  1: {
+    uri: 'https://res.cloudinary.com/dmxv5vtjt/image/upload/v1614917409/Plants/Screen_Shot_2021-03-04_at_10.09.37_PM_chgs9c.png',
+    value: 'Medium',
+    text: 'Medium'
+  },
+  2: {
+    uri: 'https://res.cloudinary.com/dmxv5vtjt/image/upload/v1614917409/Plants/Screen_Shot_2021-03-04_at_10.09.53_PM_hgvskg.png',
+    value: 'High',
+    text: 'High'
+  },
 };
 
 const Humidity = (props) => {
@@ -41,64 +49,91 @@ const Humidity = (props) => {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity onPress={() => skip({navigation, sunlight, temperature, size})}>
-          <Text>Skip</Text></TouchableOpacity>
+          <View style={styles.headerBox}>
+            <Text style={styles.text}>Skip</Text>
+          </View>
+        </TouchableOpacity>
       ),
     });
   }, [navigation, sunlight, temperature, size]);
   
   return (
-    <View style={styles.mainContainer}>
+    <>
       
-      <Text>What's the kind of humidity you receive in your space?</Text>
-      
-      <View style={styles.container}>
+      <Text style={styles.question}>What's the kind of humidity you receive in your space?</Text>
       {
         Object.keys(options).map(key => {
-          return (<TouchableOpacity key={key} onPress={() => {onPressHandler(key)}} style={options[key]==humidity? styles.selected : styles.regular}><Text>{options[key]}</Text></TouchableOpacity>)
+          return (<TouchableOpacity key={key} onPress={() => {onPressHandler(key)}}>
+            <View style={styles.button}>
+              <Image source={{uri: options[key].uri}} resizeMode="contain" style={styles.iconBorder}/>  
+            <View style={styles.textBox}>
+              <Text style={styles.text}>{options[key].text}</Text>
+            </View>
+            </View>            
+            </TouchableOpacity>)
         })
       }
-      </View>
-    </View>
+    </>
   )
 };
 
-const buttonStyle = {
-  width: 0.05*windowWidth,
-  height: 0.05*windowWidth,
-  alignItems: 'center',
-};
-
 const styles = StyleSheet.create({
-  container: {
+  button:{
+    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    flex: 1,
-    textAlign: 'center',
-    width: '50%',
-    margin: 10
+    margin: 30
   },
-  mainContainer: {
-    flexDirection: 'column',
-    justifyContent: 'center',
+  text: {
+    color: '#7EA480',
+    fontFamily: 'Rubik',
+    fontSize: 25,
+    lineHeight: 21,
+    letterSpacing: -0.28,
+    display: 'flex',
     alignItems: 'center',
-    flex: 1,
-    width: '100%',
-    margin: 10
+    textAlign: 'center'
   },
-  selected: {
-    ...buttonStyle,
-    backgroundColor: 'white',
-    borderColor: 'green',
-    borderWidth: 2
+  question: {
+    color: '#7EA480',
+    fontFamily: 'Rubik',
+    fontSize: 25,
+    lineHeight: 21,
+    letterSpacing: -0.28,
+    display: 'flex',
+    alignItems: 'center',
+    textAlign: 'center',
+    fontWeight: 'bold'
   },
-  regular: {
-    ...buttonStyle,
-    backgroundColor: 'white'
+  iconBorder: {
+    borderColor: '#7EA480',
+    borderWidth: 3,
+    borderRadius: Math.min(200*0.23, windowWidth*0.3*0.23),
+    width: Math.min(windowWidth*0.3, 150),
+    height: Math.min(windowWidth*0.3, 150),
+    alignItems: 'center',
+    justifyContent: 'center'
+
+  },
+  textBox: {
+    width: Math.min(windowWidth*0.3, 150),
+    height: Math.min(windowWidth*0.3, 150),
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   image: {
-    width: '90%',
+    width: '110%',
     height: '90%',
     marginBottom: 10
+  },
+  headerBox: {
+    borderColor: '#7EA480',
+    borderWidth: 3,
+    borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
+    width: Math.min(200, windowWidth*0.2),
+    height: Math.min(50, windowWidth*0.1),
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: Math.min(20, windowWidth*0.01)
   }
 })
 
