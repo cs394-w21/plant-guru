@@ -4,6 +4,7 @@ import Form from './Form.js';
 import * as Yup from 'yup';
 import { firebase, db } from '../utils/firebase.js';
 import { useContext, useState, useEffect } from 'react';
+import { TouchableOpacity } from 'react-native';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -41,7 +42,7 @@ const validationSchema = Yup.object().shape({
     
     async function handleOnSignUp(values) {
       //setShowConfirm(true);
-      console.log(showConfirm);
+      //console.log(showConfirm);
       const { name, email, password } = values;
       setSignInError(null);
       try {
@@ -56,23 +57,11 @@ const validationSchema = Yup.object().shape({
     }
     
     async function handleOnSubmit(values) {
-      
-      setShowConfirm(true)
-      console.log(showConfirm);
-      return values.confirm ? handleOnSignUp(values) : handleOnLogin(values);
+      return showConfirm ? handleOnSignUp(values) : handleOnLogin(values);
     }
-    let v = {showConfirm} ? <Form.Field
-      name="confirm"
-      leftIcon="lock"
-      placeholder="Confirm password"
-      autoCapitalize="none"
-      autoCorrect={false}
-      secureTextEntry={true}
-      textContentType="password"
-    />: null;
     return (
       <SafeAreaView style={styles.container}>
-        <ScrollView>
+        <ScrollView contentContainerStyle={styles.container}>
           <Form
             initialValues={{
               email: '',
@@ -99,11 +88,22 @@ const validationSchema = Yup.object().shape({
               secureTextEntry={true}
               textContentType="password"
             />
-            {v}
-            <Form.Button title='Login'/>
-            <Form.Button title='Register'/>
+            {showConfirm ? <Form.Field
+              name="confirm"
+              leftIcon="lock"
+              placeholder="Confirm password"
+              autoCapitalize="none"
+              autoCorrect={false}
+              secureTextEntry={true}
+              textContentType="password"
+            />: <Text></Text>}
+            <Form.Button title={showConfirm ? 'Register' : 'Login'}/>
             {<Form.ErrorMessage error={signInError} visible={true} />}
           </Form>
+          <TouchableOpacity
+            onPress={() => setShowConfirm(!(showConfirm))}>
+            <Text style={{textDecorationLine:"underline"}}>{showConfirm ? "Login" : "Register"}</Text>
+          </TouchableOpacity>
         </ScrollView>
       </SafeAreaView>
     );
@@ -113,9 +113,9 @@ const validationSchema = Yup.object().shape({
     container: {
       flex: 1,
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'flex-start',
       backgroundColor: '#ccccb3'
-    }
+    },
 });
   
 export default RegisterForm;
