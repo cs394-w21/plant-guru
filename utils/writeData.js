@@ -1,4 +1,4 @@
-import { db} from "../utils/firebase";
+import {db} from "../utils/firebase";
 
 const writeUserData = (userID, userData) => {
     db.ref("users").child(userID).set(userData);
