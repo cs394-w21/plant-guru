@@ -11,42 +11,45 @@ const HomeScreen = (props) => {
     return(
       <SafeAreaView style={styles.container}>
         <TouchableOpacity
+          onPress={value => onChange("SunlightScreen")}>
+          <View style={styles.button}>
+            <View style={styles.iconBorder}>
+              <AntDesign name="question" size={64} color="#7EA480" />
+            </View>
+            <View style={styles.textBox}>
+              <Text style={styles.text}>Find</Text>
+            </View>
+
+          </View>
+        </TouchableOpacity>
+        
+        <TouchableOpacity
+          onPress={value => onChange("SearchScreen")}>
+          <View style={styles.button}>
+            <View style={styles.iconBorder}>
+              <Ionicons name="search-outline" size={64} color="#7EA480" />
+            </View>
+            <View style={styles.textBox}>
+              <Text style={styles.text}>Search</Text>
+            </View>
+
+          </View>
+
+        </TouchableOpacity>
+
+        <TouchableOpacity
           onPress={value => onChange("RegisterScreen")}>
           <View style={styles.button}>
             <View style={styles.iconBorder}>
               <AntDesign name="login" size={64} color="#7EA480" />
             </View>
             <View style={styles.textBox}>
-              <Text style={styles.text}>login</Text>
+              <Text style={styles.text}>Login</Text>
             </View>
           </View>
 
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={value => onChange("SearchScreen")}>
-          <View style={styles.button}>
-            <View style={styles.iconBorder}>
-              <Ionicons name="ios-add" size={64} color="#7EA480" />
-            </View>
-            <View style={styles.textBox}>
-              <Text style={styles.text}>add plant</Text>
-            </View>
-
-          </View>
-
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={value => onChange("UserInputScreen")}>
-          <View style={styles.button}>
-            <View style={styles.iconBorder}>
-              <Ionicons name="search-outline" size={64} color="#7EA480" />
-            </View>
-            <View style={styles.textBox}>
-              <Text style={styles.text}>search</Text>
-            </View>
-
-          </View>
-        </TouchableOpacity>
+        
 
 
       </SafeAreaView>
@@ -71,7 +74,7 @@ const styles = StyleSheet.create({
     text: {
       color: '#7EA480',
       fontFamily: 'Rubik',
-      fontSize: 20,
+      fontSize: 25,
       lineHeight: 21,
       letterSpacing: -0.28,
       display: 'flex',
@@ -81,16 +84,16 @@ const styles = StyleSheet.create({
     iconBorder: {
       borderColor: '#7EA480',
       borderWidth: 3,
-      borderRadius: windowWidth*0.3*0.23,
-      width: windowWidth*0.3,
-      height: windowWidth*0.3,
+      borderRadius: Math.min(200*0.23, windowWidth*0.3*0.23),
+      width: Math.min(windowWidth*0.3, 200),
+      height: Math.min(windowWidth*0.3, 200),
       alignItems: 'center',
       justifyContent: 'center'
 
     },
     textBox: {
-      width: windowWidth*0.3,
-      height: windowWidth*0.3,
+      width: Math.min(windowWidth*0.3, 200),
+      height: Math.min(windowWidth*0.3, 200),
       alignItems: 'center',
       justifyContent: 'center'
     }

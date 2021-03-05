@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, View, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
-import InputForm from '../components/InputForm';
+import AdditionalQuestions from '../components/AdditionalQuestions';
 
 
 const UserInputScreen = (props) => {
@@ -8,7 +8,7 @@ const UserInputScreen = (props) => {
 
   return (
   <View>
-    <InputForm navigation={navigation} />
+    <AdditionalQuestions navigation={navigation} />
   </View>);
 };
 

@@ -31,11 +31,10 @@ const PlantResultsScreen = (props) => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#006400',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      paddingTop: 20,
-      width: '100%',
+    backgroundColor: '#ECF0F3',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    width: '100%',
     }
 });
 

@@ -1,69 +1,106 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { windowWidth } from '../constants/WindowSize';
+import { windowWidth } from "../constants/WindowSize";
 
 const options = {
-    0: "Easy",
-    1: "Medium",
-    2: "Hard",
-    3: "Guru",
-}
-
-const CareEffort = (props) => {
-    const {effort, setEffort} = props;
-
-    return (
-      <View style={styles.mainContainer}>
-          <Text>How much effort are you willing to put in?</Text>
-          <View style={styles.container}>
-          {
-          Object.keys(options).map(key => {
-          return (<TouchableOpacity key={key} 
-          onPress={() => {setEffort(options[key])}} 
-          style={options[key]==effort? styles.selected : styles.regular}>
-              <Text>{options[key]}</Text>
-          </TouchableOpacity>)
-         })
-        }
-        </View>
-      </View>
-    );
+  0: "Easy",
+  1: "Medium",
+  2: "Hard",
 };
 
-const buttonStyle = {
-width: 0.04*windowWidth,
-height: 0.02*windowWidth,
-justifyContent: 'center',
-alignItems: 'center'
+const CareEffort = (props) => {
+  const { effort, setEffort } = props;
+
+  return (
+    <>
+      <Text style={styles.question}>
+        How much effort are you willing to put in?
+      </Text>
+      <View style={styles.buttonContainer}>
+        {Object.keys(options).map((key) => {
+          return (
+            <TouchableOpacity
+              key={key}
+              onPress={() => {
+                setEffort(options[key]);
+              }}>
+              <View style={styles.button}>
+                <View style={options[key]==effort?styles.selectedIconBorder : styles.iconBorder}>
+                  <Text style={options[key]==effort? styles.selectedText : styles.text}>{options[key]}</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+    </>
+  );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        flex: 1,
-        textAlign: 'center',
-        width: '50%',
-        margin: 10,
-      },
-      mainContainer: {
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 0.5,
-        width: '100%',
-        margin: 10,
-      },
-selected: {
-    ...buttonStyle,
-    backgroundColor: 'white',
-    borderColor: 'green',
-    borderWidth: 2
-},
-regular: {
-    ...buttonStyle,
-    backgroundColor: 'white'
-}
-})
+  buttonContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    width: Math.min(windowWidth*0.5, 200)
+  },
+  button: {
+    flex: 1,
+    flexDirection: "row",
+    margin: 30,
+    marginLeft: Math.min(10, windowWidth*0.01),
+    marginRight: Math.min(10, windowWidth*0.01)
+  },
+  text: {
+    color: "#7EA480",
+    fontFamily: "Rubik",
+    fontSize: 25,
+    lineHeight: 21,
+    letterSpacing: -0.28,
+    display: "flex",
+    alignItems: "center",
+    textAlign: "center",
+  },
+  selectedText: {
+    color: "#ECF0F3",
+    fontFamily: "Rubik",
+    fontSize: 25,
+    lineHeight: 21,
+    letterSpacing: -0.28,
+    display: "flex",
+    alignItems: "center",
+    textAlign: "center",
+  },
+  question: {
+    color: "#7EA480",
+    fontFamily: "Rubik",
+    fontSize: 25,
+    lineHeight: 21,
+    letterSpacing: -0.28,
+    display: "flex",
+    alignItems: "center",
+    textAlign: "center",
+    fontWeight: "bold",
+  },
+  iconBorder: {
+    borderColor: "#7EA480",
+    borderWidth: 3,
+    borderRadius: Math.min(200 * 0.23, windowWidth * 0.3 * 0.23),
+    width: Math.min(windowWidth * 0.3, 150),
+    height: Math.min(windowWidth * 0.2, 100),
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  selectedIconBorder: {
+    borderColor: "#ECF0F3",
+    backgroundColor: "#7EA480",
+    borderWidth: 3,
+    borderRadius: Math.min(200 * 0.23, windowWidth * 0.3 * 0.23),
+    width: Math.min(windowWidth * 0.3, 150),
+    height: Math.min(windowWidth * 0.2, 100),
+    alignItems: "center",
+    justifyContent: "center",
+  }
+});
 
 export default CareEffort;

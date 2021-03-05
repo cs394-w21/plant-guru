@@ -4,73 +4,70 @@ import { windowWidth, windowHeight } from '../constants/WindowSize';
 
 const options = {
   0: {
-    uri: 'https://res.cloudinary.com/dmxv5vtjt/image/upload/v1614917409/Plants/Screen_Shot_2021-03-04_at_10.09.23_PM_blueso.png',
+    uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614034706/Screen_Shot_2021-02-22_at_4.56.58_PM_b89vxj.png',
     value: 'Low',
-    text: 'Low'
+    text: '< 4 hours'
   },
   1: {
-    uri: 'https://res.cloudinary.com/dmxv5vtjt/image/upload/v1614917409/Plants/Screen_Shot_2021-03-04_at_10.09.37_PM_chgs9c.png',
+    uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614034706/Screen_Shot_2021-02-22_at_4.57.10_PM_nzyw3b.png',
     value: 'Medium',
-    text: 'Medium'
+    text: '4-6 hours'
   },
   2: {
-    uri: 'https://res.cloudinary.com/dmxv5vtjt/image/upload/v1614917409/Plants/Screen_Shot_2021-03-04_at_10.09.53_PM_hgvskg.png',
+    uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614034706/Screen_Shot_2021-02-22_at_4.57.16_PM_krn59b.png',
     value: 'High',
-    text: 'High'
+    text: '> 6 hours'
   },
+  3: {
+    uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614034706/Screen_Shot_2021-02-22_at_4.57.29_PM_cgbwzq.png',
+    value: 'Any',
+    text: 'Any'
+  }
 };
 
-const Humidity = (props) => {
+const SunlightInput = (props) => {
 
-  const [humidity, updateHumidity] = useState("High"); 
+  const [sunlight, updateSunlight] = useState("High"); 
 
-  const {
-      navigation,
-      sunlight,
-      temperature,
-      size
-    } = props;
+  const {navigation} = props;
 
   const onPressHandler = (choice) => {
-    updateHumidity(options[choice]); 
-    navigation.navigate('AdditionalQuestionsScreen', {sunlight, temperature, size, humidity});
+    updateSunlight(options[choice].value); 
+    navigation.navigate('TemperatureScreen', {sunlight: options[choice].value});
   } 
 
-  const skip = ({navigation, sunlight, temperature, size}) => {
-    navigation.navigate('AdditionalQuestionsScreen', {
-      sunlight,
-      temperature,
-      size,
-      humidity: 'Any'
+  const skip = ({navigation}) => {
+    navigation.navigate('TemperatureScreen', {
+      sunlight: 'Any'
     })
   }
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity onPress={() => skip({navigation, sunlight, temperature, size})}>
+        <TouchableOpacity onPress={() => skip({navigation})}>
           <View style={styles.headerBox}>
             <Text style={styles.text}>Skip</Text>
           </View>
         </TouchableOpacity>
       ),
     });
-  }, [navigation, sunlight, temperature, size]);
+  }, [navigation]);
   
   return (
     <>
+      <Text style={styles.question}>What's the kind of sun exposure you receive in your space?</Text>
       
-      <Text style={styles.question}>What's the kind of humidity you receive in your space?</Text>
       {
         Object.keys(options).map(key => {
           return (<TouchableOpacity key={key} onPress={() => {onPressHandler(key)}}>
-            <View style={styles.button}>
-              <Image source={{uri: options[key].uri}} resizeMode="contain" style={styles.iconBorder}/>  
-            <View style={styles.textBox}>
-              <Text style={styles.text}>{options[key].text}</Text>
-            </View>
-            </View>            
-            </TouchableOpacity>)
+                    <View style={styles.button}>
+                      <Image source={{uri: options[key].uri}} resizeMode="contain" style={styles.iconBorder}/>  
+                    <View style={styles.textBox}>
+                      <Text style={styles.text}>{options[key].text}</Text>
+                    </View>
+                    </View>            
+                  </TouchableOpacity>)
         })
       }
     </>
@@ -121,7 +118,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   image: {
-    width: '110%',
+    width: '90%',
     height: '90%',
     marginBottom: 10
   },
@@ -137,4 +134,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Humidity;
+export default SunlightInput;

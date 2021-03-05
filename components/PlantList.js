@@ -6,12 +6,12 @@ import { windowWidth, windowHeight } from '../constants/WindowSize';
 
 
 const PlantList = (props) => {
-    const { query, plants, navigation, sunlight, allergies, size, pets, children, effort, temperature, humidity } = props;
-
+    const { query, plants, navigation, sunlight, size, pets, children, effort, temperature, humidity } = props;
+    
     const checkSunlight = plant => {
         const currSunlightLowerCase = plant.sun.toLowerCase();
         const sunlightLowerCase = sunlight.toLowerCase();
-        if (sunlightLowerCase === 'any') {
+        if (sunlightLowerCase == 'any') {
             return true;
         } else if (sunlightLowerCase === 'high' && currSunlightLowerCase.includes('bright')) {
             return true;
@@ -23,19 +23,25 @@ const PlantList = (props) => {
     };
 
     const checkTemperature = plant => {
-        const tempRange = plant.temperature.split('-');
+        if(temperature=="Any"){
+            return true;
+        }
+        const currTempRange = plant.temperature.split('-');
+        const currLowerRange = Number(currTempRange[0]);
+        const currUpperRange = Number(currTempRange[1]);
+        const tempRange = temperature.split('-');
         const lowerRange = Number(tempRange[0]);
         const upperRange = Number(tempRange[1]);
-        return lowerRange <= temperature && upperRange >= temperature;
+        return lowerRange <= currLowerRange && upperRange >= currUpperRange;
     };
 
     const checkHumidity = plant => {
         const currHumidityLowerCase = plant.humidity.toLowerCase();
-        if (currHumidityLowerCase.includes('low') && humidity <= 20) {
+        const humidityLowerCase = humidity.toLowerCase();
+        if(humidityLowerCase == "any"){
             return true;
-        } else if (currHumidityLowerCase.includes('medium') && humidity > 20 && humidity <= 40) {
-            return true;
-        } else if (currHumidityLowerCase.includes('high') && humidity > 40) {
+        }
+        else if (currHumidityLowerCase.includes(humidityLowerCase) ) {
             return true;
         } else {
             return false;
@@ -45,7 +51,10 @@ const PlantList = (props) => {
     const checkEffort = plant => {
         const currEffortLowerCase = plant.care.toLowerCase();
         const effortLowerCase = effort.toLowerCase();
-        if (effortLowerCase === 'easy' && currEffortLowerCase.includes('low')) {
+        if(effortLowerCase == "any"){
+            return true;
+        }
+        else if (effortLowerCase === 'easy' && currEffortLowerCase.includes('low')) {
             return true;
         } else if (currEffortLowerCase.includes(effortLowerCase)) {
             return true;
@@ -57,7 +66,10 @@ const PlantList = (props) => {
     const checkSize = plant => {
         const currSizeLowerCase = plant.size.toLowerCase();
         const sizeLowerCase = size.toLowerCase();
-        if(currSizeLowerCase.includes("feet")){
+        if(sizeLowerCase=="any"){
+            return true;
+        }
+        else if(currSizeLowerCase.includes("feet")){
             let splitSize = currSizeLowerCase.split("feet");
             let splitH = splitSize[0].slice(-1).split("-");
             let maxHeight = splitH[1]
@@ -85,6 +97,9 @@ const PlantList = (props) => {
         const children1 = children.toLowerCase();
         const pets1 = pets.toLowerCase();
         if (toxic == "none"){
+            return true;
+        }
+        else if(children1=='any'&&pets1=='any'){
             return true;
         }
         else if (children1 == "yes" || pets1=="yes"){
@@ -119,7 +134,7 @@ const PlantList = (props) => {
     const filteredPlants = plants.filter(filterPlants);
 
     const filterQuerySearch = () => {
-        return filteredPlants.filter(plant => plant.name.toLowerCase().includes(query.toLowerCase()));
+        return query ? filteredPlants.filter(plant => plant.name.toLowerCase().includes(query.toLowerCase())) : filteredPlants;
     };
 
     const filteredQuerySearchPlants = filterQuerySearch();
