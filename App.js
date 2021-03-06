@@ -3,7 +3,7 @@ import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import StackNavigator from "./navigators/StackNavigator";
 
-export default function App() {
+const App=() => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
@@ -11,4 +11,5 @@ export default function App() {
       </NavigationContainer>
     </SafeAreaProvider>
   );
-}
+};
+export default App;
