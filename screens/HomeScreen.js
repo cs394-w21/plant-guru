@@ -17,7 +17,7 @@ const HomeScreen = (props) => {
               <AntDesign name="question" size={64} color="#7EA480" />
             </View>
             <View style={styles.textBox}>
-              <Text style={styles.text}>Find</Text>
+              <Text style={styles.text}>Findz</Text>
             </View>
 
           </View>
