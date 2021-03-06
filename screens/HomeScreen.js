@@ -44,7 +44,7 @@ const HomeScreen = (props) => {
               <AntDesign name="login" size={64} color="#7EA480" />
             </View>
             <View style={styles.textBox}>
-              <Text style={styles.text}>Login</Text>
+              <Text style={styles.text}>Login!</Text>
             </View>
           </View>
 

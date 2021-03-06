@@ -6,7 +6,7 @@ import HomeScreen from './HomeScreen';
 describe('Basic home screen test', () => {
     it('has basic buttons', () => {
         const {queryByText} = render(<HomeScreen />);
-        const LoginButton = queryByText("Login");
+        const LoginButton = queryByText("Login!");
         const SearchButton = queryByText("Search");
         const FindButton = queryByText("Find");
         
