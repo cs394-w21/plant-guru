@@ -13,5 +13,5 @@ jobs:
           node-version: 14.x
       - uses: expo/expo-github-action@v5
         with:
-          expo-version: 40.x
+          expo-version: 4.x
       - run: npm install
