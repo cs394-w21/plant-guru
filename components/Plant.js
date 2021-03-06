@@ -6,10 +6,8 @@ const Plant = (props) => {
     const {plant, navigation} = props;
 
     const handlePress = () => {
-        console.log("success");
         navigation.navigate('PlantInfoScreen', {plant});
     }
-    console.log(plant.image)
 
     return(
         <TouchableOpacity onPress={handlePress}>
