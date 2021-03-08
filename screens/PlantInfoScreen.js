@@ -39,10 +39,10 @@ const PlantInfoScreen = (props) => {
                 <Text style={styles.name}>
                     {name}
                 </Text>
-                {/* <TouchableOpacity onPress={() => addFavorite(userID, user, plant.id)}
+                <TouchableOpacity onPress={() => addFavorite(userID, user, plant.id)}
                                   style={checkFavorite(plant.id,user) ? styles.favoriteSelected : styles.favorite}>
                     <Text style={checkFavorite(plant.id,user) ? styles.favoriteSelectedText : styles.favoriteText}>{checkFavorite(plant.id,user) ? 'Unfavorite' : 'Favorite'}</Text>
-                </TouchableOpacity> */}
+                </TouchableOpacity>
                 <Image
                     style={styles.image}
                     source={{uri: image}}

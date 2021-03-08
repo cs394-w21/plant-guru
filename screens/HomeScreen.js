@@ -1,17 +1,40 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import {windowWidth} from '../constants/WindowSize';
+import UserContext from '../contexts/UserContext';
+import { firebase } from '../utils/firebase';
+
 const HomeScreen = (props) => {
     const { navigation, route } = props;
+    const loggedIn = useContext(UserContext);
+
     const onChange = (screenName) => {
         navigation.navigate(screenName);
     }
+
+    async function handleOnLogout() {
+      try {
+        await firebase.auth().signOut();
+        navigation.navigate('HomeScreen');
+      } catch (error) {
+        console.log(error);
+      };
+    };
+
+    const handleLoginLogout = () => {
+      if (loggedIn) {
+        handleOnLogout();
+      } else {
+        navigation.navigate('RegisterScreen');
+      }
+    };
+
     return(
       <SafeAreaView style={styles.container}>
         <TouchableOpacity
-          onPress={value => onChange("SunlightScreen")}>
+          onPress={() => onChange("SunlightScreen")}>
           <View style={styles.button}>
             <View style={styles.iconBorder}>
               <AntDesign name="question" size={64} color="#7EA480" />
@@ -19,12 +42,11 @@ const HomeScreen = (props) => {
             <View style={styles.textBox}>
               <Text style={styles.text}>Find</Text>
             </View>
-
           </View>
         </TouchableOpacity>
-        
+
         <TouchableOpacity
-          onPress={value => onChange("SearchScreen")}>
+          onPress={() => onChange("SearchScreen")}>
           <View style={styles.button}>
             <View style={styles.iconBorder}>
               <Ionicons name="search-outline" size={64} color="#7EA480" />
@@ -32,28 +54,21 @@ const HomeScreen = (props) => {
             <View style={styles.textBox}>
               <Text style={styles.text}>Search</Text>
             </View>
-
           </View>
-
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={value => onChange("RegisterScreen")}>
+          onPress={() => handleLoginLogout()}>
           <View style={styles.button}>
             <View style={styles.iconBorder}>
-              <AntDesign name="login" size={64} color="#7EA480" />
+              <AntDesign name={loggedIn ? 'logout' : 'login'} size={64} color="#7EA480" />
             </View>
             <View style={styles.textBox}>
-              <Text style={styles.text}>Login!</Text>
+              <Text style={styles.text}>{loggedIn ? 'Logout' : 'Login'}</Text>
             </View>
           </View>
-
         </TouchableOpacity>
-        
-
-
       </SafeAreaView>
-
     );
 }
 

@@ -1,10 +1,8 @@
-import React from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
-import Form from './Form.js';
+import React, { useState } from 'react';
+import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import * as Yup from 'yup';
-import { firebase, db } from '../utils/firebase.js';
-import { useContext, useState, useEffect } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { db, firebase } from '../utils/firebase.js';
+import Form from './Form.js';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -34,12 +32,12 @@ const validationSchema = Yup.object().shape({
         setSignInError(null);
         try {
           await firebase.auth().signInWithEmailAndPassword(email, password);
-          navigation.navigate('UserInputScreen');
+          navigation.navigate('HomeScreen');
         } catch (error) {
           setSignInError(error.message);
         }
-      }
-    
+    }
+
     async function handleOnSignUp(values) {
       //setShowConfirm(true);
       //console.log(showConfirm);
@@ -50,15 +48,16 @@ const validationSchema = Yup.object().shape({
         db.ref("users").child(authCredential.user.uid).set(newUserProps);
         const user = authCredential.user;
         await user.updateProfile({displayName: name});
-        navigation.navigate('UserInputScreen');
+        navigation.navigate('HomeScreen');
       } catch (error) {
         setSignInError(error.message);
       }
     }
-    
+
     async function handleOnSubmit(values) {
       return showConfirm ? handleOnSignUp(values) : handleOnLogin(values);
     }
+
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.container}>
