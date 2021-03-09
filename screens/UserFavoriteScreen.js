@@ -5,7 +5,7 @@ import fetchUserData from '../utils/fetchData';
 import writeUserData from '../utils/writeData';
 import UserContext from '../contexts/UserContext';
 import { useState, useCallback, useEffect } from "react";
-import { db as database} from "../utils/firebase";
+import {firebase} from "../utils/firebase";
 
 const UserFavoriteScreen = (props) => {
     //to do: basically do PlantList in here, exact same functionality as PlantResultsScreen
@@ -18,31 +18,14 @@ const UserFavoriteScreen = (props) => {
         return <Text>Loading...</Text>
     }
     useEffect(() => {
-        const db = firebase.database().ref();
+        const db = firebase.database().ref('users/MAJv5Qmlh3c5qqy1yYWs4p5OvgT2/favorites');
         const handleData = snap => {
-          if (snap.val()) setPlants(fixCourses(snap.val())); //not fixCourses, of course, presumably this is where it's set
+          if (snap.val()) setPlants(snap.val()); //not fixCourses, of course, presumably this is where it's set
         }
         db.on('value', handleData, error => alert(error));
         return () => { db.off('value', handleData); };
       }, []);
-    // const fetchPlantFavoritesData = (userID, userData) => {
-    //     //const [userData, updateUserDataInternal] = useState("");
-      
-    //     // Use callback as to not constantly recreate function definition
-    //     useEffect(() => {
-    //       const db = database.ref();
-    //       db.on("value", updateUserData, window.alert);
-      
-    //       return () => {
-    //         db.off("value", updateUserData);
-    //       };
-    //     }, [updateUserData]);
-      
-    //     return {
-    //       loading: !userData,
-    //       userData: getUserData(userData, userID),
-    //     };
-    //   };
+    return <Text>{plants[0]}</Text>
 }
 
 export default UserFavoriteScreen;
