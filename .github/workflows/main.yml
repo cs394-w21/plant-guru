@@ -19,6 +19,7 @@ jobs:
 
   cypress:
     name: Cypress test
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -33,7 +34,7 @@ jobs:
 
   deploy:
     name: Firebase deploy
-    needs: [build]
+    needs: [build, cypress]
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
