@@ -1,34 +1,44 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Text, Image, View, StyleSheet, TouchableOpacity } from 'react-native';
 import {windowWidth} from '../constants/WindowSize';
 import fetchUserData from '../utils/fetchData';
 import writeUserData from '../utils/writeData';
+import UserContext from '../contexts/UserContext';
+import RegisterScreen from './RegisterScreen';
+
+
 const checkFavorite = (plantID, userData) => {
     if (!userData || !("favorites" in userData)){
         return false;
     }
     return userData.favorites.includes(plantID);
 }; 
-const addFavorite = (userID,userData,plantID) => {
-    if (!("favorites" in userData)){
-        userData.favorites = [plantID];
-    }
-    else {
-        if (userData.favorites.includes(plantID)){
-            userData.favorites = userData.favorites.filter(favorite => favorite!=plantID);
+const addFavorite = (user,userData,plantID, navigation) => {
+    if((user) && (userData != null)){
+        if (!("favorites" in userData)){
+            userData.favorites = [plantID];
         }
-        else{
-            userData.favorites.push(plantID);
+        else {
+            if (userData.favorites.includes(plantID)){
+                userData.favorites = userData.favorites.filter(favorite => favorite!=plantID);
+            }
+            else{
+                userData.favorites.push(plantID);
+            }
         }
+        writeUserData(user.uid, userData);
     }
-    writeUserData(userID, userData);
+    else{
+        navigation.navigate('RegisterScreen');
+    }
+    
 }
 const PlantInfoScreen = (props) => {
-    const userID = 'gzWp1lAOLEfpsUHCuRwuH30Ap0R2' //TODO: change this
-    const {route} = props;
+    const {route, navigation} = props;
     const plant = route.params.plant;
     const {name, image, sun, temperature, humidity, care, type, watering, size, allergies} = plant;
-    const {loading, user} = fetchUserData(userID);
+    const user = useContext(UserContext);
+    const {loading, userData} = (user && user.uid)? fetchUserData(user.uid) : {loading: false, userData: null};
     if (loading) {
         return <Text>Loading...</Text>
     }
@@ -39,7 +49,7 @@ const PlantInfoScreen = (props) => {
                 <Text style={styles.name}>
                     {name}
                 </Text>
-                <TouchableOpacity onPress={() => addFavorite(userID, user, plant.id)}
+                <TouchableOpacity onPress={() => addFavorite(user, userData, plant.id, navigation)}
                                   style={checkFavorite(plant.id,user) ? styles.favoriteSelected : styles.favorite}>
                     <Text style={checkFavorite(plant.id,user) ? styles.favoriteSelectedText : styles.favoriteText}>{checkFavorite(plant.id,user) ? 'Unfavorite' : 'Favorite'}</Text>
                 </TouchableOpacity>
