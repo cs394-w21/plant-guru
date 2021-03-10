@@ -57,7 +57,7 @@ const HomeScreen = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity
+        {loggedIn? <TouchableOpacity
           onPress={() => onChange("UserFavoriteScreen")}>
           <View style={styles.button}>
             <View style={styles.iconBorder}>
@@ -67,7 +67,7 @@ const HomeScreen = (props) => {
               <Text style={styles.text}>My Favorites</Text>
             </View>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> : <Text></Text>}
 
         <TouchableOpacity
           onPress={() => handleLoginLogout()}>

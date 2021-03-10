@@ -15,13 +15,14 @@ const UserFavoriteScreen = (props) => {
     const plants_data = getPlantData();
     const {route, navigation} = props;
     const user = useContext(UserContext);
-    const {loading, userData} = (user && user.uid)? fetchUserData(user.uid) : {loading: false, userData: null};
+    //const {loading, userData} = fetchUserData(user.uid);
+    //const {loading, userData} = (user && user.uid)? {loading: loading1, userData: userData1} : {loading: false, userData: null};
     const [plants, setPlants] = useState([]);
-    if (loading) {
-        return <Text>Loading...</Text>
-    }
-    if (userData == null) {
-      return <Text>Please log in</Text>
+    // if (loading) {
+    //     return <Text>Loading...</Text>
+    // }
+    if (user == null) {
+      return (<Text>Please log in</Text>);//TODO: make this look nicer; maybe redirect to login screen
     }
     const filteredPlants = () => {
       return plants_data.filter(plant => plants.includes(plant.id));
@@ -29,7 +30,8 @@ const UserFavoriteScreen = (props) => {
     const list = filteredPlants();
     console.log(user.uid)
     useEffect(() => {
-        const db = firebase.database().ref(`users/QvigR1WIdcQkmmqKtHnoB40ZSMo1/favorites`); //TODO: user user.uid instead
+      //QvigR1WIdcQkmmqKtHnoB40ZSMo1
+        const db = firebase.database().ref(`users/`+user.uid+`/favorites`); //TODO: user user.uid instead
         const handleData = snap => {
           if (snap.val()) setPlants(snap.val());
         }

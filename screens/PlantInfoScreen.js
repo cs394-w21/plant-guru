@@ -49,10 +49,7 @@ const PlantInfoScreen = (props) => {
                 <Text style={styles.name}>
                     {name}
                 </Text>
-                <TouchableOpacity onPress={() => addFavorite(user, userData, plant.id, navigation)}
-                                  style={checkFavorite(plant.id,user) ? styles.favoriteSelected : styles.favorite}>
-                    <Text style={checkFavorite(plant.id,user) ? styles.favoriteSelectedText : styles.favoriteText}>{checkFavorite(plant.id,user) ? 'Unfavorite' : 'Favorite'}</Text>
-                </TouchableOpacity>
+                
                 <Image
                     style={styles.image}
                     source={{uri: image}}
@@ -81,6 +78,10 @@ const PlantInfoScreen = (props) => {
                 <Text style={styles.text}>
                     {`Plant toxicity: ${allergies}`}
                 </Text>
+                <TouchableOpacity onPress={() => addFavorite(user, userData, plant.id, navigation)}
+                                  style={checkFavorite(plant.id,user) ? styles.favoriteSelected : styles.favorite}>
+                    <Text style={checkFavorite(plant.id,user) ? styles.favoriteSelectedText : styles.favoriteText}>{checkFavorite(plant.id,user) ? 'Remove Favorite' : 'Add Favorite'}</Text>
+                </TouchableOpacity>
             </View>
             </View>
         );
@@ -138,13 +139,20 @@ const styles = StyleSheet.create({
         padding: 5
     },
     favorite: {
-        borderWidth: 2,
-        borderRadius: 10
+        flex: 1,
+        borderRadius: 25,
+        flexDirection: 'row',
+        padding: 15,
+        borderColor: '#7EA480',
+        borderWidth: 3,
     },
     favoriteSelected: {
-        borderWidth: 2,
-        borderRadius: 10,
-        borderColor: 'red'
+        flex: 1,
+        borderRadius: 25,
+        flexDirection: 'row',
+        padding: 15,
+        borderColor: 'red',
+        borderWidth: 3,
     },
     favoriteText: {
         color: 'black'

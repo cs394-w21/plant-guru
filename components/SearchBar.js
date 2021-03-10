@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, View } from 'react-native';
+import { TextInput, Image, ScrollView, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 
 
 const SearchBar = (props) => {
@@ -17,9 +17,23 @@ const SearchBar = (props) => {
             value={query}
             onChangeText={queryText => handleOnChangeText(queryText)}
             placeholder='Search plant name...'
-            style={{backgroundColor: '#333333', color: 'white', height: 20, width: '70%'}}
+            style={styles.searchBar}
         />
     );
 };
+
+const styles = StyleSheet.create({
+    searchBar: {
+        flex: 1,
+        borderRadius: 25,
+        flexDirection: 'row',
+        padding: 15,
+        borderColor: '#7EA480',
+        borderWidth: 3,
+        width: 300,
+        height: 20
+    },
+    
+  });
 
 export default SearchBar;
