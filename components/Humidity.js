@@ -52,7 +52,7 @@ const Humidity = (props) => {
       headerRight: () => (
         <TouchableOpacity onPress={() => skip({navigation, sunlight, temperature, size})}>
           <View style={styles.headerBox}>
-            <Text style={styles.text}>Skip</Text>
+            <Text style={styles.text}>Not sure</Text>
           </View>
         </TouchableOpacity>
       ),

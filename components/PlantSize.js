@@ -49,9 +49,9 @@ const PlantSize = (props) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity onPress={() => next({navigation, sunlight, temperature, size})}>
-          <View style={styles.headerBox}>
-            <Text style={styles.text}>Next</Text>
+        <TouchableOpacity disabled={size.length === 0} onPress={() => next({navigation, sunlight, temperature, size})}>
+          <View style={size.length === 0 ? styles.headerBoxDisabled : styles.headerBox}>
+            <Text style={size.length === 0 ? styles.textDisabled : styles.text}>Next</Text>
           </View>
         </TouchableOpacity>
       ),
@@ -100,6 +100,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center'
   },
+  textDisabled: {
+    color: '#787878',
+    fontFamily: 'Rubik',
+    fontSize: 25,
+    lineHeight: 21,
+    letterSpacing: -0.28,
+    display: 'flex',
+    alignItems: 'center',
+    textAlign: 'center'
+  },
   question: {
     color: '#7EA480',
     fontFamily: 'Rubik',
@@ -134,6 +144,17 @@ const styles = StyleSheet.create({
   },
   headerBox: {
     borderColor: '#7EA480',
+    borderWidth: 3,
+    borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
+    width: Math.min(200, windowWidth*0.2),
+    height: Math.min(50, windowWidth*0.1),
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: Math.min(20, windowWidth*0.01)
+  },
+  headerBoxDisabled: {
+    backgroundColor: '#c8c8c8',
+    borderColor: '#787878',
     borderWidth: 3,
     borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
     width: Math.min(200, windowWidth*0.2),

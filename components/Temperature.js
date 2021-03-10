@@ -14,12 +14,12 @@ const Temperature = (props) => {
       return [Number(range[0]), Number(range[1])]
     }
 
-    const skip = ({navigation, sunlight}) => {
-      navigation.navigate('SizeScreen', {
-        sunlight,
-        temperature: 'Any'
-      })
-    }
+    // const skip = ({navigation, sunlight}) => {
+    //   navigation.navigate('SizeScreen', {
+    //     sunlight,
+    //     temperature: 'Any'
+    //   })
+    // }
 
     const next = ({navigation, sunlight, temperature}) => {
       navigation.navigate('SizeScreen', {
@@ -37,11 +37,11 @@ const Temperature = (props) => {
               <Text style={styles.text}>Next</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => skip({navigation, sunlight})}>
+          {/* <TouchableOpacity onPress={() => skip({navigation, sunlight})}>
             <View style={styles.headerBox}>
               <Text style={styles.text}>Skip</Text>
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           </>
         ),
       });
