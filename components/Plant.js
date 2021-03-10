@@ -13,7 +13,7 @@ const Plant = (props) => {
         <TouchableOpacity onPress={handlePress}>
             {/* <View style={styles.container}> */}
                 <Image style={styles.iconBorder} source={{uri: plant.image}} />
-                {/* <Text style={styles.name}>{plant.name}</Text> */}
+                <Text style={styles.name}>{plant.name}</Text>
             {/* </View> */}
         </TouchableOpacity>
     );
@@ -50,10 +50,13 @@ const styles = StyleSheet.create({
         padding: 2
     },
     name: {
-        fontSize: 15,
+        fontSize: 20,
         fontWeight: 'bold',
         fontFamily: 'Avenir',
-        padding: 5
+        padding: 5,
+        paddingTop: 3,
+        alignSelf: 'center',
+        color: '#7EA480'
     },
     iconBorder: {
         borderColor: '#7EA480',
@@ -63,7 +66,8 @@ const styles = StyleSheet.create({
         height: Math.min(windowWidth*0.3, 250),
         alignItems: 'center',
         justifyContent: 'center',
-        margin: Math.min(20, windowWidth*0.1)
+        margin: Math.min(20, windowWidth*0.1),
+        marginBottom: 2
 
     }
 });

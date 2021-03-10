@@ -1,77 +1,91 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Text, Image, View, StyleSheet, TouchableOpacity } from 'react-native';
 import {windowWidth} from '../constants/WindowSize';
 import fetchUserData from '../utils/fetchData';
 import writeUserData from '../utils/writeData';
+import UserContext from '../contexts/UserContext';
+import RegisterScreen from './RegisterScreen';
+
+
 const checkFavorite = (plantID, userData) => {
     if (!userData || !("favorites" in userData)){
         return false;
     }
     return userData.favorites.includes(plantID);
 }; 
-const addFavorite = (userID,userData,plantID) => {
-    if (!("favorites" in userData)){
-        userData.favorites = [plantID];
-    }
-    else {
-        if (userData.favorites.includes(plantID)){
-            userData.favorites = userData.favorites.filter(favorite => favorite!=plantID);
+const addFavorite = (user,userData,plantID, navigation) => {
+    if((user) && (userData != null)){
+        if (!("favorites" in userData)){
+            userData.favorites = [plantID];
         }
-        else{
-            userData.favorites.push(plantID);
+        else {
+            if (userData.favorites.includes(plantID)){
+                userData.favorites = userData.favorites.filter(favorite => favorite!=plantID);
+            }
+            else{
+                userData.favorites.push(plantID);
+            }
         }
+        writeUserData(user.uid, userData);
     }
-    writeUserData(userID, userData);
+    else{
+        navigation.navigate('RegisterScreen');
+    }
+    
 }
 const PlantInfoScreen = (props) => {
-    const userID = 'gzWp1lAOLEfpsUHCuRwuH30Ap0R2' //TODO: change this
-    const {route} = props;
+    const {route, navigation} = props;
     const plant = route.params.plant;
     const {name, image, sun, temperature, humidity, care, type, watering, size, allergies} = plant;
-    const {loading, user} = fetchUserData(userID);
+    const user = useContext(UserContext);
+    const {loading, userData} = (user && user.uid)? fetchUserData(user.uid) : {loading: false, userData: null};
     if (loading) {
         return <Text>Loading...</Text>
     }
     else{
         return (
             <View style={styles.outerContainer}>
-            <View style={styles.iconBorder}>
                 <Text style={styles.name}>
-                    {name}
-                </Text>
-                <TouchableOpacity onPress={() => addFavorite(userID, user, plant.id)}
-                                  style={checkFavorite(plant.id,user) ? styles.favoriteSelected : styles.favorite}>
-                    <Text style={checkFavorite(plant.id,user) ? styles.favoriteSelectedText : styles.favoriteText}>{checkFavorite(plant.id,user) ? 'Unfavorite' : 'Favorite'}</Text>
-                </TouchableOpacity>
+                        {name}
+                    </Text>
+
                 <Image
                     style={styles.image}
-                    source={{uri: image}}
+                    source={{ uri: image }}
                 />
-                <Text style={styles.text}>
-                    {`Sunlight needed: ${sun}`}
-                </Text>
-                <Text style={styles.text}>
-                    {`Optimal room temperature: ${temperature}`}
-                </Text>
-                <Text style={styles.text}>
-                    {`Optimal ambient humidity: ${humidity}`}
-                </Text>
-                <Text style={styles.text}>
-                    {`Care needed: ${care}`}
-                </Text>
-                <Text style={styles.text}>
-                    {`Plant type: ${type}`}
-                </Text>
-                <Text style={styles.text}>
-                    {`Watering needed: ${watering}`}
-                </Text>
-                <Text style={styles.text}>
-                    {`Plant size: ${size}`}
-                </Text>
-                <Text style={styles.text}>
-                    {`Plant toxicity: ${allergies}`}
-                </Text>
-            </View>
+                <View style={styles.iconBorder}>
+                    
+
+                    <Text style={styles.text}>
+                        {`Sunlight needed: ${sun}`}
+                    </Text>
+                    <Text style={styles.text}>
+                        {`Optimal room temperature: ${temperature}`}
+                    </Text>
+                    <Text style={styles.text}>
+                        {`Optimal ambient humidity: ${humidity}`}
+                    </Text>
+                    <Text style={styles.text}>
+                        {`Care needed: ${care}`}
+                    </Text>
+                    <Text style={styles.text}>
+                        {`Plant type: ${type}`}
+                    </Text>
+                    <Text style={styles.text}>
+                        {`Watering needed: ${watering}`}
+                    </Text>
+                    <Text style={styles.text}>
+                        {`Plant size: ${size}`}
+                    </Text>
+                    <Text style={styles.text}>
+                        {`Plant toxicity: ${allergies}`}
+                    </Text>
+                    
+                </View>
+                <TouchableOpacity onPress={() => addFavorite(user, userData, plant.id, navigation)}
+                        style={checkFavorite(plant.id, user) ? styles.favoriteSelected : styles.favorite}>
+                        <Text style={checkFavorite(plant.id, user) ? styles.favoriteSelectedText : styles.favoriteText}>{checkFavorite(plant.id, user) ? 'Remove Favorite' : 'Add Favorite'}</Text>
+                    </TouchableOpacity>
             </View>
         );
     };
@@ -87,20 +101,22 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     iconBorder: {
-        borderColor: '#7EA480',
-        borderWidth: 3,
-        borderRadius: Math.min(200*0.23, windowWidth*0.3*0.23),
-        width: Math.min(windowWidth*0.5, 600),
+        borderColor: 'black',
+        borderWidth: 2,
+        //borderRadius: Math.min(200*0.23, windowWidth*0.3*0.23),
+        borderRadius: 15,
+        width: Math.min(windowWidth*0.85, 600),
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: 10
     },
     container: {
         flex: 1,
         backgroundColor: "#fff",
 
         borderRadius: 5,
-        margin: 25,
-        width: Math.min(500,0.9*windowWidth),
+        margin: 15,
+        width: Math.max(500,0.85*windowWidth),
         //height: 300,
         marginTop: 50,
         shadowColor: "#000",
@@ -114,8 +130,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     image: {
-        width: Math.min(480,0.85*windowWidth),
-        height: Math.min(480,0.85*windowWidth)
+        width: Math.min(480,0.7*windowWidth),
+        height: Math.min(480,0.7*windowWidth),
+        borderColor: '#7EA480',
+        borderWidth: 3,
+        borderRadius: 20
     },
     text: {
         fontSize: 18,
@@ -125,16 +144,25 @@ const styles = StyleSheet.create({
         fontSize: 22,
         fontWeight: 'bold',
         fontFamily: 'Avenir',
-        padding: 5
+        padding: 5,
+        paddingTop:0,
+        color:"#7EA480"
     },
     favorite: {
-        borderWidth: 2,
-        borderRadius: 10
+        flex: 1,
+        borderRadius: 25,
+        flexDirection: 'row',
+        padding: 15,
+        borderColor: '#7EA480',
+        borderWidth: 3,
     },
     favoriteSelected: {
-        borderWidth: 2,
-        borderRadius: 10,
-        borderColor: 'red'
+        flex: 1,
+        borderRadius: 25,
+        flexDirection: 'row',
+        padding: 15,
+        borderColor: 'red',
+        borderWidth: 3,
     },
     favoriteText: {
         color: 'black'

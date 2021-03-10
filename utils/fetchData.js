@@ -30,7 +30,7 @@ const getUserData = (appData, userID) => {
   
     return {
       loading: !userData,
-      user: getUserData(userData, userID),
+      userData: getUserData(userData, userID),
     };
   };
 

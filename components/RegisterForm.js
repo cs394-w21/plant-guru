@@ -113,7 +113,7 @@ const validationSchema = Yup.object().shape({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'flex-start',
-      backgroundColor: '#ccccb3'
+      backgroundColor: '#ECF0F3'
     },
 });
   
