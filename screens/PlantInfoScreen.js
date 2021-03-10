@@ -45,44 +45,47 @@ const PlantInfoScreen = (props) => {
     else{
         return (
             <View style={styles.outerContainer}>
-            <View style={styles.iconBorder}>
                 <Text style={styles.name}>
-                    {name}
-                </Text>
-                
+                        {name}
+                    </Text>
+
                 <Image
                     style={styles.image}
-                    source={{uri: image}}
+                    source={{ uri: image }}
                 />
-                <Text style={styles.text}>
-                    {`Sunlight needed: ${sun}`}
-                </Text>
-                <Text style={styles.text}>
-                    {`Optimal room temperature: ${temperature}`}
-                </Text>
-                <Text style={styles.text}>
-                    {`Optimal ambient humidity: ${humidity}`}
-                </Text>
-                <Text style={styles.text}>
-                    {`Care needed: ${care}`}
-                </Text>
-                <Text style={styles.text}>
-                    {`Plant type: ${type}`}
-                </Text>
-                <Text style={styles.text}>
-                    {`Watering needed: ${watering}`}
-                </Text>
-                <Text style={styles.text}>
-                    {`Plant size: ${size}`}
-                </Text>
-                <Text style={styles.text}>
-                    {`Plant toxicity: ${allergies}`}
-                </Text>
+                <View style={styles.iconBorder}>
+                    
+
+                    <Text style={styles.text}>
+                        {`Sunlight needed: ${sun}`}
+                    </Text>
+                    <Text style={styles.text}>
+                        {`Optimal room temperature: ${temperature}`}
+                    </Text>
+                    <Text style={styles.text}>
+                        {`Optimal ambient humidity: ${humidity}`}
+                    </Text>
+                    <Text style={styles.text}>
+                        {`Care needed: ${care}`}
+                    </Text>
+                    <Text style={styles.text}>
+                        {`Plant type: ${type}`}
+                    </Text>
+                    <Text style={styles.text}>
+                        {`Watering needed: ${watering}`}
+                    </Text>
+                    <Text style={styles.text}>
+                        {`Plant size: ${size}`}
+                    </Text>
+                    <Text style={styles.text}>
+                        {`Plant toxicity: ${allergies}`}
+                    </Text>
+                    
+                </View>
                 <TouchableOpacity onPress={() => addFavorite(user, userData, plant.id, navigation)}
-                                  style={checkFavorite(plant.id,user) ? styles.favoriteSelected : styles.favorite}>
-                    <Text style={checkFavorite(plant.id,user) ? styles.favoriteSelectedText : styles.favoriteText}>{checkFavorite(plant.id,user) ? 'Remove Favorite' : 'Add Favorite'}</Text>
-                </TouchableOpacity>
-            </View>
+                        style={checkFavorite(plant.id, user) ? styles.favoriteSelected : styles.favorite}>
+                        <Text style={checkFavorite(plant.id, user) ? styles.favoriteSelectedText : styles.favoriteText}>{checkFavorite(plant.id, user) ? 'Remove Favorite' : 'Add Favorite'}</Text>
+                    </TouchableOpacity>
             </View>
         );
     };
@@ -98,20 +101,22 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     iconBorder: {
-        borderColor: '#7EA480',
-        borderWidth: 3,
-        borderRadius: Math.min(200*0.23, windowWidth*0.3*0.23),
-        width: Math.min(windowWidth*0.5, 600),
+        borderColor: 'black',
+        borderWidth: 2,
+        //borderRadius: Math.min(200*0.23, windowWidth*0.3*0.23),
+        borderRadius: 15,
+        width: Math.min(windowWidth*0.85, 600),
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: 10
     },
     container: {
         flex: 1,
         backgroundColor: "#fff",
 
         borderRadius: 5,
-        margin: 25,
-        width: Math.min(500,0.9*windowWidth),
+        margin: 15,
+        width: Math.max(500,0.85*windowWidth),
         //height: 300,
         marginTop: 50,
         shadowColor: "#000",
@@ -125,8 +130,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     image: {
-        width: Math.min(480,0.85*windowWidth),
-        height: Math.min(480,0.85*windowWidth)
+        width: Math.min(480,0.7*windowWidth),
+        height: Math.min(480,0.7*windowWidth),
+        borderColor: '#7EA480',
+        borderWidth: 3,
+        borderRadius: 20
     },
     text: {
         fontSize: 18,
@@ -136,7 +144,9 @@ const styles = StyleSheet.create({
         fontSize: 22,
         fontWeight: 'bold',
         fontFamily: 'Avenir',
-        padding: 5
+        padding: 5,
+        paddingTop:0,
+        color:"#7EA480"
     },
     favorite: {
         flex: 1,
