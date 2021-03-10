@@ -65,20 +65,16 @@ const Humidity = (props) => {
       <Text style={styles.question}>What's the kind of humidity you receive in your space?</Text>
       {
         Object.keys(options).map(key => {
-          return (<TouchableOpacity key={key} onPress={() => {onPressHandler(key)}}>
-            <View style={styles.button}>
+          return (<TouchableOpacity style={styles.button} key={key} onPress={() => {onPressHandler(key)}}>
               <Image source={{uri: options[key].uri}} resizeMode="contain" style={styles.iconBorder}/>  
             <View style={styles.textBox}>
               <Text style={styles.text}>{options[key].text}</Text>
-            </View>
-            </View>            
+            </View>        
             </TouchableOpacity>)
         })
       }
-      <TouchableOpacity onPress={() => skip({navigation, sunlight, temperature, size})}>
-        <View style={styles.headerBox}>
+      <TouchableOpacity style={styles.headerBox} onPress={() => skip({navigation, sunlight, temperature, size})}>
           <Text style={styles.text}>I'm not sure</Text>
-        </View>
       </TouchableOpacity>
     </>
   )
@@ -88,25 +84,18 @@ const styles = StyleSheet.create({
   button:{
     flex: 1,
     flexDirection: 'row',
-    margin: 30
+    margin: windowWidth*0.1
   },
   text: {
     color: '#7EA480',
-    fontFamily: 'Rubik',
-    fontSize: 25,
-    lineHeight: 21,
-    letterSpacing: -0.28,
+    fontSize: 22,
     display: 'flex',
     alignItems: 'center',
     textAlign: 'center'
   },
   question: {
     color: '#7EA480',
-    fontFamily: 'Rubik',
-    fontSize: 25,
-    lineHeight: 21,
-    letterSpacing: -0.28,
-    display: 'flex',
+    fontSize: 22,
     alignItems: 'center',
     textAlign: 'center',
     fontWeight: 'bold'
@@ -119,10 +108,9 @@ const styles = StyleSheet.create({
     height: Math.min(windowWidth*0.2, 100),
     alignItems: 'center',
     justifyContent: 'center'
-
   },
   textBox: {
-    width: Math.min(windowWidth*0.2, 100),
+    width: Math.min(windowWidth*0.25, 100),
     height: Math.min(windowWidth*0.2, 100),
     alignItems: 'center',
     justifyContent: 'center',
@@ -137,11 +125,10 @@ const styles = StyleSheet.create({
     borderColor: '#7EA480',
     borderWidth: 3,
     borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
-    width: Math.min(200, windowWidth*0.2),
-    height: Math.min(50, windowWidth*0.1),
+    width: Math.min(200, windowWidth*0.4),
+    height: Math.min(50, windowWidth*0.15),
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: Math.min(20, windowWidth*0.01)
   }
 })
 

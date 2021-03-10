@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Text, SafeAreaView, StyleSheet, TouchableOpacity, View} from 'react-native';
+import { Text, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import {windowWidth} from '../constants/WindowSize';
@@ -32,8 +32,9 @@ const HomeScreen = (props) => {
     };
 
     return(
-      <SafeAreaView style={styles.container}>
-        <TouchableOpacity
+      <SafeAreaView style={styles.mainContainer}>
+        <ScrollView contentContainerStyle={styles.container}>
+        <TouchableOpacity style={styles.button}
           onPress={() => onChange('IntroScreen')}>
           <View style={styles.button}>
             <View style={styles.iconBorder}>
@@ -45,7 +46,7 @@ const HomeScreen = (props) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity
+        <TouchableOpacity style={styles.button}
           onPress={() => onChange("SearchScreen")}>
           <View style={styles.button}>
             <View style={styles.iconBorder}>
@@ -57,7 +58,7 @@ const HomeScreen = (props) => {
           </View>
         </TouchableOpacity>
 
-        {loggedIn? <TouchableOpacity
+        {loggedIn? <TouchableOpacity style={styles.button}
           onPress={() => onChange("UserFavoriteScreen")}>
           <View style={styles.button}>
             <View style={styles.iconBorder}>
@@ -69,7 +70,7 @@ const HomeScreen = (props) => {
           </View>
         </TouchableOpacity> : <Text></Text>}
 
-        <TouchableOpacity
+        <TouchableOpacity style={styles.button}
           onPress={() => handleLoginLogout()}>
           <View style={styles.button}>
             <View style={styles.iconBorder}>
@@ -80,18 +81,28 @@ const HomeScreen = (props) => {
             </View>
           </View>
         </TouchableOpacity>
+        </ScrollView>
       </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
+  mainContainer: {
+    flex: 1,
+    backgroundColor: '#ECF0F3',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    width: '100%',
+    height: '100%'
+  },  
+  container: {
       flex: 1,
       backgroundColor: '#ECF0F3',
       alignItems: 'center',
-      justifyContent: 'flex-start',
-      
-      width: '100%',
+      justifyContent: 'space-evenly',
+      width: '90%',
+      height: '100%',
+      flexDirection: 'column'
     },
     button:{
       flex: 1,
@@ -100,8 +111,7 @@ const styles = StyleSheet.create({
     },
     text: {
       color: '#7EA480',
-      fontFamily: 'Rubik',
-      fontSize: 25,
+      fontSize: 22,
       lineHeight: 21,
       letterSpacing: -0.28,
       display: 'flex',

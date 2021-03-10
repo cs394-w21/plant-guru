@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
         //borderRadius: Math.min(200*0.23, windowWidth*0.3*0.23),
         borderRadius: 15,
         width: Math.min(windowWidth*0.85, 600),
-        alignItems: "",
         justifyContent: 'center',
         marginTop: 10,
         marginBottom:20,
@@ -118,13 +117,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#fff",
-
         borderRadius: 5,
         margin: 15,
         width: Math.max(500,0.85*windowWidth),
         //height: 300,
         marginTop: 50,
-        
         padding: 15,
         alignItems: 'center',
     },
