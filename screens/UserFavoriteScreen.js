@@ -1,15 +1,18 @@
 import React, {useContext} from 'react';
-import { Text, Image, View, StyleSheet, TouchableOpacity } from 'react-native';
-import {windowWidth} from '../constants/WindowSize';
+import { Text, Image, ScrollView, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
+import {windowWidth, windowHeight} from '../constants/WindowSize';
 import fetchUserData from '../utils/fetchData';
-import writeUserData from '../utils/writeData';
 import UserContext from '../contexts/UserContext';
 import { useState, useCallback, useEffect } from "react";
 import {firebase} from "../utils/firebase";
+import getPlantData from '../utils/plantData';
+import Plant from "../components/Plant";
+
 
 const UserFavoriteScreen = (props) => {
     //to do: basically do PlantList in here, exact same functionality as PlantResultsScreen
     //also to do: add an icon for this to HomeScreen, but only if user is logged in?
+    const plants_data = getPlantData();
     const {route, navigation} = props;
     const user = useContext(UserContext);
     const {loading, userData} = (user && user.uid)? fetchUserData(user.uid) : {loading: false, userData: null};
@@ -17,15 +20,50 @@ const UserFavoriteScreen = (props) => {
     if (loading) {
         return <Text>Loading...</Text>
     }
+    if (userData == null) {
+      return <Text>Please log in</Text>
+    }
+    const filteredPlants = () => {
+      return plants_data.filter(plant => plants.includes(plant.id));
+    }
+    const list = filteredPlants();
+    console.log(user.uid)
     useEffect(() => {
-        const db = firebase.database().ref('users/MAJv5Qmlh3c5qqy1yYWs4p5OvgT2/favorites');
+        const db = firebase.database().ref(`users/QvigR1WIdcQkmmqKtHnoB40ZSMo1/favorites`); //TODO: user user.uid instead
         const handleData = snap => {
-          if (snap.val()) setPlants(snap.val()); //not fixCourses, of course, presumably this is where it's set
+          if (snap.val()) setPlants(snap.val());
         }
         db.on('value', handleData, error => alert(error));
         return () => { db.off('value', handleData); };
       }, []);
-    return <Text>{plants[0]}</Text>
-}
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.plantList}>
+        {list.map(plant => (
+          <Plant plant={plant} key={plant.id} navigation={navigation} />
+        ))}
+      </ScrollView>
+    </SafeAreaView>
+  )
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ECF0F3',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    width: '100%', 
+  },
+  plantList: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    // alignItems: 'center',
+    justifyContent: 'center',
+    width: windowWidth,
+    height: windowHeight,
+},
+});
 
 export default UserFavoriteScreen;

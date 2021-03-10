@@ -58,6 +58,18 @@ const HomeScreen = (props) => {
         </TouchableOpacity>
 
         <TouchableOpacity
+          onPress={() => onChange("UserFavoriteScreen")}>
+          <View style={styles.button}>
+            <View style={styles.iconBorder}>
+              <AntDesign name="hearto" size={64} color="#7EA480" />
+            </View>
+            <View style={styles.textBox}>
+              <Text style={styles.text}>My Favorites</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity
           onPress={() => handleLoginLogout()}>
           <View style={styles.button}>
             <View style={styles.iconBorder}>
