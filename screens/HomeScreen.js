@@ -34,7 +34,7 @@ const HomeScreen = (props) => {
     return(
       <SafeAreaView style={styles.container}>
         <TouchableOpacity
-          onPress={() => onChange("SunlightScreen")}>
+          onPress={() => onChange('IntroScreen')}>
           <View style={styles.button}>
             <View style={styles.iconBorder}>
               <AntDesign name="question" size={64} color="#7EA480" />
