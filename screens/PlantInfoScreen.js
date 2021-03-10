@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
-import { Text, Image, View, StyleSheet, TouchableOpacity } from 'react-native';
-import {windowWidth} from '../constants/WindowSize';
+import { Text, Image, View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import {windowWidth,windowHeight} from '../constants/WindowSize';
 import fetchUserData from '../utils/fetchData';
 import writeUserData from '../utils/writeData';
 import UserContext from '../contexts/UserContext';
@@ -44,15 +44,17 @@ const PlantInfoScreen = (props) => {
     }
     else{
         return (
-            <View style={styles.outerContainer}>
+            <ScrollView contentContainerStyle={styles.outerContainer}>
                 <Text style={styles.name}>
                         {name}
                     </Text>
 
-                <Image
+                <View style={styles.dropshadow}>
+                    <Image
                     style={styles.image}
                     source={{ uri: image }}
                 />
+                </View>
                 <View style={styles.iconBorder}>
                     
 
@@ -86,7 +88,7 @@ const PlantInfoScreen = (props) => {
                         style={checkFavorite(plant.id, user) ? styles.favoriteSelected : styles.favorite}>
                         <Text style={checkFavorite(plant.id, user) ? styles.favoriteSelectedText : styles.favoriteText}>{checkFavorite(plant.id, user) ? 'Remove Favorite' : 'Add Favorite'}</Text>
                     </TouchableOpacity>
-            </View>
+            </ScrollView>
         );
     };
     
@@ -97,8 +99,9 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#ECF0F3',
         alignItems: 'center',
-        justifyContent: 'flex-start',
-        width: '100%',
+        justifyContent: 'space-around',
+        width: windowWidth,
+        height: windowHeight,
     },
     iconBorder: {
         borderColor: 'black',
@@ -106,9 +109,11 @@ const styles = StyleSheet.create({
         //borderRadius: Math.min(200*0.23, windowWidth*0.3*0.23),
         borderRadius: 15,
         width: Math.min(windowWidth*0.85, 600),
-        alignItems: 'center',
+        alignItems: "",
         justifyContent: 'center',
-        marginTop: 10
+        marginTop: 10,
+        marginBottom:20,
+        padding:5
     },
     container: {
         flex: 1,
@@ -119,13 +124,7 @@ const styles = StyleSheet.create({
         width: Math.max(500,0.85*windowWidth),
         //height: 300,
         marginTop: 50,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 4,
-        },
-        shadowOpacity: 0.5,
-        shadowRadius: 10,
+        
         padding: 15,
         alignItems: 'center',
     },
@@ -134,11 +133,26 @@ const styles = StyleSheet.create({
         height: Math.min(480,0.7*windowWidth),
         borderColor: '#7EA480',
         borderWidth: 3,
-        borderRadius: 20
+        borderRadius: 20,
+        
+        
+    },
+    dropshadow:{ 
+        width: Math.min(480,0.7*windowWidth),
+        height: Math.min(480,0.7*windowWidth),
+        borderRadius: 20,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 7,
+            height: 13,
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 10,
+        marginBottom:15,
     },
     text: {
-        fontSize: 18,
-        padding: 5
+        fontSize: 15,
+        padding: 3
     },
     name: {
         fontSize: 22,
@@ -149,23 +163,30 @@ const styles = StyleSheet.create({
         color:"#7EA480"
     },
     favorite: {
-        flex: 1,
+       
         borderRadius: 25,
-        flexDirection: 'row',
+
         padding: 15,
         borderColor: '#7EA480',
         borderWidth: 3,
+        width: 185,
+        height: 55,
+        alignItems: 'center',
+        justifyContent: 'center',
+    
     },
     favoriteSelected: {
-        flex: 1,
         borderRadius: 25,
-        flexDirection: 'row',
         padding: 15,
         borderColor: 'red',
         borderWidth: 3,
+        width: 185,
+        alignItems: 'center',
+        justifyContent:'center',
+        height: 55
     },
     favoriteText: {
-        color: 'black'
+        color: '#7EA480'
     },
     favoriteSelectedText: {
         color: 'red'
@@ -173,3 +194,4 @@ const styles = StyleSheet.create({
 });
 
 export default PlantInfoScreen;
+
