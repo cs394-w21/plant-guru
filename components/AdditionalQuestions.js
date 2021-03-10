@@ -44,30 +44,35 @@ const AdditionalQuestions = (props) => {
     })
   }
 
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <>
-        <TouchableOpacity disabled={!isNextEnabled} onPress={() => next({navigation, sunlight, temperature, size, humidity, children, pets, effort})}>
-            <View style={isNextEnabled ? styles.headerBox : styles.headerBoxDisabled}>
-              <Text style={isNextEnabled ? styles.text : styles.textDisabled}>Next</Text>
-            </View>
-        </TouchableOpacity>
-        {/* <TouchableOpacity onPress={() => skip({navigation, sunlight, temperature, size, humidity})}>
-            <View style={styles.headerBox}>
-              <Text style={styles.text}>Skip</Text>
-            </View>
-        </TouchableOpacity> */}
-        </>
-      ),
-    });
-  }, [navigation, sunlight, temperature, size, humidity, children, pets, effort]);
+  // React.useLayoutEffect(() => {
+  //   navigation.setOptions({
+  //     headerRight: () => (
+  //       <>
+  //       <TouchableOpacity disabled={!isNextEnabled} onPress={() => next({navigation, sunlight, temperature, size, humidity, children, pets, effort})}>
+  //           <View style={isNextEnabled ? styles.headerBox : styles.headerBoxDisabled}>
+  //             <Text style={isNextEnabled ? styles.text : styles.textDisabled}>Next</Text>
+  //           </View>
+  //       </TouchableOpacity>
+  //       {/* <TouchableOpacity onPress={() => skip({navigation, sunlight, temperature, size, humidity})}>
+  //           <View style={styles.headerBox}>
+  //             <Text style={styles.text}>Skip</Text>
+  //           </View>
+  //       </TouchableOpacity> */}
+  //       </>
+  //     ),
+  //   });
+  // }, [navigation, sunlight, temperature, size, humidity, children, pets, effort]);
 
   return (
     <>
       <CareEffort setEffort={setEffort} effort={effort}/>
       <Pets setPets={setPets} pets={pets}/>
       <Children setChildren={setChildren} children={children}/>
+      <TouchableOpacity disabled={!isNextEnabled} onPress={() => next({navigation, sunlight, temperature, size, humidity, children, pets, effort})}>
+        <View style={isNextEnabled ? styles.headerBox : styles.headerBoxDisabled}>
+          <Text style={isNextEnabled ? styles.text : styles.textDisabled}>Next</Text>
+        </View>
+      </TouchableOpacity>
     </>
   );
 };

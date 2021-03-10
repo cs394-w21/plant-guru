@@ -99,16 +99,16 @@ const styles = StyleSheet.create({
   iconBorder: {
     borderColor: '#7EA480',
     borderWidth: 3,
-    borderRadius: Math.min(200*0.23, windowWidth*0.3*0.23),
-    width: Math.min(windowWidth*0.3, 150),
-    height: Math.min(windowWidth*0.3, 150),
+    borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
+    width: Math.min(windowWidth*0.2, 100),
+    height: Math.min(windowWidth*0.2, 100),
     alignItems: 'center',
     justifyContent: 'center'
 
   },
   textBox: {
-    width: Math.min(windowWidth*0.3, 150),
-    height: Math.min(windowWidth*0.3, 150),
+    width: Math.min(windowWidth*0.2, 100),
+    height: Math.min(windowWidth*0.2, 100),
     alignItems: 'center',
     justifyContent: 'center'
   },

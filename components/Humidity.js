@@ -47,17 +47,17 @@ const Humidity = (props) => {
     })
   }
 
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity onPress={() => skip({navigation, sunlight, temperature, size})}>
-          <View style={styles.headerBox}>
-            <Text style={styles.text}>Not sure</Text>
-          </View>
-        </TouchableOpacity>
-      ),
-    });
-  }, [navigation, sunlight, temperature, size]);
+  // React.useLayoutEffect(() => {
+  //   navigation.setOptions({
+  //     headerRight: () => (
+  //       <TouchableOpacity onPress={() => skip({navigation, sunlight, temperature, size})}>
+  //         <View style={styles.headerBox}>
+  //           <Text style={styles.text}>Not sure</Text>
+  //         </View>
+  //       </TouchableOpacity>
+  //     ),
+  //   });
+  // }, [navigation, sunlight, temperature, size]);
   
   return (
     <>
@@ -75,6 +75,11 @@ const Humidity = (props) => {
             </TouchableOpacity>)
         })
       }
+      <TouchableOpacity onPress={() => skip({navigation, sunlight, temperature, size})}>
+        <View style={styles.headerBox}>
+          <Text style={styles.text}>I'm not sure</Text>
+        </View>
+      </TouchableOpacity>
     </>
   )
 };
@@ -109,18 +114,19 @@ const styles = StyleSheet.create({
   iconBorder: {
     borderColor: '#7EA480',
     borderWidth: 3,
-    borderRadius: Math.min(200*0.23, windowWidth*0.3*0.23),
-    width: Math.min(windowWidth*0.3, 150),
-    height: Math.min(windowWidth*0.3, 150),
+    borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
+    width: Math.min(windowWidth*0.2, 100),
+    height: Math.min(windowWidth*0.2, 100),
     alignItems: 'center',
     justifyContent: 'center'
 
   },
   textBox: {
-    width: Math.min(windowWidth*0.3, 150),
-    height: Math.min(windowWidth*0.3, 150),
+    width: Math.min(windowWidth*0.2, 100),
+    height: Math.min(windowWidth*0.2, 100),
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginLeft: 10
   },
   image: {
     width: '110%',

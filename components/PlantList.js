@@ -56,9 +56,7 @@ const PlantList = (props) => {
         if(effortLowerCase == "any"){
             return true;
         }
-        else if (effortLowerCase === 'easy' && currEffortLowerCase.includes('low')) {
-            return true;
-        } else if (currEffortLowerCase.includes(effortLowerCase)) {
+        else if (currEffortLowerCase.includes(effortLowerCase)) {
             return true;
         } else {
             return false;

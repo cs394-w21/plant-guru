@@ -3,7 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { windowWidth } from "../constants/WindowSize";
 
 const options = {
-  0: "Easy",
+  0: "Low",
   1: "Medium",
   2: "Hard",
 };
@@ -42,12 +42,14 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-evenly",
-    width: Math.min(windowWidth*0.5, 200)
+    width: Math.min(windowWidth*0.5, 200),
+    maxHeight: Math.min(windowWidth * 0.2, 100),
+    minHeight: Math.min(windowWidth * 0.2, 100),
+    marginTop: 10
   },
   button: {
     flex: 1,
     flexDirection: "row",
-    margin: 30,
     marginLeft: Math.min(10, windowWidth*0.01),
     marginRight: Math.min(10, windowWidth*0.01)
   },
@@ -86,8 +88,8 @@ const styles = StyleSheet.create({
     borderColor: "#7EA480",
     borderWidth: 3,
     borderRadius: Math.min(200 * 0.23, windowWidth * 0.3 * 0.23),
-    width: Math.min(windowWidth * 0.3, 150),
-    height: Math.min(windowWidth * 0.2, 100),
+    width: Math.min(windowWidth * 0.2, 100),
+    height: Math.min(windowWidth * 0.1, 50),
     alignItems: "center",
     justifyContent: "center",
   },
@@ -96,8 +98,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#7EA480",
     borderWidth: 3,
     borderRadius: Math.min(200 * 0.23, windowWidth * 0.3 * 0.23),
-    width: Math.min(windowWidth * 0.3, 150),
-    height: Math.min(windowWidth * 0.2, 100),
+    width: Math.min(windowWidth * 0.2, 100),
+    height: Math.min(windowWidth * 0.1, 50),
     alignItems: "center",
     justifyContent: "center",
   }

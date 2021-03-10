@@ -46,17 +46,17 @@ const PlantSize = (props) => {
     });
   };
 
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity disabled={size.length === 0} onPress={() => next({navigation, sunlight, temperature, size})}>
-          <View style={size.length === 0 ? styles.headerBoxDisabled : styles.headerBox}>
-            <Text style={size.length === 0 ? styles.textDisabled : styles.text}>Next</Text>
-          </View>
-        </TouchableOpacity>
-      ),
-    });
-  }, [navigation, sunlight, temperature, size]);
+  // React.useLayoutEffect(() => {
+  //   navigation.setOptions({
+  //     headerRight: () => (
+  //       <TouchableOpacity disabled={size.length === 0} onPress={() => next({navigation, sunlight, temperature, size})}>
+  //         <View style={size.length === 0 ? styles.headerBoxDisabled : styles.headerBox}>
+  //           <Text style={size.length === 0 ? styles.textDisabled : styles.text}>Next</Text>
+  //         </View>
+  //       </TouchableOpacity>
+  //     ),
+  //   });
+  // }, [navigation, sunlight, temperature, size]);
   
   return (
     <>
@@ -73,6 +73,11 @@ const PlantSize = (props) => {
             </TouchableOpacity>)
         })
       }
+      <TouchableOpacity disabled={size.length === 0} onPress={() => next({navigation, sunlight, temperature, size})}>
+        <View style={size.length === 0 ? styles.headerBoxDisabled : styles.headerBox}>
+          <Text style={size.length === 0 ? styles.textDisabled : styles.text}>Next</Text>
+        </View>
+      </TouchableOpacity>
     </>
   )
 };
@@ -122,18 +127,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   iconBorder: {
-    borderColor: '#7EA480',
+    borderColor: '#ecf0f3',
     borderWidth: 3,
-    borderRadius: Math.min(200*0.23, windowWidth*0.3*0.23),
-    width: Math.min(windowWidth*0.3, 150),
-    height: Math.min(windowWidth*0.3, 150),
+    borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
+    width: Math.min(windowWidth*0.2, 100),
+    height: Math.min(windowWidth*0.2, 100),
     alignItems: 'center',
     justifyContent: 'center'
 
   },
   textBox: {
-    width: Math.min(windowWidth*0.3, 150),
-    height: Math.min(windowWidth*0.3, 150),
+    width: Math.min(windowWidth*0.2, 100),
+    height: Math.min(windowWidth*0.2, 100),
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -164,12 +169,11 @@ const styles = StyleSheet.create({
     marginRight: Math.min(20, windowWidth*0.01)
   },
   selectedIconBorder: {
-    borderColor: "#ECF0F3",
-    backgroundColor: "#7EA480",
+    borderColor: "#7EA480",
     borderWidth: 3,
-    borderRadius: Math.min(200 * 0.23, windowWidth * 0.3 * 0.23),
-    width: Math.min(windowWidth*0.3, 150),
-    height: Math.min(windowWidth*0.3, 150),
+    borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
+    width: Math.min(windowWidth*0.2, 100),
+    height: Math.min(windowWidth*0.2, 100),
     alignItems: "center",
     justifyContent: "center",
   },

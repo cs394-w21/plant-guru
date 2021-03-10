@@ -38,12 +38,14 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-evenly",
-    width: Math.min(windowWidth, 200)
+    width: Math.min(windowWidth, 200),
+    maxHeight: Math.min(windowWidth * 0.2, 100),
+    minHeight: Math.min(windowWidth * 0.2, 100)
   },
   button: {
     flex: 1,
     flexDirection: "row",
-    margin: 30,
+    margin: 10
   },
   text: {
     color: "#7EA480",
@@ -80,8 +82,8 @@ const styles = StyleSheet.create({
     borderColor: "#7EA480",
     borderWidth: 3,
     borderRadius: Math.min(200 * 0.23, windowWidth * 0.3 * 0.23),
-    width: Math.min(windowWidth * 0.3, 150),
-    height: Math.min(windowWidth * 0.2, 100),
+    width: Math.min(windowWidth * 0.2, 100),
+    height: Math.min(windowWidth * 0.1, 50),
     alignItems: "center",
     justifyContent: "center",
   },
@@ -90,8 +92,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#7EA480",
     borderWidth: 3,
     borderRadius: Math.min(200 * 0.23, windowWidth * 0.3 * 0.23),
-    width: Math.min(windowWidth * 0.3, 150),
-    height: Math.min(windowWidth * 0.2, 100),
+    width: Math.min(windowWidth * 0.2, 100),
+    height: Math.min(windowWidth * 0.1, 50),
     alignItems: "center",
     justifyContent: "center",
   }
