@@ -29,7 +29,9 @@ const Humidity = (props) => {
       sunlight,
       temperature,
       size
-    } = props;
+  } = props;
+
+  console.log(size);
 
   const onPressHandler = (choice) => {
     updateHumidity(options[choice]); 
