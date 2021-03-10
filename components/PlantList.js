@@ -137,11 +137,11 @@ const PlantList = (props) => {
     const filteredQuerySearchPlants = filterQuerySearch();
 
     return(
-        <ScrollView contentContainerStyle={styles.plantList}>
+        <>
             {filteredQuerySearchPlants.map(plant => (
                 <Plant plant={plant} key={plant.id} navigation={navigation}/>
             ))}
-        </ScrollView>
+        </>
     );
 };
 
@@ -152,8 +152,7 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         // alignItems: 'center',
         justifyContent: 'center',
-        width: windowWidth,
-        height: windowHeight,
+        width: windowWidth*0.9,
     },
 });
 

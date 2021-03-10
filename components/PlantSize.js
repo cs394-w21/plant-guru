@@ -4,17 +4,17 @@ import { windowWidth } from '../constants/WindowSize';
 
 const options = {
   0: {
-    uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614037274/Small.png',
+    uri: 'https://res.cloudinary.com/dmxv5vtjt/image/upload/v1615342577/Man_Small_m22dnw.png',
     value: 'Small',
     text: '0-1 feet'
   },
   1: {
-    uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614037274/Medium.png',
+    uri: 'https://res.cloudinary.com/dmxv5vtjt/image/upload/v1615342577/Man_Medium_vomdbs.png',
     value: 'Medium',
     text: '1-2 feet'
   },
   2: {
-    uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/c_pad,h_400,w_400/v1614037274/Large.png',
+    uri: 'https://res.cloudinary.com/dmxv5vtjt/image/upload/v1615342577/Man_Large_ulu2dd.png',
     value: 'Large',
     text: '>2 feet'
   },
@@ -63,65 +63,45 @@ const PlantSize = (props) => {
       <Text style={styles.question}>What size plant are you looking for? Select all that apply.</Text>
       {
         Object.keys(options).map(key => {
-          return (<TouchableOpacity key={key} onPress={() => {onPressHandler(key)}}>
-            <View style={styles.button}>
+          return (<TouchableOpacity style={styles.button} key={key} onPress={() => {onPressHandler(key)}}>
               <Image source={{uri: options[key].uri}} resizeMode="contain" style={size.includes(options[key].value) ? styles.selectedIconBorder : styles.iconBorder} />
             <View style={styles.textBox}>
               <Text style={styles.text}>{`${options[key].value}\n(${options[key].text})`}</Text>
             </View>
-            </View>
             </TouchableOpacity>)
         })
       }
-      <TouchableOpacity disabled={size.length === 0} onPress={() => next({navigation, sunlight, temperature, size})}>
-        <View style={size.length === 0 ? styles.headerBoxDisabled : styles.headerBox}>
+      <TouchableOpacity style={size.length === 0 ? styles.headerBoxDisabled : styles.headerBox} disabled={size.length === 0} onPress={() => next({navigation, sunlight, temperature, size})}>
           <Text style={size.length === 0 ? styles.textDisabled : styles.text}>Next</Text>
-        </View>
       </TouchableOpacity>
     </>
   )
-};
-
-const buttonStyle = {
-  width: 0.05*windowWidth,
-  height: 0.05*windowWidth,
-  alignItems: 'center',
-  
 };
 
 const styles = StyleSheet.create({
   button:{
     flex: 1,
     flexDirection: 'row',
-    margin: 30
+    margin: windowWidth*0.1,
   },
   text: {
     color: '#7EA480',
-    fontFamily: 'Rubik',
-    fontSize: 25,
-    lineHeight: 21,
-    letterSpacing: -0.28,
+    
+    fontSize: 22,
     display: 'flex',
     alignItems: 'center',
     textAlign: 'center'
   },
   textDisabled: {
-    color: '#787878',
-    fontFamily: 'Rubik',
-    fontSize: 25,
-    lineHeight: 21,
-    letterSpacing: -0.28,
+    color: '#787878',    
+    fontSize: 22,
     display: 'flex',
     alignItems: 'center',
     textAlign: 'center'
   },
   question: {
     color: '#7EA480',
-    fontFamily: 'Rubik',
-    fontSize: 25,
-    lineHeight: 21,
-    letterSpacing: -0.28,
-    display: 'flex',
+    fontSize: 22,
     alignItems: 'center',
     textAlign: 'center',
     fontWeight: 'bold'
@@ -137,36 +117,34 @@ const styles = StyleSheet.create({
 
   },
   textBox: {
-    width: Math.min(windowWidth*0.2, 100),
+    width: Math.min(windowWidth*0.25, 100),
     height: Math.min(windowWidth*0.2, 100),
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    textAlignVertical: 'center'
   },
   image: {
     width: '90%',
     height: '90%',
-    marginBottom: 10
   },
   headerBox: {
     borderColor: '#7EA480',
     borderWidth: 3,
     borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
-    width: Math.min(200, windowWidth*0.2),
-    height: Math.min(50, windowWidth*0.1),
+    width: Math.min(200, windowWidth*0.4),
+    height: Math.min(50, windowWidth*0.15),
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: Math.min(20, windowWidth*0.01)
   },
   headerBoxDisabled: {
     backgroundColor: '#c8c8c8',
     borderColor: '#787878',
     borderWidth: 3,
     borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
-    width: Math.min(200, windowWidth*0.2),
-    height: Math.min(50, windowWidth*0.1),
+    width: Math.min(200, windowWidth*0.4),
+    height: Math.min(50, windowWidth*0.15),
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: Math.min(20, windowWidth*0.01)
   },
   selectedIconBorder: {
     borderColor: "#7EA480",

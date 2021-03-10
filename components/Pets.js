@@ -17,15 +17,14 @@ const Pets = (props) => {
         {Object.keys(options).map((key) => {
           return (
             <TouchableOpacity
+            style={styles.button}
               key={key}
               onPress={() => {
                 setPets(options[key]);
               }}>
-             <View style={styles.button}>
                 <View style={options[key]==pets?styles.selectedIconBorder : styles.iconBorder}>
                   <Text style={options[key]==pets? styles.selectedText : styles.text}>{options[key]}</Text>
                 </View>
-              </View> 
             </TouchableOpacity>
           );
         })}
@@ -38,10 +37,13 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: "space-evenly",
-    width: Math.min(windowWidth, 200),
-    maxHeight: Math.min(windowWidth * 0.2, 100),
-    minHeight: Math.min(windowWidth * 0.2, 100)
+    justifyContent: "center",
+    textAlignVertical: 'center',
+    alignItems: 'center',
+    width: windowWidth*0.5,
+    marginLeft: -windowWidth*0.1,
+    minHeight: windowWidth*0.2,
+    maxHeight: windowWidth*0.2,
   },
   button: {
     flex: 1,
@@ -50,30 +52,22 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#7EA480",
-    fontFamily: "Rubik",
-    fontSize: 25,
-    lineHeight: 21,
-    letterSpacing: -0.28,
-    display: "flex",
+    
+    fontSize: 22,
     alignItems: "center",
     textAlign: "center",
   },
   selectedText: {
     color: "#ECF0F3",
-    fontFamily: "Rubik",
-    fontSize: 25,
-    lineHeight: 21,
-    letterSpacing: -0.28,
-    display: "flex",
+    
+    fontSize: 22,
     alignItems: "center",
     textAlign: "center",
   },
   question: {
     color: "#7EA480",
-    fontFamily: "Rubik",
-    fontSize: 25,
-    lineHeight: 21,
-    letterSpacing: -0.28,
+    
+    fontSize: 22,
     display: "flex",
     alignItems: "center",
     textAlign: "center",
@@ -89,7 +83,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   selectedIconBorder: {
-    borderColor: "#ECF0F3",
+    borderColor: "#7EA480",
     backgroundColor: "#7EA480",
     borderWidth: 3,
     borderRadius: Math.min(200 * 0.23, windowWidth * 0.3 * 0.23),

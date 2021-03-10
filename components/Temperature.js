@@ -77,26 +77,20 @@ const Temperature = (props) => {
 
 const styles = StyleSheet.create({
   text: {
-    color: '#7EA480',
-    fontFamily: 'Rubik',
-    fontSize: 25,
-    lineHeight: 21,
-    letterSpacing: -0.28,
+    color: '#7EA480',  
+    fontSize: 22,
     display: 'flex',
     alignItems: 'center',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   question: {
     color: '#7EA480',
-    fontFamily: 'Rubik',
-    fontSize: 25,
-    lineHeight: 21,
-    letterSpacing: -0.28,
+    fontSize: 22,
     display: 'flex',
     alignItems: 'center',
     textAlign: 'center',
     fontWeight: 'bold',
-    marginBottom: Math.min(20, windowWidth*0.01)
+    marginBottom: windowWidth*0.1,
   },
   textBox: {
     width: Math.min(windowWidth*0.3, 150),
@@ -108,18 +102,17 @@ const styles = StyleSheet.create({
     borderColor: '#7EA480',
     borderWidth: 3,
     borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
-    width: Math.min(200, windowWidth*0.2),
-    height: Math.min(50, windowWidth*0.1),
+    width: Math.min(200, windowWidth*0.4),
+    height: Math.min(50, windowWidth*0.15),
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: Math.min(20, windowWidth*0.01),
     marginBottom: Math.min(20, windowWidth*0.01),
   },
   slider: {
     backgroundColor: '#EF6F55',
   },
   button: {
-    margin: 30
+    margin: 30,
   }
 })
 

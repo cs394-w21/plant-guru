@@ -55,12 +55,10 @@ const SunlightInput = (props) => {
       
       {
         Object.keys(options).map(key => {
-          return (<TouchableOpacity key={key} onPress={() => {onPressHandler(key)}}>
-                    <View style={styles.button}>
+          return (<TouchableOpacity style={styles.button} key={key} onPress={() => {onPressHandler(key)}}>
                       <Image source={{uri: options[key].uri}} resizeMode="contain" style={styles.iconBorder}/>  
                     <View style={styles.textBox}>
                       <Text style={styles.text}>{options[key].text}</Text>
-                    </View>
                     </View>
                   </TouchableOpacity>)
         })
@@ -73,24 +71,18 @@ const styles = StyleSheet.create({
   button:{
     flex: 1,
     flexDirection: 'row',
-    margin: 30
+    margin: windowWidth*0.1,
   },
   text: {
     color: '#7EA480',
-    fontFamily: 'Rubik',
-    fontSize: 25,
-    lineHeight: 21,
-    letterSpacing: -0.28,
+    fontSize: 22,
     display: 'flex',
     alignItems: 'center',
     textAlign: 'center'
   },
   question: {
     color: '#7EA480',
-    fontFamily: 'Rubik',
-    fontSize: 25,
-    lineHeight: 21,
-    letterSpacing: -0.28,
+    fontSize: 22,
     display: 'flex',
     alignItems: 'center',
     textAlign: 'center',
@@ -103,19 +95,18 @@ const styles = StyleSheet.create({
     width: Math.min(windowWidth*0.2, 100),
     height: Math.min(windowWidth*0.2, 100),
     alignItems: 'center',
-    justifyContent: 'center'
-
+    justifyContent: 'center',
   },
   textBox: {
     width: Math.min(windowWidth*0.2, 100),
     height: Math.min(windowWidth*0.2, 100),
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    textAlignVertical: 'center'
   },
   image: {
     width: '90%',
     height: '90%',
-    marginBottom: 10
   },
   headerBox: {
     borderColor: '#7EA480',

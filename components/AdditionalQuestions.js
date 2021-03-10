@@ -68,10 +68,8 @@ const AdditionalQuestions = (props) => {
       <CareEffort setEffort={setEffort} effort={effort}/>
       <Pets setPets={setPets} pets={pets}/>
       <Children setChildren={setChildren} children={children}/>
-      <TouchableOpacity disabled={!isNextEnabled} onPress={() => next({navigation, sunlight, temperature, size, humidity, children, pets, effort})}>
-        <View style={isNextEnabled ? styles.headerBox : styles.headerBoxDisabled}>
+      <TouchableOpacity style={isNextEnabled ? styles.headerBox : styles.headerBoxDisabled} disabled={!isNextEnabled} onPress={() => next({navigation, sunlight, temperature, size, humidity, children, pets, effort})}>
           <Text style={isNextEnabled ? styles.text : styles.textDisabled}>Next</Text>
-        </View>
       </TouchableOpacity>
     </>
   );
@@ -82,42 +80,34 @@ const styles = StyleSheet.create({
     borderColor: '#7EA480',
     borderWidth: 3,
     borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
-    width: Math.min(200, windowWidth*0.2),
-    height: Math.min(50, windowWidth*0.1),
+    width: Math.min(200, windowWidth*0.4),
+    height: Math.min(50, windowWidth*0.15),
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: Math.min(20, windowWidth*0.01),
-    marginBottom: Math.min(20, windowWidth*0.01),
+    margin: windowWidth*0.1
   },
   headerBoxDisabled: {
     backgroundColor: '#c8c8c8',
     borderColor: '#787878',
     borderWidth: 3,
     borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
-    width: Math.min(200, windowWidth*0.2),
-    height: Math.min(50, windowWidth*0.1),
+    width: Math.min(200, windowWidth*0.4),
+    height: Math.min(50, windowWidth*0.15),
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: Math.min(20, windowWidth*0.01),
-    marginBottom: Math.min(20, windowWidth*0.01),
+    margin: windowWidth*0.1
   },
   text: {
     color: '#7EA480',
-    fontFamily: 'Rubik',
-    fontSize: 25,
-    lineHeight: 21,
-    letterSpacing: -0.28,
-    display: 'flex',
+    
+    fontSize: 22,
     alignItems: 'center',
     textAlign: 'center'
   },
   textDisabled: {
     color: '#787878',
-    fontFamily: 'Rubik',
-    fontSize: 25,
-    lineHeight: 21,
-    letterSpacing: -0.28,
-    display: 'flex',
+    
+    fontSize: 22,
     alignItems: 'center',
     textAlign: 'center'
   },

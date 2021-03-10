@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextInput, Image, ScrollView, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
+import { windowWidth } from '../constants/WindowSize';
 
 
 const SearchBar = (props) => {
@@ -30,8 +31,8 @@ const styles = StyleSheet.create({
         padding: 15,
         borderColor: '#7EA480',
         borderWidth: 3,
-        width: 300,
-        height: 20
+        width: windowWidth*0.8,
+        height: windowWidth*0.15
     },
     
   });

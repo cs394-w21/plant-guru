@@ -10,11 +10,12 @@ const Plant = (props) => {
     }
 
     return(
-        <TouchableOpacity onPress={handlePress}>
-            {/* <View style={styles.container}> */}
-                <Image style={styles.iconBorder} source={{uri: plant.image}} />
+        <TouchableOpacity style={styles.container} onPress={handlePress}>
                 <Text style={styles.name}>{plant.name}</Text>
-            {/* </View> */}
+                <View style={styles.shadowContainer}>
+                <Image style={styles.iconBorder} source={{uri: plant.image}} />
+                </View>
+                
         </TouchableOpacity>
     );
 };
@@ -22,41 +23,44 @@ const Plant = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center',   
         borderRadius: 5,
-        margin: 10,
-        minWidth: '28%',
-        maxWidth: '28%',
-        // minHeight: 100,
-        // maxHeight: 100,
-        height: 0.28*windowWidth,
+        minWidth: windowWidth*0.45,
+        maxWidth: windowWidth*0.45,
+        textAlign: 'center',
+        flexDirection: 'column',
+        marginTop: windowWidth*0.1,
+        flexWrap: 'wrap',
+        textAlignVertical: 'center',
+        paddingLeft: windowWidth*0.05
+    },
+    shadowContainer: {
         shadowColor: "#000",
         shadowOffset: {
-            width: 0,
-            height: 4,
+            width: 7,
+            height: 13,
         },
         shadowOpacity: 0.5,
         shadowRadius: 10,
-        padding: 5,
+        alignItems: 'center',
+        width: '90%'
     },
     image: {
-        width: '100%',
+        width: '90%',
         height: '100%'
     },
     text: {
         fontSize: 12,
-        padding: 2
+        padding: 2,
     },
     name: {
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: 'bold',
-        fontFamily: 'Avenir',
-        padding: 5,
-        paddingTop: 3,
-        alignSelf: 'center',
-        color: '#7EA480'
+        color: '#7EA480',
+        maxWidth: '100%',
+        textAlign: 'center',
+        paddingBottom: 3
     },
     iconBorder: {
         borderColor: '#7EA480',
@@ -66,9 +70,8 @@ const styles = StyleSheet.create({
         height: Math.min(windowWidth*0.3, 250),
         alignItems: 'center',
         justifyContent: 'center',
-        margin: Math.min(20, windowWidth*0.1),
-        marginBottom: 2
-
+        marginLeft: windowWidth*0.05,
+        marginRight: windowWidth*0.05,
     }
 });
 
