@@ -1,22 +1,22 @@
-import React, {useState} from 'react';
-import { TouchableOpacity, StyleSheet, View, Image, Text } from "react-native";
-import { windowWidth, windowHeight } from '../constants/WindowSize';
+import React, { useEffect, useState } from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { windowWidth } from '../constants/WindowSize';
 
 const options = {
   0: {
     uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614037274/Small.png',
     value: 'Small',
-    text: '< 6 feet'
+    text: '0-1 feet'
   },
   1: {
     uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614037274/Medium.png',
     value: 'Medium',
-    text: '6-15 feet'
+    text: '1-2 feet'
   },
   2: {
     uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/c_pad,h_400,w_400/v1614037274/Large.png',
     value: 'Large',
-    text: '> 15 feet'
+    text: '>2 feet'
   },
 //   3: {
 //     uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614034706/Screen_Shot_2021-02-22_at_4.57.29_PM_cgbwzq.png',
@@ -25,57 +25,59 @@ const options = {
 };
 
 const PlantSize = (props) => {
-  const [size, updateSize] = useState("Medium");
+  const [size, updateSize] = useState([]);
   
   const {navigation, sunlight, temperature} = props;
 
   const onPressHandler = (choice) => {
-    updateSize(options[choice].value); 
+    const val = options[choice].value;
+    size.includes(val) ? updateSize(size.filter(v => v !== val)) : updateSize([...size, val]);
+  };
+
+  useEffect(() => {
+    console.log(size);
+  }, [size]);
+
+  const next = ({navigation, sunlight, temperature, size}) => {
     navigation.navigate('HumidityScreen', {
       sunlight,
       temperature,
       size
     });
-  }
+  };
 
-  const skip = ({navigation, sunlight, temperature}) => {
-    navigation.navigate('HumidityScreen', {
-      sunlight,
-      temperature,
-      size: 'Any'
-    })
-  }
-
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity onPress={() => skip({navigation, sunlight, temperature})}>
-          <View style={styles.headerBox}>
-            <Text style={styles.text}>Skip</Text>
-          </View>
-        </TouchableOpacity>
-      ),
-    });
-  }, [navigation, sunlight, temperature]);
+  // React.useLayoutEffect(() => {
+  //   navigation.setOptions({
+  //     headerRight: () => (
+  //       <TouchableOpacity disabled={size.length === 0} onPress={() => next({navigation, sunlight, temperature, size})}>
+  //         <View style={size.length === 0 ? styles.headerBoxDisabled : styles.headerBox}>
+  //           <Text style={size.length === 0 ? styles.textDisabled : styles.text}>Next</Text>
+  //         </View>
+  //       </TouchableOpacity>
+  //     ),
+  //   });
+  // }, [navigation, sunlight, temperature, size]);
   
   return (
     <>
-      <Text style={styles.question}>What size plant are you looking for?</Text>
-      
+      <Text style={styles.question}>What size plant are you looking for? Select all that apply.</Text>
       {
         Object.keys(options).map(key => {
           return (<TouchableOpacity key={key} onPress={() => {onPressHandler(key)}}>
             <View style={styles.button}>
-              <Image source={{uri: options[key].uri}} resizeMode="contain" style={styles.iconBorder}/>
+              <Image source={{uri: options[key].uri}} resizeMode="contain" style={size.includes(options[key].value) ? styles.selectedIconBorder : styles.iconBorder} />
             <View style={styles.textBox}>
-              <Text style={styles.text}>{options[key].text}</Text>
+              <Text style={styles.text}>{`${options[key].value}\n(${options[key].text})`}</Text>
             </View>
-            </View>            
-            
+            </View>
             </TouchableOpacity>)
         })
       }
-      
+      <TouchableOpacity disabled={size.length === 0} onPress={() => next({navigation, sunlight, temperature, size})}>
+        <View style={size.length === 0 ? styles.headerBoxDisabled : styles.headerBox}>
+          <Text style={size.length === 0 ? styles.textDisabled : styles.text}>Next</Text>
+        </View>
+      </TouchableOpacity>
     </>
   )
 };
@@ -103,6 +105,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center'
   },
+  textDisabled: {
+    color: '#787878',
+    fontFamily: 'Rubik',
+    fontSize: 25,
+    lineHeight: 21,
+    letterSpacing: -0.28,
+    display: 'flex',
+    alignItems: 'center',
+    textAlign: 'center'
+  },
   question: {
     color: '#7EA480',
     fontFamily: 'Rubik',
@@ -115,18 +127,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   iconBorder: {
-    borderColor: '#7EA480',
+    borderColor: '#ecf0f3',
     borderWidth: 3,
-    borderRadius: Math.min(200*0.23, windowWidth*0.3*0.23),
-    width: Math.min(windowWidth*0.3, 150),
-    height: Math.min(windowWidth*0.3, 150),
+    borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
+    width: Math.min(windowWidth*0.2, 100),
+    height: Math.min(windowWidth*0.2, 100),
     alignItems: 'center',
     justifyContent: 'center'
 
   },
   textBox: {
-    width: Math.min(windowWidth*0.3, 150),
-    height: Math.min(windowWidth*0.3, 150),
+    width: Math.min(windowWidth*0.2, 100),
+    height: Math.min(windowWidth*0.2, 100),
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -144,7 +156,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: Math.min(20, windowWidth*0.01)
-  }
+  },
+  headerBoxDisabled: {
+    backgroundColor: '#c8c8c8',
+    borderColor: '#787878',
+    borderWidth: 3,
+    borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
+    width: Math.min(200, windowWidth*0.2),
+    height: Math.min(50, windowWidth*0.1),
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: Math.min(20, windowWidth*0.01)
+  },
+  selectedIconBorder: {
+    borderColor: "#7EA480",
+    borderWidth: 3,
+    borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
+    width: Math.min(windowWidth*0.2, 100),
+    height: Math.min(windowWidth*0.2, 100),
+    alignItems: "center",
+    justifyContent: "center",
+  },
 })
 
 export default PlantSize;

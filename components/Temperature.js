@@ -14,12 +14,12 @@ const Temperature = (props) => {
       return [Number(range[0]), Number(range[1])]
     }
 
-    const skip = ({navigation, sunlight}) => {
-      navigation.navigate('SizeScreen', {
-        sunlight,
-        temperature: 'Any'
-      })
-    }
+    // const skip = ({navigation, sunlight}) => {
+    //   navigation.navigate('SizeScreen', {
+    //     sunlight,
+    //     temperature: 'Any'
+    //   })
+    // }
 
     const next = ({navigation, sunlight, temperature}) => {
       navigation.navigate('SizeScreen', {
@@ -28,24 +28,24 @@ const Temperature = (props) => {
       })
     }
 
-    React.useLayoutEffect(() => {
-      navigation.setOptions({
-        headerRight: () => (
-          <>
-          <TouchableOpacity onPress={() => next({navigation, sunlight, temperature})}>
-            <View style={styles.headerBox}>
-              <Text style={styles.text}>Next</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => skip({navigation, sunlight})}>
-            <View style={styles.headerBox}>
-              <Text style={styles.text}>Skip</Text>
-            </View>
-          </TouchableOpacity>
-          </>
-        ),
-      });
-    }, [navigation, sunlight, temperature]);
+    // React.useLayoutEffect(() => {
+    //   navigation.setOptions({
+    //     headerRight: () => (
+    //       <>
+    //       <TouchableOpacity onPress={() => next({navigation, sunlight, temperature})}>
+    //         <View style={styles.headerBox}>
+    //           <Text style={styles.text}>Next</Text>
+    //         </View>
+    //       </TouchableOpacity>
+    //       {/* <TouchableOpacity onPress={() => skip({navigation, sunlight})}>
+    //         <View style={styles.headerBox}>
+    //           <Text style={styles.text}>Skip</Text>
+    //         </View>
+    //       </TouchableOpacity> */}
+    //       </>
+    //     ),
+    //   });
+    // }, [navigation, sunlight, temperature]);
 
     return(
         <>
@@ -65,6 +65,11 @@ const Temperature = (props) => {
                 }
                 selectedStyle={styles.slider}
             />
+            <TouchableOpacity style={styles.button}onPress={() => next({navigation, sunlight, temperature})}>
+              <View style={styles.headerBox}>
+                <Text style={styles.text}>Confirm</Text>
+              </View>
+            </TouchableOpacity>
         </>
         
     )
@@ -112,6 +117,9 @@ const styles = StyleSheet.create({
   },
   slider: {
     backgroundColor: '#EF6F55',
+  },
+  button: {
+    margin: 30
   }
 })
 

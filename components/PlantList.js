@@ -7,6 +7,8 @@ import { windowWidth, windowHeight } from '../constants/WindowSize';
 
 const PlantList = (props) => {
     const { query, plants, navigation, sunlight, size, pets, children, effort, temperature, humidity } = props;
+
+    console.log(size);
     
     const checkSunlight = plant => {
         const currSunlightLowerCase = plant.sun.toLowerCase();
@@ -54,9 +56,7 @@ const PlantList = (props) => {
         if(effortLowerCase == "any"){
             return true;
         }
-        else if (effortLowerCase === 'easy' && currEffortLowerCase.includes('low')) {
-            return true;
-        } else if (currEffortLowerCase.includes(effortLowerCase)) {
+        else if (currEffortLowerCase.includes(effortLowerCase)) {
             return true;
         } else {
             return false;
@@ -65,33 +65,30 @@ const PlantList = (props) => {
 
     const checkSize = plant => {
         const currSizeLowerCase = plant.size.toLowerCase();
-        const sizeLowerCase = size.toLowerCase();
-        if(sizeLowerCase=="any"){
+        if(size.includes('Any')){
             return true;
-        }
-        else if(currSizeLowerCase.includes("feet")){
+        } else if(currSizeLowerCase.includes("feet")) {
             let splitSize = currSizeLowerCase.split("feet");
             let splitH = splitSize[0].slice(-1).split("-");
             let maxHeight = splitH[1]
-            if (sizeLowerCase === 'small' && Number(maxHeight)<6) {
+            if (size.includes('Small') && Number(maxHeight) < 1) {
                 return true;
-            } else if (sizeLowerCase == "medium" && (6 <= Number(maxHeight) < 15)) {
+            } else if (size.includes('Medium') && (1 <= Number(maxHeight) <= 2)) {
                 return true;
-            } else if (sizeLowerCase === 'large' && Number(maxHeight)>=15) {
+            } else if (size.includes('Large') && Number(maxHeight) > 2) {
                 return true;
             }
             else {
                 return false;
             }
         }
-        else if (currSizeLowerCase.includes("inches") && sizeLowerCase=="small"){
+        else if (currSizeLowerCase.includes("inches") && size.includes('Small')){
             return true;
-        }
-        else{
+        } else{
             return false;
         }
-        
     }
+
     const checkToxic = plant => {
         const toxic = plant.allergies.toLowerCase();
         const children1 = children.toLowerCase();

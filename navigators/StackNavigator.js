@@ -5,6 +5,7 @@ import {windowWidth} from '../constants/WindowSize';
 import HomeScreen from '../screens/HomeScreen';
 import AdditionalQuestionsScreen from '../screens/InputFormScreens/AdditionalQuestionsScreen';
 import HumidityScreen from '../screens/InputFormScreens/HumidityScreen';
+import IntroScreen from '../screens/InputFormScreens/IntroScreen';
 import SizeScreen from '../screens/InputFormScreens/SizeScreen';
 import SunlightScreen from '../screens/InputFormScreens/SunlightScreen';
 import TemperatureScreen from '../screens/InputFormScreens/TemperatureScreen';
@@ -41,6 +42,7 @@ const StackNavigator = () => {
             <Stack.Screen name='UserFavoriteScreen' component={UserFavoriteScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle }} />
             <Stack.Screen name="RegisterScreen" component={RegisterScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle}} />
             <Stack.Screen name='PlantInfoScreen' component={PlantInfoScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle}} />
+            <Stack.Screen name='IntroScreen' component={IntroScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle}} />
             <Stack.Screen name='SunlightScreen' component={SunlightScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle}} />
             <Stack.Screen name='TemperatureScreen' component={TemperatureScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle}} />
             <Stack.Screen name='SizeScreen' component={SizeScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle}} />

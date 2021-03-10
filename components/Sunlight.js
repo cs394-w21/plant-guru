@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import { TouchableOpacity, StyleSheet, View, Image, Text } from "react-native";
-import { windowWidth, windowHeight } from '../constants/WindowSize';
+import React, { useState } from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { windowWidth } from '../constants/WindowSize';
 
 const options = {
   0: {
@@ -17,11 +17,6 @@ const options = {
     uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614034706/Screen_Shot_2021-02-22_at_4.57.16_PM_krn59b.png',
     value: 'High',
     text: '> 6 hours'
-  },
-  3: {
-    uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614034706/Screen_Shot_2021-02-22_at_4.57.29_PM_cgbwzq.png',
-    value: 'Any',
-    text: 'Any'
   }
 };
 
@@ -34,26 +29,26 @@ const SunlightInput = (props) => {
   const onPressHandler = (choice) => {
     updateSunlight(options[choice].value); 
     navigation.navigate('TemperatureScreen', {sunlight: options[choice].value});
-  } 
-
-  const skip = ({navigation}) => {
-    navigation.navigate('TemperatureScreen', {
-      sunlight: 'Any'
-    })
   }
 
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity onPress={() => skip({navigation})}>
-          <View style={styles.headerBox}>
-            <Text style={styles.text}>Skip</Text>
-          </View>
-        </TouchableOpacity>
-      ),
-    });
-  }, [navigation]);
-  
+  // const skip = ({navigation}) => {
+  //   navigation.navigate('TemperatureScreen', {
+  //     sunlight: 'Any'
+  //   })
+  // }
+
+  // React.useLayoutEffect(() => {
+  //   navigation.setOptions({
+  //     headerRight: () => (
+  //       <TouchableOpacity onPress={() => skip({navigation})}>
+  //         <View style={styles.headerBox}>
+  //           <Text style={styles.text}>Skip</Text>
+  //         </View>
+  //       </TouchableOpacity>
+  //     ),
+  //   });
+  // }, [navigation]);
+
   return (
     <>
       <Text style={styles.question}>What's the kind of sun exposure you receive in your space?</Text>
@@ -66,7 +61,7 @@ const SunlightInput = (props) => {
                     <View style={styles.textBox}>
                       <Text style={styles.text}>{options[key].text}</Text>
                     </View>
-                    </View>            
+                    </View>
                   </TouchableOpacity>)
         })
       }
@@ -104,16 +99,16 @@ const styles = StyleSheet.create({
   iconBorder: {
     borderColor: '#7EA480',
     borderWidth: 3,
-    borderRadius: Math.min(200*0.23, windowWidth*0.3*0.23),
-    width: Math.min(windowWidth*0.3, 150),
-    height: Math.min(windowWidth*0.3, 150),
+    borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
+    width: Math.min(windowWidth*0.2, 100),
+    height: Math.min(windowWidth*0.2, 100),
     alignItems: 'center',
     justifyContent: 'center'
 
   },
   textBox: {
-    width: Math.min(windowWidth*0.3, 150),
-    height: Math.min(windowWidth*0.3, 150),
+    width: Math.min(windowWidth*0.2, 100),
+    height: Math.min(windowWidth*0.2, 100),
     alignItems: 'center',
     justifyContent: 'center'
   },
