@@ -60,7 +60,8 @@ const PlantSize = (props) => {
   
   return (
     <>
-      <Text style={styles.question}>{`What size of plant are you looking for?\n(Select one or more sizes)`}</Text>
+      <Text style={styles.question}>{`What size of plant are you looking for?`}</Text>
+      <Text style={styles.text}>(Select one or more sizes)</Text>
       {
         Object.keys(options).map(key => {
           return (<TouchableOpacity style={styles.button} key={key} onPress={() => {onPressHandler(key)}}>
@@ -104,7 +105,8 @@ const styles = StyleSheet.create({
     fontSize: 22,
     alignItems: 'center',
     textAlign: 'center',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    width: windowWidth*0.8
   },
   iconBorder: {
     borderColor: '#ecf0f3',

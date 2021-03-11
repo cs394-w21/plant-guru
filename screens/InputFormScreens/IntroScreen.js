@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1, 
         flexDirection: 'column',
-        justifyContent: 'space-evenly',
+        justifyContent: 'center',
         alignItems: 'center',
     },
     nextButton: {
@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
         height: Math.min(50, windowWidth*0.15),
         alignItems: 'center',
         justifyContent: 'center',
-        marginRight: Math.min(20, windowWidth*0.01),
+        margin: windowWidth*0.1
+        
     },
     nextButtonText: {
         ...text,
@@ -72,6 +73,7 @@ const styles = StyleSheet.create({
     regularText: {
         ...text,
         color: '#7ea480',
+        margin: windowWidth*0.1
     },
 });
 

@@ -4,17 +4,17 @@ import { windowWidth } from '../constants/WindowSize';
 
 const options = {
   0: {
-    uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614034706/Screen_Shot_2021-02-22_at_4.56.58_PM_b89vxj.png',
+    uri: 'https://res.cloudinary.com/dmxv5vtjt/image/upload/v1615408802/Fewer_Than_Four_ligojj.png',
     value: 'Low',
     text: '< 4 hours'
   },
   1: {
-    uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614034706/Screen_Shot_2021-02-22_at_4.57.10_PM_nzyw3b.png',
+    uri: 'https://res.cloudinary.com/dmxv5vtjt/image/upload/v1615408802/Four_to_Six_Hours_fpcp1m.png',
     value: 'Medium',
     text: '4-6 hours'
   },
   2: {
-    uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614034706/Screen_Shot_2021-02-22_at_4.57.16_PM_krn59b.png',
+    uri: 'https://res.cloudinary.com/dmxv5vtjt/image/upload/v1615408802/More_Than_Six_Hours_gtwrqg.png',
     value: 'High',
     text: '> 6 hours'
   }
@@ -56,10 +56,7 @@ const SunlightInput = (props) => {
       {
         Object.keys(options).map(key => {
           return (<TouchableOpacity style={styles.button} key={key} onPress={() => {onPressHandler(key)}}>
-                      <Image source={{uri: options[key].uri}} resizeMode="contain" style={styles.iconBorder}/>  
-                    <View style={styles.textBox}>
-                      <Text style={styles.text}>{options[key].text}</Text>
-                    </View>
+                      <Image source={{uri: options[key].uri}} resizeMode="contain" style={styles.iconBorder}/>
                   </TouchableOpacity>)
         })
       }
@@ -86,14 +83,15 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     textAlign: 'center',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    width: windowWidth*0.8
   },
   iconBorder: {
-    borderColor: '#7EA480',
-    borderWidth: 3,
-    borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
-    width: Math.min(windowWidth*0.2, 100),
-    height: Math.min(windowWidth*0.2, 100),
+    // borderColor: '#7EA480',
+    // borderWidth: 1.5,
+    // borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
+    width: windowWidth*0.3,
+    height: windowWidth*0.3,
     alignItems: 'center',
     justifyContent: 'center',
   },
