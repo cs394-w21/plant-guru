@@ -14,21 +14,17 @@ const UserFavoriteScreen = (props) => {
   const { route, navigation } = props;
   const user = useContext(UserContext);
   const [plants, setPlants] = useState([]);
-  // if (loading) {
-  //     return <Text>Loading...</Text>
-  // }
   if (user == null) {
     return (<Text style={styles.text}>Please log in</Text>);
   }
-  const findFavorites = (favorites) => {
-    const list = plants_data.filter(plant => favorites.includes(plant.id));
-    return list;
+  const findFavorites = () => {
+    return plants_data.filter(plant => plants.includes(plant.id));
   };
-  
+  const list = findFavorites();
   useEffect(() => {
     const db = firebase.database().ref(`users/` + user.uid + `/favorites`);
     const handleData = snap => {
-      if (snap.val()) setPlants(findFavorites(snap.val()));
+      if (snap.val()) setPlants(snap.val());
     }
     db.on('value', handleData, error => alert(error));
     return () => { db.off('value', handleData); };
@@ -37,8 +33,8 @@ const UserFavoriteScreen = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.plantList}>
-        {plants.length == 0 ? <Text style={styles.text}>You have not added any favorites</Text> :
-          plants.map(plant => (
+        {list.length == 0 ? <Text style={styles.text}>You have not added any favorites</Text> :
+          list.map(plant => (
             <Plant plant={plant} key={plant.id} navigation={navigation} />
           ))}
       </ScrollView>
