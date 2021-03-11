@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFormikContext } from 'formik';
+import { StyleSheet } from 'react-native';
 
 import FormErrorMessage from './FormErrorMessage';
 import FormTextInput from './FormTextInput';
@@ -21,8 +22,16 @@ export default function FormField({ name, width, ...otherProps }) {
         onBlur={() => setFieldTouched(name)}
         width={width}
         {...otherProps}
+        // style={styles.container}
       />
       <FormErrorMessage error={errors[name]} visible={touched[name]} />
     </React.Fragment>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'red',
+    flex: 1,
+  },
+});

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import * as Yup from 'yup';
 import { db, firebase } from '../utils/firebase.js';
 import Form from './Form.js';
@@ -96,19 +96,47 @@ const validationSchema = Yup.object().shape({
               secureTextEntry={true}
               textContentType="password"
             />: <Text></Text>}
-            <Form.Button title={showConfirm ? 'Register' : 'Login'}/>
+            <View style={styles.buttons}>
+              <Form.Button title={showConfirm ? 'sign up' : 'login'}/>
+              <TouchableOpacity
+                onPress={() => setShowConfirm(!(showConfirm))}
+                style={styles.button}
+              >
+                <Text style={{ color: '#7EA480', fontSize: 18 }}>{showConfirm ? 'login' : 'sign up'}</Text>
+              </TouchableOpacity>
+            </View>
             {<Form.ErrorMessage error={signInError} visible={true} />}
           </Form>
-          <TouchableOpacity
-            onPress={() => setShowConfirm(!(showConfirm))}>
-            <Text style={{textDecorationLine:"underline"}}>{showConfirm ? "Login" : "Register"}</Text>
-          </TouchableOpacity>
+          {/* <TouchableOpacity
+            onPress={() => setShowConfirm(!(showConfirm))}
+          >
+            <Text style={{textDecorationLine:"underline"}}>{showConfirm ? 'login' : 'sign up'}</Text>
+          </TouchableOpacity> */}
         </ScrollView>
       </SafeAreaView>
     );
   };
 
   const styles = StyleSheet.create({
+    button: {
+      backgroundColor: '#ecf0f3',
+      borderColor: '#7EA480',
+      borderWidth: 3,
+      marginVertical: 50,
+      borderRadius: 25,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 15,
+      width: 130,
+      height: 60,
+      margin: 5,
+    },
+    buttons: {
+      flex: 1,
+      flexDirection: 'row',
+      position: 'absolute',
+      top: 400,
+    },
     container: {
       flex: 1,
       alignItems: 'center',
