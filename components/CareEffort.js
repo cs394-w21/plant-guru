@@ -56,7 +56,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#7EA480",
-    
     fontSize: 22,
     display: "flex",
     alignItems: "center",
@@ -82,9 +81,9 @@ const styles = StyleSheet.create({
   iconBorder: {
     borderColor: "#7EA480",
     borderWidth: 3,
-    borderRadius: Math.min(200 * 0.23, windowWidth * 0.3 * 0.23),
-    width: Math.min(windowWidth * 0.25, 100),
-    height: Math.min(windowWidth * 0.1, 50),
+    borderRadius: windowWidth * 0.3 * 0.23,
+    width: windowWidth * 0.26,
+    height: windowWidth * 0.1,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -92,9 +91,9 @@ const styles = StyleSheet.create({
     borderColor: "#7EA480",
     backgroundColor: "#7EA480",
     borderWidth: 3,
-    borderRadius: Math.min(200 * 0.23, windowWidth * 0.3 * 0.23),
-    width: Math.min(windowWidth * 0.25, 100),
-    height: Math.min(windowWidth * 0.1, 50),
+    borderRadius: windowWidth * 0.3 * 0.23,
+    width: windowWidth * 0.26,
+    height: windowWidth * 0.1,
     alignItems: "center",
     justifyContent: "center",
   }

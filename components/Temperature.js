@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     marginBottom: windowWidth*0.1,
+    width: windowWidth*0.8,
   },
   textBox: {
     width: Math.min(windowWidth*0.3, 150),
