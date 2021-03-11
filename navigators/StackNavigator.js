@@ -1,6 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import { Image, Text} from 'react-native';
+import { Image, Text, TouchableOpacity} from 'react-native';
 import {windowWidth} from '../constants/WindowSize';
 import HomeScreen from '../screens/HomeScreen';
 import AdditionalQuestionsScreen from '../screens/InputFormScreens/AdditionalQuestionsScreen';
@@ -17,12 +17,14 @@ import UserFavoriteScreen from '../screens/UserFavoriteScreen';
 
 const logo = 'https://res.cloudinary.com/dmxv5vtjt/image/upload/v1614279936/Plants/plantguru_Leaf-01_chbb3p.png';
 
-const ImageHeader = (props) => (
+const ImageHeader = ({navigation}) => (
+    <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
     <Image
       style={{ width: windowWidth*0.5, height: windowWidth*0.1 }}
       source={{uri: logo}}
       resizeMode='contain'
     />
+    </TouchableOpacity>
   )
 
 const HomePageHeader = (props) => (
@@ -55,17 +57,17 @@ const StackNavigator = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen name='HomeScreen' component={HomeScreen} options={{headerTitle: HomePageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle }} />
-            <Stack.Screen name='SearchScreen' component={SearchScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle}} />
-            <Stack.Screen name='PlantResultsScreen' component={PlantResultsScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle}} />
-            <Stack.Screen name='UserFavoriteScreen' component={UserFavoriteScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle }} />
-            <Stack.Screen name="RegisterScreen" component={RegisterScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle}} />
-            <Stack.Screen name='PlantInfoScreen' component={PlantInfoScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle}} />
-            <Stack.Screen name='IntroScreen' component={IntroScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle}} />
-            <Stack.Screen name='SunlightScreen' component={SunlightScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle}} />
-            <Stack.Screen name='TemperatureScreen' component={TemperatureScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle}} />
-            <Stack.Screen name='SizeScreen' component={SizeScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle}} />
-            <Stack.Screen name='HumidityScreen' component={HumidityScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle}} />
-            <Stack.Screen name='AdditionalQuestionsScreen' component={AdditionalQuestionsScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle}} />
+            <Stack.Screen name='SearchScreen' component={SearchScreen} options={({navigation}) => ({headerTitle: <ImageHeader navigation={navigation} />, headerTitleAlign: 'center', title: '', headerStyle: headerStyle})} />
+            <Stack.Screen name='PlantResultsScreen' component={PlantResultsScreen} options={({navigation}) => ({headerTitle: <ImageHeader navigation={navigation} />, headerTitleAlign: 'center', title: '', headerStyle: headerStyle})} />
+            <Stack.Screen name='UserFavoriteScreen' component={UserFavoriteScreen} options={({navigation}) => ({headerTitle: <ImageHeader navigation={navigation} />, headerTitleAlign: 'center', title: '', headerStyle: headerStyle})} />
+            <Stack.Screen name="RegisterScreen" component={RegisterScreen} options={({navigation}) => ({headerTitle: <ImageHeader navigation={navigation} />, headerTitleAlign: 'center', title: '', headerStyle: headerStyle})} />
+            <Stack.Screen name='PlantInfoScreen' component={PlantInfoScreen} options={({navigation}) => ({headerTitle: <ImageHeader navigation={navigation} />, headerTitleAlign: 'center', title: '', headerStyle: headerStyle})} />
+            <Stack.Screen name='IntroScreen' component={IntroScreen} options={({navigation}) => ({headerTitle: <ImageHeader navigation={navigation} />, headerTitleAlign: 'center', title: '', headerStyle: headerStyle})} />
+            <Stack.Screen name='SunlightScreen' component={SunlightScreen} options={({navigation}) => ({headerTitle: <ImageHeader navigation={navigation} />, headerTitleAlign: 'center', title: '', headerStyle: headerStyle})} />
+            <Stack.Screen name='TemperatureScreen' component={TemperatureScreen} options={({navigation}) => ({headerTitle: <ImageHeader navigation={navigation} />, headerTitleAlign: 'center', title: '', headerStyle: headerStyle})} />
+            <Stack.Screen name='SizeScreen' component={SizeScreen} options={({navigation}) => ({headerTitle: <ImageHeader navigation={navigation} />, headerTitleAlign: 'center', title: '', headerStyle: headerStyle})} />
+            <Stack.Screen name='HumidityScreen' component={HumidityScreen} options={({navigation}) => ({headerTitle: <ImageHeader navigation={navigation} />, headerTitleAlign: 'center', title: '', headerStyle: headerStyle})} />
+            <Stack.Screen name='AdditionalQuestionsScreen' component={AdditionalQuestionsScreen} options={({navigation}) => ({headerTitle: <ImageHeader navigation={navigation} />, headerTitleAlign: 'center', title: '', headerStyle: headerStyle})} />
         </Stack.Navigator>
     );
 };
