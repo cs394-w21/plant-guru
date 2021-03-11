@@ -154,12 +154,12 @@ const PlantList = (props) => {
                             <Plant plant={plant} key={plant.id} navigation={navigation} />
                         ))
                         :
-                        <Text>
-                            No plants match your criteria.
+                        <Text style={styles.mainText}>
+                            There are no plants that match your criteria.
                     </Text>
                     :
-                    <Text>
-                        loading...
+                    <Text style={styles.mainText}>
+                        Loading...
                 </Text>
             }
         </>
@@ -181,6 +181,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         textAlign: 'center',
         paddingTop: windowWidth * 0.03
+    },
+    mainText: {
+        color: '#7EA480',
+        fontSize: 30,
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: windowWidth * 0.1
     }
 });
 

@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1, 
         flexDirection: 'column',
-        justifyContent: 'flex-start',
+        justifyContent: 'space-evenly',
         alignItems: 'center',
     },
     nextButton: {
@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginRight: Math.min(20, windowWidth*0.01),
-        marginTop: windowWidth*0.1
     },
     nextButtonText: {
         ...text,
@@ -73,7 +72,6 @@ const styles = StyleSheet.create({
     regularText: {
         ...text,
         color: '#7ea480',
-        marginTop: windowWidth*0.1
     },
 });
 
