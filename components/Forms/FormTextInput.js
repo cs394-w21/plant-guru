@@ -6,13 +6,12 @@ import Colors from './colors';
 
 export default function FormTextInput({
   leftIcon,
-  width = '100%',
   rightIcon,
   handlePasswordVisibility,
   ...otherProps
 }) {
   return (
-    <View style={[styles.container, { width }]}>
+    <View style={styles.container}>
       {leftIcon && (
         <MaterialCommunityIcons
           name={leftIcon}
@@ -43,6 +42,9 @@ export default function FormTextInput({
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.lightGrey,
+    borderColor: '#7EA480',
+    borderWidth: 3,
+    width: 300,
     borderRadius: 25,
     flexDirection: 'row',
     padding: 15,

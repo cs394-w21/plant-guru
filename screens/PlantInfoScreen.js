@@ -37,6 +37,29 @@ const PlantInfoScreen = (props) => {
     const {route, navigation} = props;
     const plant = route.params.plant;
     const {name, image, sun, temperature, humidity, care, type, watering, size, allergies} = plant;
+    const parseToxic = () => {
+        const allergiesLower = allergies.toLowerCase();
+        console.log(allergiesLower);
+        if(allergiesLower == "none"){
+            return("This plant is not considered toxic.");
+        }
+        else if(allergiesLower.includes("1")){
+            return("This plant is considered mildly toxic; contact may be mildly irritating.");
+        }
+        else if(allergiesLower.includes("2")){
+            return("This plant is considered somewhat toxic; consumption may cause vomiting and other pains.");
+        }
+        else if(allergiesLower.includes("3")){
+            return("This plant is considered very toxic; consumption may cause severe pain or discomfort.");
+        }
+        else if(allergiesLower.includes("4") || allergiesLower.includes("pets") || allergiesLower.includes("children")){
+            return("This plant is considered extremely toxic; consumption may be life-threatening.");
+        }
+        else{
+            return("Toxicity unknown.");
+        }
+    }
+
     const user = useContext(UserContext);
     const {loading, userData} = (user && user.uid)? fetchUserData(user.uid) : {loading: false, userData: null};
     if (loading) {
@@ -80,7 +103,7 @@ const PlantInfoScreen = (props) => {
                         {`Plant size: ${size}`}
                     </Text>
                     <Text style={styles.text}>
-                        {`Plant toxicity: ${allergies}`}
+                        {`Plant toxicity: ${parseToxic()}`}
                     </Text>
                     
                 </View>
