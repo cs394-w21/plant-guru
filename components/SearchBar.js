@@ -25,14 +25,14 @@ const SearchBar = (props) => {
 
 const styles = StyleSheet.create({
     searchBar: {
-        flex: 1,
         borderRadius: 25,
         flexDirection: 'row',
         padding: 15,
         borderColor: '#7EA480',
         borderWidth: 3,
         width: windowWidth*0.8,
-        height: windowWidth*0.15
+        height: windowWidth*0.15,
+        color: '#7EA480'
     },
     
   });
