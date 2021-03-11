@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, Text } from 'react-native';
 //import { Card, ListItem, Button, Icon } from 'react-native-elements'
 import Plant from './Plant';
 import { windowWidth, windowHeight } from '../constants/WindowSize';
@@ -138,6 +138,7 @@ const PlantList = (props) => {
 
     return(
         <>
+            <Text style={styles.text}>Tap plant card to view details</Text>
             {filteredQuerySearchPlants.map(plant => (
                 <Plant plant={plant} key={plant.id} navigation={navigation}/>
             ))}
@@ -154,6 +155,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: windowWidth*0.9,
     },
+    text: {
+        color: '#7EA480',
+        fontSize: 15,
+        alignItems: 'center',
+        textAlign: 'center',
+        paddingTop: windowWidth*0.03 
+      }
 });
 
 export default PlantList

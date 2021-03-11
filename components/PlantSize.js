@@ -60,7 +60,7 @@ const PlantSize = (props) => {
   
   return (
     <>
-      <Text style={styles.question}>What size plant are you looking for? Select all that apply.</Text>
+      <Text style={styles.question}>{`What size of plant are you looking for?\n(Select one or more sizes)`}</Text>
       {
         Object.keys(options).map(key => {
           return (<TouchableOpacity style={styles.button} key={key} onPress={() => {onPressHandler(key)}}>

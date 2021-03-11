@@ -1,6 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import { Image } from 'react-native';
+import { Image, Text} from 'react-native';
 import {windowWidth} from '../constants/WindowSize';
 import HomeScreen from '../screens/HomeScreen';
 import AdditionalQuestionsScreen from '../screens/InputFormScreens/AdditionalQuestionsScreen';
@@ -19,24 +19,42 @@ const logo = 'https://res.cloudinary.com/dmxv5vtjt/image/upload/v1614279936/Plan
 
 const ImageHeader = (props) => (
     <Image
-      style={{ width: Math.min(300, windowWidth*0.5), height: 100 }}
+      style={{ width: windowWidth*0.5, height: windowWidth*0.1 }}
       source={{uri: logo}}
       resizeMode='contain'
     />
   )
+
+const HomePageHeader = (props) => (
+  <>
+  <Text
+    style={{ color: '#7EA480',
+    fontSize: 25,
+    alignItems: 'center',
+    textAlign: 'center' }}
+  >
+    Welcome to
+  </Text>
+  <Image
+    style={{ width: windowWidth*0.5, height: windowWidth*0.15}}
+    source={{uri: logo}}
+    resizeMode='contain'
+  />
+  </>
+)
 
 const Stack = createStackNavigator();
 
 const headerStyle = {
   backgroundColor: '#ECF0F3',
   borderBottomWidth: 0,
-  height: 150
+  height: 125
 };
 
 const StackNavigator = () => {
     return (
         <Stack.Navigator>
-            <Stack.Screen name='HomeScreen' component={HomeScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle }} />
+            <Stack.Screen name='HomeScreen' component={HomeScreen} options={{headerTitle: HomePageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle }} />
             <Stack.Screen name='SearchScreen' component={SearchScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle}} />
             <Stack.Screen name='PlantResultsScreen' component={PlantResultsScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle}} />
             <Stack.Screen name='UserFavoriteScreen' component={UserFavoriteScreen} options={{headerTitle: ImageHeader, headerTitleAlign: 'center', title: '', headerStyle: headerStyle }} />

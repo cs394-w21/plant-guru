@@ -51,7 +51,7 @@ const SunlightInput = (props) => {
 
   return (
     <>
-      <Text style={styles.question}>What's the kind of sun exposure you receive in your space?</Text>
+      <Text style={styles.question}>How much sun exposure does your space receive?</Text>
       
       {
         Object.keys(options).map(key => {

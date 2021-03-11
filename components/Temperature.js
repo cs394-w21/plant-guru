@@ -50,10 +50,10 @@ const Temperature = (props) => {
     return(
         <>
             <Text style={styles.question}>
-            What is the average temperature expected in your space?
+            What is the average temperature of your plant space?
             </Text>
             <Text style={styles.text}>
-            {temperature} 
+            {temperature+' °F'} 
             </Text>
             <MultiSlider
                 min={50}
