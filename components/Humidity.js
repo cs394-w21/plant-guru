@@ -62,7 +62,7 @@ const Humidity = (props) => {
   return (
     <>
       
-      <Text style={styles.question}>What's the kind of humidity you receive in your space?</Text>
+      <Text style={styles.question}>What is the average humidity in your space?</Text>
       {
         Object.keys(options).map(key => {
           return (<TouchableOpacity style={styles.button} key={key} onPress={() => {onPressHandler(key)}}>
