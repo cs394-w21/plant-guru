@@ -31,24 +31,6 @@ const SunlightInput = (props) => {
     navigation.navigate('TemperatureScreen', {sunlight: options[choice].value});
   }
 
-  // const skip = ({navigation}) => {
-  //   navigation.navigate('TemperatureScreen', {
-  //     sunlight: 'Any'
-  //   })
-  // }
-
-  // React.useLayoutEffect(() => {
-  //   navigation.setOptions({
-  //     headerRight: () => (
-  //       <TouchableOpacity onPress={() => skip({navigation})}>
-  //         <View style={styles.headerBox}>
-  //           <Text style={styles.text}>Skip</Text>
-  //         </View>
-  //       </TouchableOpacity>
-  //     ),
-  //   });
-  // }, [navigation]);
-
   return (
     <>
       <Text style={styles.question}>How much sun exposure does your space receive?</Text>
@@ -87,9 +69,6 @@ const styles = StyleSheet.create({
     width: windowWidth*0.8
   },
   iconBorder: {
-    // borderColor: '#7EA480',
-    // borderWidth: 1.5,
-    // borderRadius: Math.min(100*0.23, windowWidth*0.2*0.23),
     width: windowWidth*0.3,
     height: windowWidth*0.3,
     alignItems: 'center',

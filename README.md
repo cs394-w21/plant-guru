@@ -9,11 +9,13 @@ PlantGuru is an app that can help you find plants to live in your space.
 2. Setup your environment (Expo, React Native, and Node). Follow these [steps](https://courses.cs.northwestern.edu/394/intro-react-native-deploy.php)
 3. Deploy the web app to a public host. Follow these [steps](https://courses.cs.northwestern.edu/394/intro-react-native-deploy.php)
 4. [Add a Realtime Database to your firebase project, register your app with the project](https://courses.cs.northwestern.edu/394/intro-react-native-firebase.php). 
-After registering your app, copy the firebase config shown on screen into **firebase.js**. 
-5. Copy and paste the encrypted key returned by ```firebase login:ci``` to the **FIREBASE_DEPLOY_TOKEN** secret in the **Settings** tab of this repo.
-6. Create a Google sheet with the plant data (sample shown below). Make sure that the sheet is viewable by anyone with the link. Follow these [instructions](https://sites.google.com/a/ccpsnet.net/googletraining/faq/FAQ-Drive/how-do-i-publish-a-sheet-to-the-web-and-what-does-that-mean) to publish your data sheet. Copy the document id from the link to the **dataKey** variable in the **plantData.js** file. 
+After registering your app, copy the firebase config shown on screen into **firebase.js**. After setting up your realtime database, create a key called 'users' in the root of the database.
+5. Follow the 'enable email authentication' step mentioned [here](https://courses.cs.northwestern.edu/394/intro-react-native-login.php) to allow user login.
+6. Copy and paste the encrypted key returned by ```firebase login:ci``` to the **FIREBASE_DEPLOY_TOKEN** secret in the **Settings** tab of this repo.
+7. Create a Google sheet with the plant data (sample shown below). Make sure that the sheet is viewable by anyone with the link. Follow these [instructions](https://sites.google.com/a/ccpsnet.net/googletraining/faq/FAQ-Drive/how-do-i-publish-a-sheet-to-the-web-and-what-does-that-mean) to publish your data sheet. Copy the document id from the link to the **dataKey** variable in the **plantData.js** file. 
 If your link is docs.google.com/spreadsheets/d/abcd1234, your id is abcd1234. 
-7. Done!
+![DB Structure Snapshot](db-snapshot.png)
+8. Done!
 ## Run Instructions
 Run ```expo start``` on your terminal.
 ## Known bugs

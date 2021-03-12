@@ -171,7 +171,6 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
-        // alignItems: 'center',
         justifyContent: 'center',
         width: windowWidth * 0.9,
     },

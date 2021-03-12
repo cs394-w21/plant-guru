@@ -2,7 +2,8 @@ import {useState, useEffect} from 'react';
 import Tabletop from 'tabletop';
 
 async function updateData(updatePlants){
-  const dataKey = '1UA0TT7tY6u654sjbd9K4TADpuKQ_2-a3QGulTKWDFAY';
+  //REPLACE THE FOLLOWING WITH YOUR GOOGLE SHEETS ID
+  const dataKey = 'abcd1234';
   
   const plantData = await Tabletop.init({
     key: dataKey,

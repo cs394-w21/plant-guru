@@ -20,18 +20,6 @@ const AdditionalQuestions = (props) => {
 
   const isNextEnabled = pets && children && effort;
 
-  // const skip = ({navigation, sunlight, temperature, size, humidity}) => {
-  //   navigation.navigate('PlantResultsScreen', {
-  //     sunlight,
-  //     temperature,
-  //     size,
-  //     humidity,
-  //     children: 'Any',
-  //     pets: 'Any',
-  //     effort: 'Any'
-  //   })
-  // }
-
   const next = ({navigation, sunlight, temperature, size, humidity, children, pets, effort}) => {
     navigation.navigate('PlantResultsScreen', {
       sunlight,
@@ -43,25 +31,6 @@ const AdditionalQuestions = (props) => {
       effort
     })
   }
-
-  // React.useLayoutEffect(() => {
-  //   navigation.setOptions({
-  //     headerRight: () => (
-  //       <>
-  //       <TouchableOpacity disabled={!isNextEnabled} onPress={() => next({navigation, sunlight, temperature, size, humidity, children, pets, effort})}>
-  //           <View style={isNextEnabled ? styles.headerBox : styles.headerBoxDisabled}>
-  //             <Text style={isNextEnabled ? styles.text : styles.textDisabled}>Next</Text>
-  //           </View>
-  //       </TouchableOpacity>
-  //       {/* <TouchableOpacity onPress={() => skip({navigation, sunlight, temperature, size, humidity})}>
-  //           <View style={styles.headerBox}>
-  //             <Text style={styles.text}>Skip</Text>
-  //           </View>
-  //       </TouchableOpacity> */}
-  //       </>
-  //     ),
-  //   });
-  // }, [navigation, sunlight, temperature, size, humidity, children, pets, effort]);
 
   return (
     <>

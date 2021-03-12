@@ -46,18 +46,6 @@ const Humidity = (props) => {
       humidity: 'Any'
     })
   }
-
-  // React.useLayoutEffect(() => {
-  //   navigation.setOptions({
-  //     headerRight: () => (
-  //       <TouchableOpacity onPress={() => skip({navigation, sunlight, temperature, size})}>
-  //         <View style={styles.headerBox}>
-  //           <Text style={styles.text}>Not sure</Text>
-  //         </View>
-  //       </TouchableOpacity>
-  //     ),
-  //   });
-  // }, [navigation, sunlight, temperature, size]);
   
   return (
     <>
