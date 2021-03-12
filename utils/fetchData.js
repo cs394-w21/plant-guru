@@ -10,7 +10,6 @@ const getUserData = (appData, userID) => {
   const fetchUserData = (userID) => {
     const [userData, updateUserDataInternal] = useState("");
   
-    // Use callback as to not constantly recreate function definition
     const updateUserData = useCallback(
       (snap) => {
         const val = snap.val();

@@ -18,10 +18,6 @@ const options = {
     value: 'Large',
     text: '>2 feet'
   },
-//   3: {
-//     uri: 'https://res.cloudinary.com/dl4deex1m/image/upload/v1614034706/Screen_Shot_2021-02-22_at_4.57.29_PM_cgbwzq.png',
-//     value: 'Any',
-//   }
 };
 
 const PlantSize = (props) => {
@@ -46,18 +42,6 @@ const PlantSize = (props) => {
     });
   };
 
-  // React.useLayoutEffect(() => {
-  //   navigation.setOptions({
-  //     headerRight: () => (
-  //       <TouchableOpacity disabled={size.length === 0} onPress={() => next({navigation, sunlight, temperature, size})}>
-  //         <View style={size.length === 0 ? styles.headerBoxDisabled : styles.headerBox}>
-  //           <Text style={size.length === 0 ? styles.textDisabled : styles.text}>Next</Text>
-  //         </View>
-  //       </TouchableOpacity>
-  //     ),
-  //   });
-  // }, [navigation, sunlight, temperature, size]);
-  
   return (
     <>
       <Text style={styles.question}>{`What size of plant are you looking for?`}</Text>

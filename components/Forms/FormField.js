@@ -22,7 +22,6 @@ export default function FormField({ name, width, ...otherProps }) {
         onBlur={() => setFieldTouched(name)}
         width={width}
         {...otherProps}
-        // style={styles.container}
       />
       <FormErrorMessage error={errors[name]} visible={touched[name]} />
     </React.Fragment>

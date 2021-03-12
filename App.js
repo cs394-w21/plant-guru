@@ -19,7 +19,6 @@ const App = () => {
     if (auth && auth.uid) {
       const db = firebase.database().ref('users').child(auth.uid);
       const handleData = snap => {
-        // console.log(snap.val());
         setUser({uid: auth.uid, ...snap.val()});
       }
       db.on('value', handleData, error => alert(error));

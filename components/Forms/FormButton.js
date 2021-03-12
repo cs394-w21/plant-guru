@@ -34,6 +34,5 @@ const styles = StyleSheet.create({
     color: Colors.white,
     fontSize: 18,
     fontWeight: '600',
-    // textTransform: 'uppercase'
   }
 });
